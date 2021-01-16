@@ -1,0 +1,9 @@
+* linux/mac
+
+git clone --single-branch https://bitbucket.org/jolyon929/e5.git --single-branch .emacs.d
+
+* windows
+
+git clone -b win --single-branch https://bitbucket.org/jolyon929/e5.git --single-branch win
+
+.\win\minimal_env
