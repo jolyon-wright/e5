@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: blog
+# key: blog
+# --
+#+HTML: <div id="edn">
+#+HTML: {:topic "programming" :title "${1:title}" :date "`(format-time-string "%Y-%m-%d")`" :tags ${2:["clojure"]}}
+#+HTML: </div> ;; 1
+#+OPTIONS: \n:1 toc:nil num:nil todo:nil ^:{} title:nil ;; 2
+#+PROPERTY: header-args :eval never-export ;; 2
+#+DATE: `(format-time-string "%Y-%m-%d %a")` ;; 3
+#+TITLE $1 ;; 4
+#+HTML:<h1 id="mainTitle">$1</h1> ;; 5
+#+HTML:<div id="timedate">  ;; 6
+/First published: {{{date}}}/ ;; 7
+/Last updated: {{{time(%Y-%m-%d %a)}}}/ ;; 8
+#+HTML:</div> 
+${3:#+TOC: headlines 2} ;; 9
+$0
