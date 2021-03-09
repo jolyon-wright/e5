@@ -7,13 +7,34 @@
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
 
-#include <experimental/filesystem>
-namespace fs = std::experimental::filesystem;
-
 using namespace boost;
 using namespace std;
 namespace       logging = boost::log;
 namespace       po      = boost::program_options;
+
+// https://medium.com/pranayaggarwal25/custom-deleters-with-shared-ptr-and-unique-ptr-524bb7bd7262
+void
+do_something_smart_with_custom_deletion();
+
+
+template< typename T >
+struct jolyon_deleter
+{
+  void operator()(T const * p)
+  { 
+      delete[] p;
+  }
+};
+void
+do_something_smart_with_custom_deletion()
+{
+    BOOST_LOG_TRIVIAL(debug) << __FILE__ << "(" << __LINE__ << ") : now I can do any funky additional stuff here";
+
+    std::shared_ptr<int> sp(new int[10], jolyon_deleter<int>());
+
+    // ~sp() called here as we go out of scope... 
+}
+
 
 int
 main(int    argc,
@@ -30,6 +51,9 @@ main(int    argc,
     vector<string>          show_vct;
     vector<string>          check_vct;
 
+    do_something_smart_with_custom_deletion();
+
+
     // BOOST_LOG_TRIVIAL(trace) << "A trace severity message";
     // BOOST_LOG_TRIVIAL(debug) << "A debug severity message";
     // BOOST_LOG_TRIVIAL(info) << "An informational severity message";
@@ -40,12 +64,12 @@ main(int    argc,
     try {
         desc.add_options()
                 ("help", "Print help messages")
-                ("input-csv,s", po::value<string>(&input_csv)->default_value("L197KeyCharacterGlossarySessionBySession_16J.csv"), "input vocab csv")
-                ("output-csv,o", po::value<string>(&output_csv)->default_value(""), "optional consolidated output csv")
-                ("config-file,c", po::value(&config_file), "config file.")
-                ("expression-pairs,e", po::value(&expression_vct)->multitoken(), "expression-pairs")
-                ("show-vct, s", po::value(&show_vct)->multitoken(), "show-vct")
-                ("check-vct, c", po::value(&check_vct)->multitoken(), "check-vct")
+                // ("input-csv,s", po::value<string>(&input_csv)->default_value("L197KeyCharacterGlossarySessionBySession_16J.csv"), "input vocab csv")
+                // ("output-csv,o", po::value<string>(&output_csv)->default_value(""), "optional consolidated output csv")
+                // ("config-file,c", po::value(&config_file), "config file.")
+                // ("expression-pairs,e", po::value(&expression_vct)->multitoken(), "expression-pairs")
+                // ("show-vct, s", po::value(&show_vct)->multitoken(), "show-vct")
+                // ("check-vct, c", po::value(&check_vct)->multitoken(), "check-vct")
                 ("log-level,t", po::value(&logLevel)->default_value((int)boost::log::trivial::trace), "trace level (0-5):-\n\
 \t  trace   0 \n\
 \t  debug   1 \n\
@@ -85,11 +109,9 @@ main(int    argc,
             std::cout << "chill." << std::endl
                       << desc << std::endl;
             return __LINE__;
-        }
-        if (fs::exists(fs::path(input_csv)) == false) {
-            BOOST_LOG_TRIVIAL(fatal) << "FATAL : \"" << input_csv << "\" does not exist.";
-            return __LINE__;
-        }
+        }        
+
+        BOOST_LOG_TRIVIAL(fatal) << __FILE__ << "(" << __LINE__ << ") : there was not an error but lets pretend there was";
     }
     catch(po::error& e) {
         std::cerr << "ERROR: " << e.what() << std::endl << std::endl;

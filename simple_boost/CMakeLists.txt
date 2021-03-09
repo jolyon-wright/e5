@@ -4,6 +4,22 @@
 # sudo ln -s /usr/bin/clang++-9 /usr/local/bin/clang++
 # export CXX=clang++
 
+# boost:-
+#
+# VERSION=1.75.0
+# VERSION_UNDERBAR=_1_75_0
+
+# wget https://dl.bintray.com/boostorg/release/${VERSION}/source/boost${VERSION_UNDERBAR}.tar.gz
+# tar xvf boost${VERSION_UNDERBAR}.tar.gz
+# pushd boost${VERSION_UNDERBAR}
+# ./bootstrap.sh
+# ./b2 address-model=64 link=static runtime-link=static threading=multi
+# popd
+
+# cat << EOF >> ~/.bashrc
+# export BOOST_ROOT=/home/${USER}/boost${VERSION_UNDERBAR}
+# EOF
+
 
 cmake_minimum_required(VERSION 3.14.1)
 project(hello)
@@ -46,5 +62,5 @@ target_link_libraries(${PROJECT_NAME}
   Boost::log
   Boost::locale
   Boost::nowide
-  ${FS_LIB}
+  # ${FS_LIB}
   )
