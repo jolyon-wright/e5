@@ -1,0 +1,40 @@
+TARGETNAME=simple_filter
+TARGETTYPE=DRIVER
+
+KMDF_VERSION_MAJOR=1
+
+#
+# The version numbers have also to change in the .rc file.
+#
+
+VERSION_MAJOR=2
+VERSION_MINOR=30
+VERSION_REVISION=8
+VERSION_BUILD=1802
+
+NTTARGETFILE2=postbuild
+
+#NTTARGETFILES=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+MISCFILES=$(NTTARGETFILES)
+
+TARGETLIBS=$(TARGETLIBS) \
+           $(DDK_LIB_PATH)\wdmsec.lib \
+           $(DDK_LIB_PATH)\ntstrsafe.lib \
+           $(DDK_LIB_PATH)\rtlver.lib
+
+INCLUDES=$(INCLUDES);../../inc;../../../inc
+
+C_DEFINES= -DMY_VERSION_MAJOR=$(VERSION_MAJOR) \
+            -DMY_VERSION_MINOR=$(VERSION_MINOR) \
+            -DMY_VERSION_REVISION=$(VERSION_REVISION) \
+            -DMY_VERSION_BUILD=$(VERSION_BUILD) \
+            $(C_DEFINES)
+
+MSC_WARNING_LEVEL=/W4
+
+
+
+SOURCES=Device.c \
+                 Driver.c \
+                 Queue.c
