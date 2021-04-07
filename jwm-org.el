@@ -161,7 +161,7 @@ Inserted by installing org-mode or when a release is made."
 
   :hook ((org-mode . org-bullets-mode)
          (org-mode . org-num-mode)
-         (org-mode . (lambda () (org-bullets-mode 1)))
+         ;;(org-mode . (lambda () (org-bullets-mode 1)))
          )
   )
 
