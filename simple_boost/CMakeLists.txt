@@ -34,6 +34,7 @@ set(Boost_USE_STATIC_RUNTIME ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(Boost_DEBUG ON)
+set(CMAKE_BUILD_TYPE Debug)
 
 ucm_set_runtime(STATIC)
 
