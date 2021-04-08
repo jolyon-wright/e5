@@ -159,7 +159,7 @@ Inserted by installing org-mode or when a release is made."
   ;; with numbered mode I dont want a different symbol for each  level
   (setq org-bullets-bullet-list '("✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤"))
 
-  :hook ((org-mode . org-bullets-mode)
+  :hook (;;(org-mode . org-bullets-mode)
          (org-mode . org-num-mode)
          ;;(org-mode . (lambda () (org-bullets-mode 1)))
          )
