@@ -60,14 +60,8 @@ Inserted by installing org-mode or when a release is made."
               ("<C-f11>" . org-html-export-to-html)
               ("<M-f11>" . org-latex-export-to-pdf)
               ("<s-f11>" . org-gfm-export-to-markdown)
-
-
+;;              ("<f5>" . org-num)
               )
-  ;; :bind (
-  ;;        ("<C-f11>" . org-html-export-to-html)
-  ;;        ("<M-f11>" . org-latex-export-to-pdf)
-  ;;        ("<s-f11>" . org-gfm-export-to-markdown)
-  ;;        )
 
 
   :straight org-plus-contrib
@@ -115,7 +109,10 @@ Inserted by installing org-mode or when a release is made."
 
   (setq org-export-with-smart-quotes t)
 
+  :hook
+  (org-mode . org-num-mode)
   :config
+
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(
@@ -126,6 +123,10 @@ Inserted by installing org-mode or when a release is made."
    )
 
   )
+
+
+;; (require 'org-num)
+
 
 ;; reminder
 ;;
@@ -146,10 +147,10 @@ Inserted by installing org-mode or when a release is made."
 
 
 (use-package blockdiag-mode
-;;  :after org
+  :after org
   )
 (use-package ob-blockdiag
-;;  :after org
+  :after org
   )
 (use-package org-bullets
   :after org
@@ -160,8 +161,8 @@ Inserted by installing org-mode or when a release is made."
   (setq org-bullets-bullet-list '("✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤"))
 
   :hook (;;(org-mode . org-bullets-mode)
-         (org-mode . org-num-mode)
-         ;;(org-mode . (lambda () (org-bullets-mode 1)))
+
+         (org-mode . (lambda () (org-bullets-mode 1)))
          )
   )
 
@@ -171,6 +172,9 @@ Inserted by installing org-mode or when a release is made."
 
 
 (straight-use-package '(woofers :type git :host github :repo "woofers/org-invoice-template"))
+
+;; (require 'org-num)
+;; (setq org-num t)
 
 
 (setq org-default-notes-file "~/org/refile.org")
