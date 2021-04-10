@@ -10,7 +10,9 @@
     )
   ;; on mac:-
   ;; brew install libvterm
-  (use-package multi-vterm )
+  (use-package multi-vterm)
+  (use-package vterm-toggle)
+
   (bind-key "<C-f9>" 'multi-vterm))
 
 
