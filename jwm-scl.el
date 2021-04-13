@@ -17,3 +17,14 @@
 ;; (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
+
+;;(use-package scheme48)
+;;(setq scheme-program-name "scheme48")
+;; slime48 ?
+
+
+(if (eq system-type 'darwin)
+    ;; brew install mit-scheme
+    (setq scheme-program-name   "/usr/local/bin/mit-scheme")
+)
