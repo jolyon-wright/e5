@@ -109,8 +109,8 @@ Inserted by installing org-mode or when a release is made."
 
   (setq org-export-with-smart-quotes t)
 
-  :hook
-  (org-mode . org-num-mode)
+  ;; :hook
+  ;; (org-mode . org-num-mode)
   :config
 
   (org-babel-do-load-languages
@@ -160,10 +160,10 @@ Inserted by installing org-mode or when a release is made."
   ;; with numbered mode I dont want a different symbol for each  level
   (setq org-bullets-bullet-list '("✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤"))
 
-  :hook (;;(org-mode . org-bullets-mode)
+  ;; :hook (;;(org-mode . org-bullets-mode)
 
-         (org-mode . (lambda () (org-bullets-mode 1)))
-         )
+  ;;        (org-mode . (lambda () (org-bullets-mode 1)))
+  ;;        )
   )
 
 (straight-use-package '(larstvei :type git :host github :repo "larstvei/ox-gfm")
