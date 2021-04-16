@@ -60,6 +60,9 @@ Inserted by installing org-mode or when a release is made."
               ("<C-f11>" . org-html-export-to-html)
               ("<M-f11>" . org-latex-export-to-pdf)
               ("<s-f11>" . org-gfm-export-to-markdown)
+              ("<C-f1>" . org-num-mode)
+              ("<C-f2>" . org-bullets-mode)
+
 ;;              ("<f5>" . org-num)
               )
 
