@@ -71,7 +71,7 @@ Inserted by installing org-mode or when a release is made."
               ("<h>" . org-html-export-to-html)
               ("<p>" . org-latex-export-to-pdf)
               ("<m>" . org-gfm-export-to-markdown)
-
+              ("<c>" . org-confluence-export-as-confluence)
 
 ;;              ("<f5>" . org-num)
               )
@@ -121,6 +121,8 @@ Inserted by installing org-mode or when a release is made."
   (setq org-support-shift-select 'always)
 
   (setq org-export-with-smart-quotes t)
+
+  (require 'ox-confluence)
 
   ;; :hook
   ;; (org-mode . org-num-mode)
