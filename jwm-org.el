@@ -50,6 +50,7 @@ Inserted by installing org-mode or when a release is made."
 (provide 'org-version)
 
 (use-package org
+  :after ob-blockdiag
   :bind (:map org-mode-map
               ("<M-up>"   . nil)           ;; do not steal my keys!
               ("<M-down>" . nil)           ;; ditto
@@ -162,10 +163,10 @@ Inserted by installing org-mode or when a release is made."
 
 
 (use-package blockdiag-mode
-  :after org
+  ;;:after org
   )
 (use-package ob-blockdiag
-  :after org
+  ;;:after org
   )
 (use-package org-bullets
   :after org
