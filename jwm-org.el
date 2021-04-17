@@ -68,10 +68,10 @@ Inserted by installing org-mode or when a release is made."
 
               :prefix "<f3>"
               :prefix-map jw-prefix-map
-              ("<h>" . org-html-export-to-html)
-              ("<p>" . org-latex-export-to-pdf)
-              ("<m>" . org-gfm-export-to-markdown)
-              ("<c>" . org-confluence-export-as-confluence)
+              ("h" . org-html-export-to-html)
+              ("p" . org-latex-export-to-pdf)
+              ("m" . org-gfm-export-to-markdown)
+              ("c" . org-confluence-export-as-confluence)
 
 ;;              ("<f5>" . org-num)
               )
