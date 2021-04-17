@@ -66,7 +66,7 @@ Inserted by installing org-mode or when a release is made."
               ("<C-f2>" . org-bullets-mode)
 
 
-              :prefix "f3"
+              :prefix "<f3>"
               :prefix-map jw-prefix-map
               ("<h>" . org-html-export-to-html)
               ("<p>" . org-latex-export-to-pdf)
