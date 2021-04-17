@@ -60,15 +60,18 @@ Inserted by installing org-mode or when a release is made."
               ;; ("<C-f11>" . org-html-export-to-html)
               ;; ("<M-f11>" . org-latex-export-to-pdf)
               ;; ("<s-f11>" . org-gfm-export-to-markdown)
-
-              ("<f3 h>" . org-html-export-to-html)
-              ("<f3 p>" . org-latex-export-to-pdf)
-              ("<f3 m>" . org-gfm-export-to-markdown)
-
-
+              
 
               ("<C-f1>" . org-num-mode)
               ("<C-f2>" . org-bullets-mode)
+
+
+              :prefix "f3"
+              :prefix-map jw-prefix-map
+              ("<h>" . org-html-export-to-html)
+              ("<p>" . org-latex-export-to-pdf)
+              ("<m>" . org-gfm-export-to-markdown)
+
 
 ;;              ("<f5>" . org-num)
               )
