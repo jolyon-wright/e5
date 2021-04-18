@@ -12,6 +12,8 @@
 (load (expand-file-name "~/.quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
 
+(use-package rainbow-delimiters)
+
 (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
 ;; (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
