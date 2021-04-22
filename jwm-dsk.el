@@ -15,5 +15,7 @@ _FILE-NAME is nil."
 ;; restore all shell-mode buffers
 (add-to-list 'desktop-buffer-mode-handlers '(shell-mode . sy-create-shell-buffer))
 
+(add-to-list 'desktop-minor-mode-handlers '(org-num-mode . ignore))
+
 (desktop-save-mode)
 (setq desktop-path '("~/.emacs.d"))
