@@ -135,6 +135,7 @@ Inserted by installing org-mode or when a release is made."
      (emacs-lisp . t)
      (blockdiag . t)
      (python . t)
+     (shell . t)
      (dot . t))
    )
 
