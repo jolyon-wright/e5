@@ -527,3 +527,11 @@ A prefix arg forces clock in of the default task."
 
 (setq org-blank-before-new-entry (quote ((heading)
                                          (plain-list-item))))
+
+
+;; org -mode; the final insult:-
+
+(add-hook 'org-shiftup-final-hook 'windmove-up)
+(add-hook 'org-shiftleft-final-hook 'windmove-left)
+(add-hook 'org-shiftdown-final-hook 'windmove-down)
+(add-hook 'org-shiftright-final-hook 'windmove-right)
