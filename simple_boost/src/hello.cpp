@@ -6,6 +6,7 @@
 #include <boost/log/core.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
+#include "stuff.h"
 
 using namespace boost;
 using namespace std;
@@ -52,6 +53,8 @@ main(int    argc,
     vector<string>          check_vct;
 
     do_something_smart_with_custom_deletion();
+
+    try_process_creation();
 
 
     // BOOST_LOG_TRIVIAL(trace) << "A trace severity message";
