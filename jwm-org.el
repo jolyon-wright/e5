@@ -519,5 +519,7 @@ A prefix arg forces clock in of the default task."
 (add-hook 'org-shiftdown-final-hook 'windmove-down)
 (add-hook 'org-shiftright-final-hook 'windmove-right)
 
-
+;; see https://orgmode.org/worg/exporters/koma-letter-export.html#org1fb055f
 (eval-after-load 'ox '(require 'ox-koma-letter))
+(eval-after-load 'ox-latex
+  '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
