@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; sudo apt-get install texlive-xetex
 
 ;; sudo apt install python3-blockdiag
@@ -72,10 +74,7 @@ Inserted by installing org-mode or when a release is made."
               ("h" . org-html-export-to-html)
               ("p" . org-latex-export-to-pdf)
               ("m" . org-gfm-export-to-markdown)
-              ("c" . org-confluence-export-as-confluence)
-
-;;              ("<f5>" . org-num)
-              )
+              ("c" . org-confluence-export-as-confluence))
 
 
   :straight org-plus-contrib
@@ -137,10 +136,7 @@ Inserted by installing org-mode or when a release is made."
      (blockdiag . t)
      (python . t)
      (shell . t)
-     (dot . t))
-   )
-
-  )
+     (dot . t))))
 
 
 ;; (require 'org-num)
@@ -177,23 +173,10 @@ Inserted by installing org-mode or when a release is made."
   ;; (setq org-bullets-bullet-list '("✙" "♱" "♰" "☥" "✞" "✟" "✝" "†" "✠" "✚" "✜" "✛" "✢" "✣" "✤" "✥"))
   ;; with numbered mode I dont want a different symbol for each  level
   (setq org-bullets-bullet-list '("✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤" "✤"))
+  :hook (org-mode . org-bullets-mode))
 
-  :hook (org-mode . org-bullets-mode)
-  ;; :hook (;;(org-mode . org-bullets-mode)
-
-  ;;        (org-mode . (lambda () (org-bullets-mode 1)))
-  ;;        )
-  )
-
-(straight-use-package '(larstvei :type git :host github :repo "larstvei/ox-gfm")
-                   ;;   :after org
-                      )
-
-
+(straight-use-package '(larstvei :type git :host github :repo "larstvei/ox-gfm"))
 (straight-use-package '(woofers :type git :host github :repo "woofers/org-invoice-template"))
-
-;; (require 'org-num)
-;; (setq org-num t)
 
 
 (setq org-default-notes-file "~/org/refile.org")
