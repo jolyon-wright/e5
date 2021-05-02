@@ -1,0 +1,24 @@
+#+TITLE:`(substring (buffer-name) 0  (- (length (buffer-name)) 3))`
+#+AUTHOR:`user-full-name`
+#+EMAIL:`user-mail-address`
+# #+OPTIONS: toc:nil
+# #+OPTIONS: num:nil
+#+OPTIONS: author:nil date:nil
+#+OPTIONS: ^:nil
+
+#+OPTIONS: toc:20
+#+OPTIONS: author:nil date:nil
+# #+HTML_HEAD_EXTRA: <style>*{font-family: Liberation Mono; !important}</style>
+
+#+HTML_HEAD: <style>pre.src {background-color: #303030; color: #e5e5e5;}</style>
+
+#+LATEX: \setlength\parindent{0pt}
+#+LATEX: \parskip=12pt % adds vertical space between paragraphs
+#+LATEX_HEADER: \usepackage[inline]{enumitem}
+#+LATEX_HEADER: \usepackage{extsizes}
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \setlist[itemize]{noitemsep}
+#+LATEX_HEADER: \setlist[enumerate]{noitemsep}
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage{graphicx,wrapfig,lipsum}
+#+LATEX_HEADER: \documentclass[a4paper,8pt]{article}
