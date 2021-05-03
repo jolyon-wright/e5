@@ -35,7 +35,7 @@
 
 
 ; Load recursively a folder
-(defconst elisp-path '("~/.emacs.d"))
+(defconst elisp-path '("~/.emacs.d/straight"))
 (mapcar '(lambda(p)
            (add-to-list 'load-path p)
            (cd p) (normal-top-level-add-subdirs-to-load-path))
