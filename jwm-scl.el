@@ -9,6 +9,7 @@
 ;; sbcl --eval '(ql:quickload :quicklisp-slime-helper)' --quit
 
 (use-package slime)
+(use-package common-lisp-snippets)
 (load (expand-file-name "~/.quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
 
@@ -31,3 +32,11 @@
     (setq scheme-program-name   "/usr/local/bin/mit-scheme")
 )
 ;; https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/
+
+
+; Load recursively a folder
+(defconst elisp-path '("~/.emacs.d"))
+(mapcar '(lambda(p)
+           (add-to-list 'load-path p)
+           (cd p) (normal-top-level-add-subdirs-to-load-path))
+        elisp-path)
