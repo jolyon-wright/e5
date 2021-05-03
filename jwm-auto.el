@@ -49,6 +49,7 @@
   ;;
   ;; (provide '`(substring (buffer-name) 0  (- (length (buffer-name)) 3))`)
   ;;
+  (define-auto-insert "\\.lisp$" ["default-lisp" autoinsert-yas-expand])
   (define-auto-insert "\\.org$" ["default-org" autoinsert-yas-expand])
   (define-auto-insert "\\.sh$" ["default-sh" autoinsert-yas-expand])
   (define-auto-insert "\\.el$" ["default-el" autoinsert-yas-expand]))
