@@ -24,6 +24,7 @@
 
 ;;; Code:
 
+(require 'jw-fctn)
 
 (autoload 'yas-expand-snippet "yasnippet")
 
