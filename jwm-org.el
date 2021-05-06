@@ -122,7 +122,7 @@ Inserted by installing org-mode or when a release is made."
 
   (setq org-export-with-smart-quotes t)
 
-  (require 'ox-confluence)
+  ;;(require 'ox-confluence)
 
   :hook
    (org-mode . org-num-mode)
@@ -159,6 +159,8 @@ Inserted by installing org-mode or when a release is made."
 ;;         "xelatex -interaction nonstopmode %f")) ;; for multiple passes
 
 
+
+  ;;(require 'ox-confluence)
 
 (use-package blockdiag-mode
   ;;:after org
@@ -523,3 +525,6 @@ A prefix arg forces clock in of the default task."
 (eval-after-load 'ox '(require 'ox-koma-letter))
 (eval-after-load 'ox-latex
   '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
+(eval-after-load 'ox '(require 'ox-confluence))
+
+  ;;(require 'ox-confluence)
