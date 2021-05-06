@@ -1,8 +1,10 @@
 #!/bin/bash
 
+sudo apt install libxcb-xinerama0
+
 #https://www.perforce.com/downloads/helix-visual-client-p4v
 cat << EOF >> ~/.bashrc
-export PATH=$PATH:~/p4v-2021.1.2085655/bin/p4v
+export PATH=$PATH:~/p4v-2021.1.2085655/bin
 
 EOF
 
