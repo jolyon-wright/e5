@@ -26,7 +26,6 @@
 ;;(setq scheme-program-name "scheme48")
 ;; slime48 ?
 
-
 (if (eq system-type 'darwin)
     ;; brew install mit-scheme
     (setq scheme-program-name   "/usr/local/bin/mit-scheme")
@@ -36,7 +35,7 @@
 
 ; Load recursively a folder
 (defconst elisp-path '("~/.emacs.d/straight"))
-(mapcar '(lambda(p)
-           (add-to-list 'load-path p)
-           (cd p) (normal-top-level-add-subdirs-to-load-path))
-        elisp-path)
+;; (mapcar #'(lambda(p)
+;;            (add-to-list 'load-path p)
+;;            (cd p) (normal-top-level-add-subdirs-to-load-path))
+;;         elisp-path)
