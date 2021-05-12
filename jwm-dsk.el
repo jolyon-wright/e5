@@ -19,3 +19,4 @@ _FILE-NAME is nil."
 
 (desktop-save-mode)
 (setq desktop-path '("~/.emacs.d"))
+(provide 'jwm-dsk)
