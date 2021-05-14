@@ -101,7 +101,6 @@
 (use-package dash)
 (use-package helm)
 (use-package dts-mode)
-(use-package magit)
 (use-package help-fns+)
 
 (use-package company
