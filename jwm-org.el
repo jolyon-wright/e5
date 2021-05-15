@@ -122,6 +122,14 @@ Inserted by installing org-mode or when a release is made."
 
   (setq org-export-with-smart-quotes t)
 
+  
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([+]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "◦"))))))
+
   ;;(require 'ox-confluence)
 
   :hook
