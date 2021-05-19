@@ -15,4 +15,4 @@
 
   (bind-key "<C-f9>" 'multi-vterm))
 
-
+(provide 'jwm-vtm)
