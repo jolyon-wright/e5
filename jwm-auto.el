@@ -61,7 +61,8 @@
   :bind (:map yas-minor-mode-map
               ("TAB" . nil)
               ("<tab>" . nil)
-              ("C-." . 'yas-expand))
+              ;; "C-." . 'yas-expand)) ;; conflicts
+              ("<f8>" . 'yas-expand))
   :init
   (yas-global-mode 1)
   :config
