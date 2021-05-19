@@ -1,4 +1,4 @@
-#+TITLE:`(substring (buffer-name) 0  (- (length (buffer-name)) 3))`
+#+TITLE:`(substring (buffer-name) 0  (- (length (buffer-name)) 4))`
 #+AUTHOR:`user-full-name`
 #+EMAIL:`user-mail-address`
 # #+OPTIONS: toc:nil
