@@ -114,13 +114,15 @@
 ;; explicitly set the dictionary to british
 ;; nb there is no aspell that works with emacs 25 on windows
 (if (eq system-type 'windows-nt)
-    (setq-default ispell-program-name  (expand-file-name "lisp/hunspell-1.3.2-3-w32-bin/bin/hunspell"  user-emacs-directory)))
-(if (eq system-type 'windows-nt)
-    (setq ispell-local-dictionary "en_GB"))
-(if (eq system-type 'windows-nt)
-   (setq ispell-local-dictionary-alist
+    (progn
+      (setq ispell-local-dictionary "en_GB")
+      (setq ispell-local-dictionary-alist
          '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8)
-           )))
+           ))
+
+      (setenv "LANG" "en_GB")
+      (setq-default ispell-program-name "hunspell")))
+
 (if (eq system-type 'darwin)
     (setq ispell-program-name "/usr/local/bin/aspell"))
 
