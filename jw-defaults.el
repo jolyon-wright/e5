@@ -24,6 +24,11 @@
 ;;
 
 ;;; Code:
+(require 'cl-lib)
+(require 'map)
+(require 'subr-x)
+
+
 (set-face-attribute 'default nil :family "Liberation Mono" :height 145 :weight 'normal)
 
 (set-charset-priority 'unicode)
@@ -199,12 +204,119 @@
 
 (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode)
 
-;; (straight-use-package '(revive :type git :host github :repo "vedang/revive-mode")
-;;                       :demand t
-;;                       )
-;; (require 'revive-mode-config)
-;; (emacs-load-layout)
-;; (add-hook 'kill-emacs-hook 'emacs-save-layout)
+(defmacro radian-defadvice (name arglist where place docstring &rest body)
+  "Define an advice called NAME and add it to a function.
+ARGLIST is as in `defun'. WHERE is a keyword as passed to
+`advice-add', and PLACE is the function to which to add the
+advice, like in `advice-add'. PLACE should be sharp-quoted.
+DOCSTRING and BODY are as in `defun'."
+  (declare (indent 2)
+           (doc-string 5))
+  (unless (stringp docstring)
+    (error "Radian: advice `%S' not documented'" name))
+  (unless (and (listp place)
+               (= 2 (length place))
+               (eq (nth 0 place) 'function)
+               (symbolp (nth 1 place)))
+    (error "Radian: advice `%S' does not sharp-quote place `%S'" name place))
+  `(progn
+     ;; You'd think I would put an `eval-and-compile' around this. It
+     ;; turns out that doing so breaks the ability of
+     ;; `elisp-completion-at-point' to complete on function arguments
+     ;; to the advice. I know, right? Apparently this is because the
+     ;; code that gets the list of lexically bound symbols at point
+     ;; tries to `macroexpand-all', and apparently macroexpanding
+     ;; `eval-and-compile' goes ahead and evals the thing and returns
+     ;; only the function symbol. No good. But the compiler does still
+     ;; want to know the function is defined (this is a Gilardi
+     ;; scenario), so we pacify it by `eval-when-compile'ing something
+     ;; similar (see below).
+     (defun ,name ,arglist
+       ,(let ((article (if (string-match-p "^:[aeiou]" (symbol-name where))
+                           "an"
+                         "a")))
+          (format "%s\n\nThis is %s `%S' advice for `%S'."
+                  docstring article where
+                  (if (and (listp place)
+                           (memq (car place) ''function))
+                      (cadr place)
+                    place)))
+       ,@body)
+     (eval-when-compile
+       (declare-function ,name nil))
+     (advice-add ,place ',where #',name)
+     ',name))
+
+(defmacro radian-flet (bindings &rest body)
+  "Temporarily override function definitions using `cl-letf*'.
+BINDINGS are composed of `defun'-ish forms. NAME is the function
+to override. It has access to the original function as a
+lexically bound variable by the same name, for use with
+`funcall'. ARGLIST and BODY are as in `defun'.
+
+\(fn ((defun NAME ARGLIST &rest BODY) ...) BODY...)"
+  (declare (indent defun))
+  `(cl-letf* (,@(cl-mapcan
+                 (lambda (binding)
+                   (when (memq (car binding) '(defun lambda))
+                     (setq binding (cdr binding)))
+                   (cl-destructuring-bind (name arglist &rest body) binding
+                     (list
+                      `(,name (symbol-function #',name))
+                      `((symbol-function #',name)
+                        (lambda ,arglist
+                          ,@body)))))
+                 bindings))
+     ,@body))
+
+(defmacro radian--with-silent-write (&rest body)
+  "Execute BODY, with the function `write-region' made silent."
+  (declare (indent 0))
+  `(radian-flet ((defun write-region
+                     (start end filename &optional append visit lockname
+                            mustbenew)
+                   (funcall write-region start end filename append 0
+                            lockname mustbenew)
+                   (when (or (stringp visit) (eq visit t))
+                     (setq buffer-file-name
+                           (if (stringp visit)
+                               visit
+                             filename))
+                     (set-visited-file-modtime)
+                     (set-buffer-modified-p nil))))
+     (cl-letf (((symbol-function #'message) #'ignore))
+       ,@body)))
+
+;; Feature `saveplace' provides a minor mode for remembering the
+;; location of point in each file you visit, and returning it there
+;; when you find the file again.
+(use-package saveplace
+  :demand t
+  :config
+
+  (save-place-mode +1)
+
+  (radian-defadvice radian--advice-save-place-quickly-and-silently
+      (func &rest args)
+    :around #'save-place-alist-to-file
+    "Make `save-place' save more quickly and silently."
+    (radian--with-silent-write
+      (cl-letf (((symbol-function #'pp) #'prin1))
+        (apply func args)))))
+
+(straight-use-package '(revive :type git :host github :repo "vedang/revive-mode")
+                      :init
+                      (progn
+                        (add-to-list 'load-path (straight--repos-dir "revive-mode"))
+                        (require 'revive-mode-config))
+                      :config
+                      (progn
+                        ;; save and restore layout
+                        (add-hook 'kill-emacs-hook 'emacs-save-layout)
+                        (add-hook 'after-init-hook 'emacs-load-layout t)))
+
+
+
 
 (provide 'jw-defaults)
 
