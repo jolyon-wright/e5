@@ -51,8 +51,10 @@ Inserted by installing org-mode or when a release is made."
 
 (provide 'org-version)
 
-(use-package org
+;;(use-package org
+(use-package org-plus-contrib
   :after ob-blockdiag
+  :ensure org-plus-contrib
   :bind (:map org-mode-map
               ("<M-up>"   . nil)           ;; do not steal my keys!
               ("<M-down>" . nil)           ;; ditto
@@ -77,7 +79,7 @@ Inserted by installing org-mode or when a release is made."
               ("c" . org-confluence-export-as-confluence))
 
 
-  :straight org-plus-contrib
+;;  :straight org-plus-contrib
   :mode ("\\.org$" . org-mode)
   :init
   (setq org-replace-disputed-keys t)
@@ -135,8 +137,9 @@ Inserted by installing org-mode or when a release is made."
   :hook
    (org-mode . org-num-mode)
 
-  :config
-
+   :config
+   (use-package ox-koma-letter)
+   (use-package ox-confluence)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(
@@ -146,6 +149,14 @@ Inserted by installing org-mode or when a release is made."
      (shell . t)
      (dot . t))))
 
+
+
+
+;; see https://orgmode.org/worg/exporters/koma-letter-export.html#org1fb055f
+;; (eval-after-load 'ox '(require 'ox-koma-letter))
+;; (eval-after-load 'ox-latex
+;;   '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
+;; (eval-after-load 'ox '(require 'ox-confluence))
 
 ;; (require 'org-num)
 
@@ -530,9 +541,9 @@ A prefix arg forces clock in of the default task."
 (add-hook 'org-shiftright-final-hook 'windmove-right)
 
 ;; see https://orgmode.org/worg/exporters/koma-letter-export.html#org1fb055f
-(eval-after-load 'ox '(require 'ox-koma-letter))
-(eval-after-load 'ox-latex
-  '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
-(eval-after-load 'ox '(require 'ox-confluence))
+;; (eval-after-load 'ox '(require 'ox-koma-letter))
+;; (eval-after-load 'ox-latex
+;;   '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
+;; (eval-after-load 'ox '(require 'ox-confluence))
 
   ;;(require 'ox-confluence)
