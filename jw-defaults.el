@@ -49,10 +49,7 @@
 
 ;; Drive out the mouse when it's too near to the cursor.
 (mouse-avoidance-mode 'animate)
-
 (setq
- sentence-end "[.?!][]\"')}]*\\($\\|     \\|  \\)[
-]*" ;; um... use ".  " as sentence end. prevents auto-cap from getting confused
  make-backup-files nil
  load-prefer-newer t
  auto-save-default nil
@@ -115,7 +112,7 @@
 	     :defer) ; prevent loading this package before visual-regexp-steroids!
 
 (use-package visual-regexp-steroids
-  :demand
+  :demand t
   :ensure pcre2el ; much faster than Python
   :config (setq vr/engine 'pcre2el)
   :bind (("<f10>" . #'vr/replace)
@@ -134,6 +131,7 @@
 ;; (set-fontset-font t 'symbol "Symbola" nil 'append)
 
 (use-package emojify
+  :demand t
   :init (setq emojify-download-emojis-p t)
   :config (global-emojify-mode))
 
@@ -155,37 +153,7 @@
 (use-package rainbow-delimiters
   :init
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
-  )
-
-(use-package crux
-  ;; :bind (("C-c o" . crux-open-with)
-  ;;        ("M-o" . crux-smart-open-line)
-  ;;        ("C-c n" . crux-cleanup-buffer-or-region)
-  ;;        ("C-c f" . crux-recentf-find-file)
-  ;;        ("C-M-z" . crux-indent-defun)
-  ;;        ("C-c u" . crux-view-url)
-  ;;        ("C-c e" . crux-eval-and-replace)
-  ;;        ("C-c w" . crux-swap-windows)
-  ;;        ("C-c D" . crux-delete-file-and-buffer)
-  ;;        ("C-c r" . crux-rename-buffer-and-file)
-  ;;        ("C-c t" . crux-visit-term-buffer)
-  ;;        ("C-c k" . crux-kill-other-buffers)
-  ;;        ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
-  ;;        ("C-c I" . crux-find-user-init-file)
-  ;;        ("C-c S" . crux-find-shell-init-file)
-  ;;        ("s-r" . crux-recentf-find-file)
-  ;;        ("s-j" . crux-top-join-line)
-  ;;        ("C-^" . crux-top-join-line)
-  ;;        ("s-k" . crux-kill-whole-line)
-  ;;        ("C-<backspace>" . crux-kill-line-backwards)
-  ;;        ("s-o" . crux-smart-open-line-above)
-  ;;        ([remap move-beginning-of-line] . crux-move-beginning-of-line)
-  ;;        ([(shift return)] . crux-smart-open-line)
-  ;;        ([(control shift return)] . crux-smart-open-line-above)
-  ;;        ([remap kill-whole-line] . crux-kill-whole-line)
-  ;;        ("C-c s" . crux-ispell-word-then-abbrev))
-  )
+  (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -210,6 +178,13 @@
 (add-hook 'sh-mode-hook 'flycheck-mode)
 
 (use-package auto-capitalize
+  :demand t
+  :config
+  (progn
+    (setq
+     sentence-end "[.?!][]\"')}]*\\($\\|     \\|  \\)[
+]*" ;; um... use ".  " as sentence end. prevents auto-cap from getting confused
+     ))
   :bind (:map text-mode-map
               ("M-." . nil)
               ("M-." . (lambda() (interactive)(insert ".  ")))
@@ -223,6 +198,13 @@
               ("?" . (lambda() (interactive)(insert "? ")))))
 
 (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode)
+
+;; (straight-use-package '(revive :type git :host github :repo "vedang/revive-mode")
+;;                       :demand t
+;;                       )
+;; (require 'revive-mode-config)
+;; (emacs-load-layout)
+;; (add-hook 'kill-emacs-hook 'emacs-save-layout)
 
 (provide 'jw-defaults)
 
