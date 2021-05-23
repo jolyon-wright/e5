@@ -8,16 +8,19 @@
 ;;        --quit
 ;; sbcl --eval '(ql:quickload :quicklisp-slime-helper)' --quit
 
-(use-package slime)
+(use-package slime
+	     :demand t
+	     )
 (use-package common-lisp-snippets)
 (load (expand-file-name "~/.quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
 
-(use-package rainbow-delimiters)
+(use-package rainbow-delimiters
+	     :demand t
+	     )
 
 (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
-;; (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
@@ -31,11 +34,3 @@
     (setq scheme-program-name   "/usr/local/bin/mit-scheme")
 )
 ;; https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/
-
-
-; Load recursively a folder
-(defconst elisp-path '("~/.emacs.d/straight"))
-;; (mapcar #'(lambda(p)
-;;            (add-to-list 'load-path p)
-;;            (cd p) (normal-top-level-add-subdirs-to-load-path))
-;;         elisp-path)
