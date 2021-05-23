@@ -304,6 +304,10 @@ lexically bound variable by the same name, for use with
       (cl-letf (((symbol-function #'pp) #'prin1))
         (apply func args)))))
 
+(straight-use-package '(revive :type git :host github :repo "vedang/revive-mode"))
+;; oh the horror of it all
+
+
 (straight-use-package '(revive :type git :host github :repo "vedang/revive-mode")
                       :init
                       (progn
