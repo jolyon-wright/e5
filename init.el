@@ -83,10 +83,7 @@
       (mapc 'delete-file (append (directory-files-recursively jw-e5-base ".*\\.elc" nil)
                                  (directory-files user-emacs-directory t ".*\\.elc")))))
 
-  (defmacro jw-sh! (&rest body)
-    "Silence message output from code."
-    (declare (indent defun))
-    `(let (message-log-max) ,@body (message "")))
+  (use-package shut-up)
 
   (defun jw-add-dirs-to-load-path (dir)
     "add dir and all subdirs to the load path"
@@ -99,9 +96,9 @@
     (let ((modules (directory-files-recursively dir "jwm.*\\.el$")))
       (jw-add-dirs-to-load-path dir)
       (mapc (lambda(m) (load m nil t)) modules)
-      (jw-sh! '(byte-recompile-directory dir 0 nil))
+      (shut-up (byte-recompile-directory dir 0 nil))
       (when (fboundp 'native-compile-async) ;; only in e28 with --native-compile
-        (jw-sh! '(native-compile-async dir 'recursively)))))
+        (shut-up (native-compile-async dir 'recursively)))))
 
   (unless (file-exists-p jw-e5-base)
     (make-directory jw-e5-base))

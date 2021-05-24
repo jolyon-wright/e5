@@ -177,7 +177,7 @@
 (add-hook 'after-save-hook
           (lambda ()
             (if (eq major-mode 'emacs-lisp-mode)
-                (save-excursion (byte-compile-file buffer-file-name)))))
+                (shut-up (save-excursion (byte-compile-file buffer-file-name))))))
 
 (use-package flycheck)
 (add-hook 'sh-mode-hook 'flycheck-mode)
