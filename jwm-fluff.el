@@ -120,7 +120,7 @@
 
 (use-package ivy-avy)
 
-(use-package iedit)
+(shut-up (use-package iedit))
 
 (use-package duplicate-thing
   :init
@@ -262,9 +262,6 @@
    (tab-mark 9 [9655 9] [92 9]) ; tab, ▷
 ))
 
-
-;; colour themes search path
-(add-to-list 'custom-theme-load-path (file-name-directory load-file-name))
 
 (bind-key "<C-f1>" #'whitespace-mode)
 (bind-key "<C-f2>" #'global-hl-line-mode)
