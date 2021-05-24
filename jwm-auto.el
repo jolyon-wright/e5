@@ -39,6 +39,7 @@
   (add-hook 'find-file-hook 'auto-insert)
   (auto-insert-mode 1)
   :config
+  (setq yas-verbosity 2)
 
   ;; ../templates/default-lisp.el should look something like this:-
 
