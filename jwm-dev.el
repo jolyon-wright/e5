@@ -91,9 +91,9 @@
                 (bury-buffer))))
 
 
-(use-package projectile)
+;; (use-package projectile)
 ;; (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(projectile-mode +1)
+;; (projectile-mode +1)
 
 (use-package flycheck)
 (use-package cmake-ide)
