@@ -80,8 +80,11 @@
 
 ;; doesnt work-
 ;;(straight-use-package 'ws-trim)
-(require 'ws-trim)
-(global-ws-trim-mode t)
+;;(require 'ws-trim)
+
+(use-package ws-butler)
+(ws-butler-global-mode t)
+;;(global-ws-trim-mode t)
 
 (global-linum-mode 1)
 (setq linum-mode-inhibit-modes-list '(eshell-mode
