@@ -83,6 +83,11 @@
       (mapc 'delete-file (append (directory-files-recursively jw-e5-base ".*\\.elc" nil)
                                  (directory-files user-emacs-directory t ".*\\.elc")))))
 
+  (defmacro jw-sh! (&rest body)
+    "Silence message output from code."
+    (declare (indent defun))
+    `(let (message-log-max) ,@body (message "")))
+
   (defun jw-add-dirs-to-load-path (dir)
     "add dir and all subdirs to the load path"
     (add-to-list 'load-path dir)
@@ -94,11 +99,9 @@
     (let ((modules (directory-files-recursively dir "jwm.*\\.el$")))
       (jw-add-dirs-to-load-path dir)
       (mapc (lambda(m) (load m nil t)) modules)
-      (byte-recompile-directory dir 0 nil)
+      (jw-sh! '(byte-recompile-directory dir 0 nil))
       (when (fboundp 'native-compile-async) ;; only in e28 with --native-compile
-        (native-compile-async dir 'recursively))))
-
-  (load (expand-file-name "jw-defaults.el" user-emacs-directory))
+        (jw-sh! '(native-compile-async dir 'recursively)))))
 
   (unless (file-exists-p jw-e5-base)
     (make-directory jw-e5-base))
@@ -125,16 +128,18 @@
                                                  (shell-command-sentinel process signal)))))
             (message "ouch; No process running."))))))
 
-;; minimal set of stuff:-
-(mapc 'jw-get-lisp '("col" ;; color theme
-                     "cmn" ;; shells et c
-                     ;; "dev" ;; rtags etc
-                     ;; "org" ;; big !
-                     ;; "scl" ;; common lisp
-                     ;; "vtm" ;; needs strangeness
-                     ;; "chi" ;; mandarin
-                     ;; "flf" ;; overflow - big !
-                     ;; "dsk" ;; desktop
-                     ))
+  (load (expand-file-name "jw-defaults.el" user-emacs-directory))
+
+  ;; minimal set of stuff:-
+  (mapc 'jw-get-lisp '("col" ;; color theme
+                       "cmn" ;; shells et c
+                       ;; "dev" ;; rtags etc
+                       ;; "org" ;; big !
+                       ;; "scl" ;; common lisp
+                       ;; "vtm" ;; needs strangeness
+                       ;; "chi" ;; mandarin
+                       ;; "flf" ;; overflow - big !
+                       ;; "dsk" ;; desktop
+                       ))
 
   (set-face-attribute 'default nil :height 160))
