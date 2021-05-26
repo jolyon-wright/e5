@@ -157,7 +157,9 @@ Inserted by installing org-mode or when a release is made."
   (setq org-babel-default-header-args:shell '((:results . "output"))))
 
 
-
+(use-package org-tempo
+  :straight nil
+  :after org)
 
 ;; see https://orgmode.org/worg/exporters/koma-letter-export.html#org1fb055f
 ;; (eval-after-load 'ox '(require 'ox-koma-letter))
