@@ -149,6 +149,13 @@ Inserted by installing org-mode or when a release is made."
      (shell . t)
      (dot . t))))
 
+(use-package ob-shell
+  :straight nil
+  :after org
+  :config
+  (setq org-babel-default-header-args:sh '((:results . "output")))
+  (setq org-babel-default-header-args:shell '((:results . "output"))))
+
 
 
 
