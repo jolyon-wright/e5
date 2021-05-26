@@ -88,6 +88,6 @@
            ("b" . eval-buffer)
            ("e" . eval-last-sexp)
            )
-
+(bind-key "M-s-a" #'add-global-abbrev)
 (provide 'jw-bind)
 
