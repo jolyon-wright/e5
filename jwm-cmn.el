@@ -25,8 +25,7 @@
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
 ;; tell me what files I am editting
-(setq-default frame-title-format
-              (list '((buffer-file-name " %f"
+(setq-default frame-title-format              (list '((buffer-file-name " %f"
                                         (dired-directory
                                          dired-directory
                                          (revert-buffer-function " %b"
@@ -39,6 +38,11 @@
 (setq read-quoted-char-radix 16)
 (show-paren-mode 1)
 (electric-pair-mode 1)
+
+;; no electric pair for less than!
+(add-function
+ :before-until electric-pair-inhibit-predicate (lambda (c) (eq c ?<)))
+
 (global-auto-revert-mode 1) ;; allow auto reload of externally modified file
 
 ;; Drive out the mouse when it's too near to the cursor.
