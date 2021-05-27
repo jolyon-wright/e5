@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: sbr
+# key: sbr
+# --
+#+begin_src bash
+  $0
+#+end_src
+
+#+result
