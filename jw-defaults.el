@@ -319,6 +319,20 @@ lexically bound variable by the same name, for use with
                         (add-hook 'kill-emacs-hook 'emacs-save-layout)
                         (add-hook 'after-init-hook 'emacs-load-layout t)))
 
+(bind-key "<M-up>"           'text-scale-increase)
+(bind-key "<M-down>"         'text-scale-decrease)
+(bind-key "<M-s-up>"         'enlarge-window)
+(bind-key "<M-s-down>"		 'shrink-window)
+(bind-key "<M-s-left>"		 'enlarge-window-horizontally)
+(bind-key "<M-s-right>"		 'shrink-window-horizontally)
+
+(bind-key "<C-M-s-up>"       'enlarge-window)
+(bind-key "<C-M-s-down>"	 'shrink-window)
+(bind-key "<C-M-s-left>"	 'enlarge-window-horizontally)
+(bind-key "<C-M-s-right>"	 'shrink-window-horizontally)
+
+;; absent # key on the mac
+(global-set-key (kbd "s-3") (lambda () (interactive) (insert "#")))
 
 
 
