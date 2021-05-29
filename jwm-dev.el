@@ -122,7 +122,8 @@
 ;; (global-company-mode)
 
 
-(if (eq system-type 'windows-nt)
+;;(if (eq system-type 'windows-nt)
+(if (nil)
     (message "rtags is broken on windows - revisit")
   (progn
     (use-package rtags)
