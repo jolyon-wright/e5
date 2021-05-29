@@ -123,75 +123,75 @@
 
 
 ;;(if (eq system-type 'windows-nt)
-(if (nil)
-    (message "rtags is broken on windows - revisit")
-  (progn
-    (use-package rtags)
-    (add-to-list 'load-path "~/.emacs.d/straight/repos/rtags/src")
+;; (if (nil)
+;;     (message "rtags is broken on windows - revisit")
+;;   (progn
+;;     (use-package rtags)
+;;     (add-to-list 'load-path "~/.emacs.d/straight/repos/rtags/src")
 
-    (require 'company-rtags)
-
-
-;;!    (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
-    ;; (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
-
-    (setq rtags-display-result-backend 'helm)
-
-    (setq rtags-autostart-diagnostics t)
-    (rtags-diagnostics)
-    (setq rtags-completions-enabled t)
-    (push 'company-rtags company-backends)
+;;     (require 'company-rtags)
 
 
-    ;;(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
-    ;; (define-key c-mode-base-map (kbd "<backtab>") (function company-complete))
-    (setq rtags-use-helm t)
+;; ;;!    (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
+;;     ;; (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
+
+;;     (setq rtags-display-result-backend 'helm)
+
+;;     (setq rtags-autostart-diagnostics t)
+;;     (rtags-diagnostics)
+;;     (setq rtags-completions-enabled t)
+;;     (push 'company-rtags company-backends)
 
 
-    ;; ensure that we use only rtags checking
-    ;; https://github.com/Andersbakken/rtags#optional-1
-    (defun setup-flycheck-rtags ()
-      (interactive)
-      (flycheck-select-checker 'rtags)
-      ;; RTags creates more accurate overlays.
-      (setq-local flycheck-highlighting-mode nil)
-      (setq-local flycheck-check-syntax-automatically nil))
+;;     ;;(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
+;;     ;; (define-key c-mode-base-map (kbd "<backtab>") (function company-complete))
+;;     (setq rtags-use-helm t)
 
-    ;; only run this if rtags is installed
-    (when (require 'rtags nil :noerror)
-      ;; make sure you have company-mode installed
-      (require 'company)
-      ;; (define-key c-mode-base-map (kbd "M-.")
-      ;;   (function rtags-find-symbol-at-point))
-      ;; (define-key c-mode-base-map (kbd "M-,")
-      ;;   (function rtags-find-references-at-point))
-      ;; disable prelude's use of C-c r, as this is the rtags keyboard prefix
-      ;;  (define-key prelude-mode-map (kbd "C-c r") nil)
-      ;; install standard rtags keybindings. Do M-. on the symbol below to
-      ;; jump to definition and see the keybindings.
-      (rtags-enable-standard-keybindings)
-      ;; comment this out if you don't have or don't use helm
-      (setq rtags-use-helm t)
-      ;; company completion setup
-      (setq rtags-autostart-diagnostics t)
-      (rtags-diagnostics)
-      (setq rtags-completions-enabled t)
-      (push 'company-rtags company-backends)
-      (global-company-mode)
-      ;;(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
-      ;; (define-key c-mode-base-map (kbd "<s-f11>") (function company-complete))
+;;     ;; ensure that we use only rtags checking
+;;     ;; https://github.com/Andersbakken/rtags#optional-1
+;;     (defun setup-flycheck-rtags ()
+;;       (interactive)
+;;       (flycheck-select-checker 'rtags)
+;;       ;; RTags creates more accurate overlays.
+;;       (setq-local flycheck-highlighting-mode nil)
+;;       (setq-local flycheck-check-syntax-automatically nil))
 
-      ;; use rtags flycheck mode -- clang warnings shown inline
-      (require 'flycheck-rtags)
-      ;; c-mode-common-hook is also called by c++-mode
-      (add-hook 'c-mode-common-hook #'setup-flycheck-rtags)
+;;     ;; only run this if rtags is installed
+;;     (when (require 'rtags nil :noerror)
+;;       ;; make sure you have company-mode installed
+;;       (require 'company)
+;;       ;; (define-key c-mode-base-map (kbd "M-.")
+;;       ;;   (function rtags-find-symbol-at-point))
+;;       ;; (define-key c-mode-base-map (kbd "M-,")
+;;       ;;   (function rtags-find-references-at-point))
+;;       ;; disable prelude's use of C-c r, as this is the rtags keyboard prefix
+;;       ;;  (define-key prelude-mode-map (kbd "C-c r") nil)
+;;       ;; install standard rtags keybindings. Do M-. on the symbol below to
+;;       ;; jump to definition and see the keybindings.
+;;       (rtags-enable-standard-keybindings)
+;;       ;; comment this out if you don't have or don't use helm
+;;       (setq rtags-use-helm t)
+;;       ;; company completion setup
+;;       (setq rtags-autostart-diagnostics t)
+;;       (rtags-diagnostics)
+;;       (setq rtags-completions-enabled t)
+;;       (push 'company-rtags company-backends)
+;;       (global-company-mode)
+;;       ;;(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
-      (use-package rtags-xref)
-      (add-hook 'c-mode-common-hook 'rtags-xref-enable)
-      )
-    )
-  )
+;;       ;; (define-key c-mode-base-map (kbd "<s-f11>") (function company-complete))
+
+;;       ;; use rtags flycheck mode -- clang warnings shown inline
+;;       (require 'flycheck-rtags)
+;;       ;; c-mode-common-hook is also called by c++-mode
+;;       (add-hook 'c-mode-common-hook #'setup-flycheck-rtags)
+
+;;       (use-package rtags-xref)
+;;       (add-hook 'c-mode-common-hook 'rtags-xref-enable)
+;;       )
+;;     )
+;;   )
 
 (bind-key "<f7>" 'compile)
 (bind-key "<C-f8>" 'align)
