@@ -104,4 +104,5 @@
   (which-key-setup-side-window-bottom)
   (which-key-enable-extended-define-key t)
   :config
-  (which-key-setup-minibuffer))
+  (which-key-setup-minibuffer)
+  (which-key-mode))
