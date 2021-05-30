@@ -97,7 +97,7 @@
 
 (bind-key "M-]"  #'xref-find-definitions-other-window)
 	  
-;; C+c r will give clang bindings... pausing for thought
+;; C+c r will give rtags bindings... pausing for thought
 ;; will result in reminders appearing
 (use-package which-key
   :custom
@@ -106,3 +106,32 @@
   :config
   (which-key-setup-minibuffer)
   (which-key-mode))
+
+
+;; nothing to do with the above... i want to make a screencast
+;; of how this works:-
+
+(bind-key "<C-M-return>" #'gif-screencast)
+
+(use-package gif-screencast
+  :config
+  (if (eq system-type 'darwin)
+      (progn
+      ;; To shut up the shutter sound of `screencapture' (see `gif-screencast-command').
+      (setq gif-screencast-args '("-x"))
+      ;; Optional: Used to crop the capture to the Emacs frame.
+      (setq gif-screencast-cropping-program "mogrify")
+      ;; Optional: Required to crop captured images.
+      (setq gif-screencast-capture-format "ppm"))
+      (advice-add
+       #'gif-screencast--cropping-region
+       :around
+       (lambda (oldfun &rest r)
+         (apply #'format "%dx%d+%d+%d"
+                (mapcar
+                 (lambda (x) (* 2 (string-to-number x)))
+                 (split-string (apply oldfun r) "[+x]"))))))
+  :bind (:map gif-screencast-mode-map
+              ("<s-return>" . #'gif-screencast-toggle-pause)
+              ("M-RET" . #'gif-screencast-stop)
+              ))
