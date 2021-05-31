@@ -51,10 +51,12 @@ Inserted by installing org-mode or when a release is made."
 
 (provide 'org-version)
 
+
+;; https://github.com/yyr/org-mode/blob/master/contrib/lisp/ox-koma-letter.el
+
 ;;(use-package org
 (use-package org-plus-contrib
   :after ob-blockdiag
-  :ensure org-plus-contrib
   :bind (:map org-mode-map
               ("<M-up>"   . nil)           ;; do not steal my keys!
               ("<M-down>" . nil)           ;; ditto
@@ -550,9 +552,9 @@ A prefix arg forces clock in of the default task."
 (add-hook 'org-shiftright-final-hook 'windmove-right)
 
 ;; see https://orgmode.org/worg/exporters/koma-letter-export.html#org1fb055f
-;; (eval-after-load 'ox '(require 'ox-koma-letter))
-;; (eval-after-load 'ox-latex
-;;   '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
+(eval-after-load 'ox '(require 'ox-koma-letter))
+(eval-after-load 'ox-latex
+  '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
 ;; (eval-after-load 'ox '(require 'ox-confluence))
 
   ;;(require 'ox-confluence)
