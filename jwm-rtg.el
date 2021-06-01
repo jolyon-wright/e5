@@ -1,4 +1,4 @@
-;;;; .emacs-rtags -*- lexical-binding: t; -*-
+;;;; inet.el -*- lexical-binding: t; -*-
 
 ;; on ubuntu 1804:-
 ;;
@@ -7,7 +7,7 @@
 ;;
 ;; then:-
 ;;
-;; copy this file to ~/.emacs.d/init.el
+;; git checkout this-repo ~/.emacs.d
 ;;
 ;; emacs &
 ;;   ;; this will pull the lisp into /home/$USER/.emacs.d
@@ -21,11 +21,6 @@
 ;;
 ;;   ;; this will compile The Stuff
 ;;
-;; then:-
-;;
-;; emacs -q --load ~/.emacs-rtags
-;;
-;;   ;; this will load this config without monkeying with yours
 
 ;; two things:-
 ;;
@@ -107,31 +102,3 @@
   (which-key-setup-minibuffer)
   (which-key-mode))
 
-
-;; nothing to do with the above... i want to make a screencast
-;; of how this works:-
-
-(bind-key "<C-M-return>" #'gif-screencast)
-
-(use-package gif-screencast
-  :config
-  (if (eq system-type 'darwin)
-      (progn
-      ;; To shut up the shutter sound of `screencapture' (see `gif-screencast-command').
-      (setq gif-screencast-args '("-x"))
-      ;; Optional: Used to crop the capture to the Emacs frame.
-      (setq gif-screencast-cropping-program "mogrify")
-      ;; Optional: Required to crop captured images.
-      (setq gif-screencast-capture-format "ppm"))
-      (advice-add
-       #'gif-screencast--cropping-region
-       :around
-       (lambda (oldfun &rest r)
-         (apply #'format "%dx%d+%d+%d"
-                (mapcar
-                 (lambda (x) (* 2 (string-to-number x)))
-                 (split-string (apply oldfun r) "[+x]"))))))
-  :bind (:map gif-screencast-mode-map
-              ("<s-return>" . #'gif-screencast-toggle-pause)
-              ("M-RET" . #'gif-screencast-stop)
-              ))
