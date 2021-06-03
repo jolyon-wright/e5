@@ -25,7 +25,7 @@ ELSEIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 endif()
 
 # sudo apt install libgtest-dev
-find_package(GTest)
+find_package(GTest REQUIRED)
 
 find_package(Boost 1.73)
 # find_package(Boost 1.73 COMPONENTS
@@ -39,7 +39,7 @@ find_package(Boost 1.73)
 
 add_definitions(-DBOOST_ALL_NO_LIB)
 
-add_subdirectory("/usr/src/gtest" ${CMAKE_BINARY_DIR}/gtest)
+# add_subdirectory("/usr/src/gtest" ${CMAKE_BINARY_DIR}/gtest)
 include_directories(${GTEST_INCLUDE_DIRS})
 file(GLOB helloworld_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
 
@@ -53,5 +53,5 @@ target_link_libraries(${PROJECT_NAME}
   # Boost::locale
   # Boost::nowide
   # ${FS_LIB}
-  gtest
+  GTest::gtest
   )
