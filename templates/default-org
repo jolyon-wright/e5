@@ -11,6 +11,7 @@
 # #+HTML_HEAD_EXTRA: <style>*{font-family: Liberation Mono; !important}</style>
 
 #+HTML_HEAD: <style>pre.src {background-color: #303030; color: #e5e5e5;}</style>
+#+HTML_HEAD: <style>p.verse {background-color: #FFF8DC;}</style>
 
 #+LATEX: \setlength\parindent{0pt}
 #+LATEX: \parskip=12pt % adds vertical space between paragraphs
@@ -22,3 +23,5 @@
 #+LATEX_HEADER: \usepackage[margin=1in]{geometry}
 #+LATEX_HEADER: \usepackage{graphicx,wrapfig,lipsum}
 #+LATEX_HEADER: \documentclass[a4paper,8pt]{article}
+
+# #+ATTR_HTML: :border 2 :rules all :frame border
