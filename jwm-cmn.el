@@ -114,8 +114,8 @@
   ;; on windows have ctrl f9 open a dos shell
   (bind-key "<C-f9>" #'jw-new-shell)
   )
-(when (not (equal window-system 'w32))
-  (bind-key "<f9>" #'jw-new-shell))
+;; (when (not (equal window-system 'w32))
+;;   (bind-key "<f9>" #'jw-new-shell))
 
 ;; on winders we need to tell emacs where aspell is and
 ;; explicitly set the dictionary to british
