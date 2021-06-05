@@ -133,9 +133,9 @@ Semantic, and Ansi-Color faces are included.")
 
 
 (custom-set-faces
- ;; doesnt work!
  '(popup-summary-face ((t (:background "blue" :foreground "grey"))))
- '(popup-tip-face ((t (:background "blue" :foreground "red"))))
+ '(popup-tip-face ((t (:background "blue" :foreground "yellow"))))
+ '(popup-face ((t (:background "blue" :foreground "yellow"))))
 
  '(popup-menu-mouse-face ((t (:background "red" :foreground "white"))))
  '(popup-menu-summary-face ((t (:background "red" :foreground "grey"))))
