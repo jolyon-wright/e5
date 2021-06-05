@@ -7,7 +7,8 @@
 ;; Copyright (C) 2021, Jolyon Wright, all rights reserved.
 
 ;; This program is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
+;; it under the terms of the GNU General Public License as publi
+shed by
 ;; the Free Software Foundation, either version 3 of the License, or
 ;; (at your option) any later version.
 
@@ -334,7 +335,8 @@ lexically bound variable by the same name, for use with
 ;; absent # key on the mac
 (global-set-key (kbd "s-3") (lambda () (interactive) (insert "#")))
 
-
+(use-package multi-shell)
+(bind-key "<f9>" #'multi-shell-new)
 
 (provide 'jw-defaults)
 
