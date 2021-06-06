@@ -80,8 +80,8 @@
   (eval
    `(unless (equal
              (emacs-version), (eval-when-compile (emacs-version)))
-      (mapc 'delete-file (append (directory-files-recursively jw-e5-base ".*\\.elc" nil)
-                                 (directory-files user-emacs-directory t ".*\\.elc")))))
+      (mapc 'delete-file (append (directory-files-recursively jw-e5-base ".*\\.elc$" nil)
+                                 (directory-files user-emacs-directory t ".*\\.elc$")))))
 
   (use-package shut-up)
 
@@ -91,6 +91,13 @@
     (let ((default-directory dir))
       (normal-top-level-add-subdirs-to-load-path)))
 
+  (defun jw-setup-lisp-remote (dir)
+    (interactive "sWhich branch?")
+     ;; add remote
+    (let ((default-directory dir))
+      (shell-command "git remote add gorigin git@bitbucket.org:jolyon929/e5.git")
+      )
+    )
   (defun jw-setup-lisp-dir (dir)
     "set up a new directory of lispology"
     (let ((modules (directory-files-recursively dir "jwm.*\\.el$")))
@@ -121,6 +128,7 @@
                 (process-put proc 'jw-branch-dir branch-dir)
                 (set-process-sentinel proc #'(lambda (process signal)
                                                (when (memq (process-status process) '(exit signal))
+                                                 (jw-setup-lisp-remote (process-get process 'jw-branch-dir))
                                                  (jw-setup-lisp-dir (process-get process 'jw-branch-dir))
                                                  (shell-command-sentinel process signal)))))
             (message "ouch; No process running."))))))
@@ -136,6 +144,7 @@
                        ;; "vtm" ;; needs strangeness
                        ;; "chi" ;; mandarin
                        ;; "flf" ;; overflow - big !
+		               ;; "rtg"
                        ;; "dsk" ;; desktop
                        ))
 
