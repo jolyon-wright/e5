@@ -93,11 +93,14 @@
 
   (defun jw-setup-lisp-remote (dir)
     (interactive "sWhich branch?")
-     ;; add remote
     (let ((default-directory dir))
-      (shell-command "git remote add gorigin git@bitbucket.org:jolyon929/e5.git")
-      )
-    )
+      (shell-command "git remote add gorigin git@bitbucket.org:jolyon929/e5.git")))
+
+  (defun jw-setup-lisp-pull (dir)
+    (interactive "sWhich branch?")
+    (let ((default-directory dir))
+      (shell-command "git pull")))
+
   (defun jw-setup-lisp-dir (dir)
     "set up a new directory of lispology"
     (let ((modules (directory-files-recursively dir "jwm.*\\.el$")))
@@ -116,7 +119,9 @@
     (let* ((default-directory jw-e5-base)
            (branch-dir (concat jw-e5-base "/" branch)))
       (if (file-directory-p branch-dir)
-          (jw-setup-lisp-dir branch-dir)
+          (progn
+            (jw-setup-lisp-dir branch-dir)
+            jw-setup-lisp-pull)
         (let* ((git-repo " https://bitbucket.org/jolyon929/e5.git ")
                (git-command (concat "git clone --single-branch -b " branch git-repo branch))
                (output-buffer (generate-new-buffer (format "*clone %s*" branch)))
@@ -138,13 +143,13 @@
   ;; minimal set of stuff:-
   (mapc 'jw-get-lisp '("col" ;; color theme
                        "cmn" ;; shells et c
-                       ;; "dev" ;; rtags etc
+                       ;; "dev" ;; cmode etc
                        ;; "org" ;; big !
                        ;; "scl" ;; common lisp
                        ;; "vtm" ;; needs strangeness
                        ;; "chi" ;; mandarin
                        ;; "flf" ;; overflow - big !
-		               ;; "rtg"
+		               ;; "rtg" ;; rtags
                        ;; "dsk" ;; desktop
                        ))
 
