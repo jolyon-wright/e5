@@ -54,7 +54,10 @@
   (define-auto-insert "\\.lisp$" ["default-lisp" autoinsert-yas-expand])
   (define-auto-insert "\\.org$" ["default-org" autoinsert-yas-expand])
   (define-auto-insert "\\.sh$" ["default-sh" autoinsert-yas-expand])
-  (define-auto-insert "\\.el$" ["default-el" autoinsert-yas-expand]))
+  (define-auto-insert "\\.el$" ["default-el" autoinsert-yas-expand])
+  (define-auto-insert "\\.h$" ["default-h" autoinsert-yas-expand])
+  (define-auto-insert "\\.c$" ["default-c" autoinsert-yas-expand])
+  (define-auto-insert "\\.cpp$" ["default-cpp" autoinsert-yas-expand]))
 
 
 (use-package yasnippet
