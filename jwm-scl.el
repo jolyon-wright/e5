@@ -8,6 +8,9 @@
 ;;        --quit
 ;; sbcl --eval '(ql:quickload :quicklisp-slime-helper)' --quit
 
+;; interesting https://www.defmacro.org/ramblings/lisp.html
+
+
 (use-package slime
 	     :demand t
 	     )
