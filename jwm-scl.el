@@ -11,6 +11,8 @@
 ;; interesting https://www.defmacro.org/ramblings/lisp.html
 ;; https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/
 ;;
+;;https://github.com/norvig/paip-lisp
+;;
 ;; reminder Ctrl C+C transfers to repl
 
 (use-package slime
