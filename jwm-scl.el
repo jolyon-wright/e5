@@ -9,7 +9,9 @@
 ;; sbcl --eval '(ql:quickload :quicklisp-slime-helper)' --quit
 
 ;; interesting https://www.defmacro.org/ramblings/lisp.html
-
+;; https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/
+;;
+;; reminder Ctrl C+C transfers to repl
 
 (use-package slime
 	     :demand t
