@@ -558,6 +558,7 @@ A prefix arg forces clock in of the default task."
 ;; (eval-after-load 'ox '(require 'ox-confluence))
 
   ;;(require 'ox-confluence)
+(eval-after-load 'ox '(require 'ox-confluence))
 
 
 (use-package org-jira)
