@@ -93,6 +93,7 @@
 ;; the default true seems a bit flaked out!
 
 (use-package bind-key)
+(require 'bind-key)
 (use-package buffer-move)
 
 (defun do-nothing (interactive))
