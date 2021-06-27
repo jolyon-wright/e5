@@ -356,6 +356,45 @@ lexically bound variable by the same name, for use with
   :init (add-hook 'flyspell-mode-hook #'flyspell-popup-auto-correct-mode)
   )
 
+;;https://spwhitton.name//blog/entry/transient-caps-lock/
+(defun spw/transient-caps-self-insert (&optional n)
+  (interactive "p")
+  (insert-char (upcase last-command-event) n))
+
+(defun spw/activate-transient-caps ()
+  "Activate caps lock while typing the current whitespace-delimited word(s).
+This is useful for typing Lisp symbols and C enums which consist
+of several all-uppercase words separated by hyphens and
+underscores, such that M-- M-u after typing will not upcase the
+whole thing."
+  (interactive)
+  (let* ((map (make-sparse-keymap))
+         (deletion-commands '(delete-backward-char
+                              paredit-backward-delete
+                              backward-kill-word
+                              paredit-backward-kill-word
+                              spw/unix-word-rubout
+                              spw/paredit-unix-word-rubout))
+         (typing-commands (cons 'spw/transient-caps-self-insert
+                                deletion-commands)))
+    (substitute-key-definition 'self-insert-command
+                               #'spw/transient-caps-self-insert
+                               map
+                               (current-global-map))
+    (set-transient-map
+     map
+     (lambda ()
+       ;; try to determine whether we are probably still about to try to type
+       ;; something in all-uppercase
+       (and (member this-command typing-commands)
+            (not (and (eq this-command 'spw/transient-caps-self-insert)
+                      (= (char-syntax last-command-event) ?\ )))
+            (not (and (or (bolp) (= (char-syntax (char-before)) ?\ ))
+                      (member this-command deletion-commands))))))))
+
+;; (global-set-key "\M-C" #'spw/activate-transient-caps)
+(bind-key "s-/"	 'spw/activate-transient-caps)
+
 (provide 'jw-defaults)
 
 ;; Local Variables:
