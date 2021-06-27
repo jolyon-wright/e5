@@ -1,0 +1,2 @@
+(ql:quickload "cl-project")
+(cl-project:make-project #P"~/.emacs.d/straight/repos/e5/eg/sbcl/cuild")
