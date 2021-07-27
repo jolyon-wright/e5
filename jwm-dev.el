@@ -198,3 +198,4 @@
 (bind-key "<f5>" 'gdb)
 (bind-key "<C-f5>" 'jw-gdb-other-frame)
 
+(use-package groovy-emacs-mode)
