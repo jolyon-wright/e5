@@ -3,7 +3,7 @@
 ## `(buffer-name)`
 
 ################################################################################
-# Copyright Abaco Systems, Inc. `(format-time-string "%Y")')
+# Copyright Abaco Systems, Inc. `(format-time-string "%Y")`)
 #
 # All rights reserved. No part of this software may be re-produced,
 # re-engineered, re-compiled, modified, used to create derivatives, stored in
@@ -16,8 +16,8 @@
 #
 ################################################################################
 
-PROGRAM_NAME="$(basename "$0")"
-PROGRAM_DIR="$(cd "$(dirname "$0")"; pwd;)"
+PROGRAM_NAME="$(basename "\$0")"
+PROGRAM_DIR="$(cd "$(dirname "\$0")"; pwd;)"
 
 ################################################################################
 # Main
