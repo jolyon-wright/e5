@@ -199,3 +199,6 @@
 (bind-key "<C-f5>" 'jw-gdb-other-frame)
 
 (use-package groovy-emacs-mode)
+
+(straight-use-package '(lewang :type git :host github :repo "lewang/command-log-mode"))
+;; clm/open-command-log-buffer to view buffer
