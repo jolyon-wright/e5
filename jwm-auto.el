@@ -57,6 +57,7 @@
   (define-auto-insert "\\.el$" ["default-el" autoinsert-yas-expand])
   (define-auto-insert "\\.h$" ["default-h" autoinsert-yas-expand])
   (define-auto-insert "\\.c$" ["default-c" autoinsert-yas-expand])
+  (define-auto-insert "\\.py$" ["default-py" autoinsert-yas-expand])
   (define-auto-insert "\\.cpp$" ["default-cpp" autoinsert-yas-expand]))
 
 
