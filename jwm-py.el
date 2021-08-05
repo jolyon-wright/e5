@@ -27,8 +27,12 @@
 ;; python https://stackoverflow.com/questions/42486695/python-type-hinting-in-emacs
 ;; Install pyflakes and mypy using pip.
 ;;
+;; mac/ububtu:-
 ;; pip3 install pyflakes
+;; mac:-
 ;; brew install mypi
+;; ubuntu:-
+;; pip3 install
 
 (use-package flycheck
   :ensure t
