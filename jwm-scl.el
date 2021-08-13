@@ -36,11 +36,19 @@
 ;; (add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
 
+(defun jw-sly-make-rainbow-work()
+  (message "this is a pain in the ass")
+  (setq font-lock-mode 1)
+  )
+(add-hook 'sly-mrepl-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'sly-mrepl-mode-hook 'jw-sly-make-rainbow-work)
+
 
 (use-package sly-quicklisp :after sly)
 (use-package sly-asdf :after sly)
 
 (use-package sly
+  ;; :hook ((sly-mrepl-mode . 'rainbow-delimiters-mode))
   ;; :hook
   ;; ((sly-mrepl-mode . (font-lock-mode 1)))
   :config
