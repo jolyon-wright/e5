@@ -15,22 +15,41 @@
 ;;
 ;; reminder Ctrl C+C transfers to repl
 
-(use-package slime
-	     :demand t
-	     )
+;; (use-package slime
+;; 	     :demand t
+;; 	     )
 (use-package common-lisp-snippets)
-(load (expand-file-name "~/.quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "sbcl")
+;; (load (expand-file-name "~/.quicklisp/slime-helper.el"))
+;; (setq inferior-lisp-program "sbcl")
 
 (use-package rainbow-delimiters
 	     :demand t
 	     )
 
+;; Warning (emacs): To restore SLIME in this session, customize ‘lisp-mode-hook’
+;; and replace ‘sly-editing-mode’ with ‘slime-lisp-mode-hook’.
+
 (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'sly-editing-mode 'rainbow-delimiters-mode)
 (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
+;; (add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
+
+
+(use-package sly-quicklisp :after sly)
+(use-package sly-asdf :after sly)
+
+(use-package sly
+             ;; :hook
+             ;; ((sly-mrepl-mode . (font-lock-mode 1)))
+             :config
+             (setq sly-lisp-implementations
+                   `((sbcl ("/usr/local/bin/sbcl" "--noinform" "--no-linedit") :coding-system utf-8-unix)
+                     ;; (ccl ,(expand-file-name "~/bin/ccl"))
+                     ))
+  )
+
 
 ;;(use-package scheme48)
 ;;(setq scheme-program-name "scheme48")
@@ -41,3 +60,6 @@
     (setq scheme-program-name   "/usr/local/bin/mit-scheme")
 )
 ;; https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/
+
+
+;; https://github.com/joaotavora/sly/issues/124
