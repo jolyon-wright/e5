@@ -41,14 +41,14 @@
 (use-package sly-asdf :after sly)
 
 (use-package sly
-             ;; :hook
-             ;; ((sly-mrepl-mode . (font-lock-mode 1)))
-             :config
-             (setq sly-lisp-implementations
-                   `((sbcl ("/usr/local/bin/sbcl" "--noinform" "--no-linedit") :coding-system utf-8-unix)
-                     ;; (ccl ,(expand-file-name "~/bin/ccl"))
-                     ))
-  )
+  ;; :hook
+  ;; ((sly-mrepl-mode . (font-lock-mode 1)))
+  :config
+  (if (eq system-type 'darwin)
+      (setq sly-lisp-implementations
+            `((sbcl ("/usr/local/bin/sbcl" "--noinform" "--no-linedit") :coding-system utf-8-unix)))
+    (setq sly-lisp-implementations
+          `((sbcl ("/usr/bin/sbcl" "--noinform" "--no-linedit") :coding-system utf-8-unix)))))
 
 
 ;;(use-package scheme48)
@@ -58,7 +58,7 @@
 (if (eq system-type 'darwin)
     ;; brew install mit-scheme
     (setq scheme-program-name   "/usr/local/bin/mit-scheme")
-)
+  )
 ;; https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/
 
 
