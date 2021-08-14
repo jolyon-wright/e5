@@ -395,6 +395,9 @@ whole thing."
 ;; (global-set-key "\M-C" #'spw/activate-transient-caps)
 (bind-key "s-/"	 'spw/activate-transient-caps)
 
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+(add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
+
 (provide 'jw-defaults)
 
 ;; Local Variables:
