@@ -37,9 +37,8 @@
 (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
 
 (defun jw-sly-make-rainbow-work()
-  (message "this is a pain in the ass")
-  (setq font-lock-mode 1)
-  )
+  (setq font-lock-mode 1))
+
 (add-hook 'sly-mrepl-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'sly-mrepl-mode-hook 'jw-sly-make-rainbow-work)
 
