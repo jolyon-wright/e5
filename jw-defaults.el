@@ -397,6 +397,7 @@ whole thing."
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
+(setq resize-mini-windows t)
 
 (provide 'jw-defaults)
 
