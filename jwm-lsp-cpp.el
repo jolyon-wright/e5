@@ -24,16 +24,29 @@
 ;; https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
 
 ;;; Code:
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(package-initialize)
+;; (require 'package)
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+;; (package-initialize)
 
-(setq package-selected-packages '(lsp-mode yasnippet lsp-treemacs helm-lsp
-    projectile hydra flycheck company avy which-key helm-xref dap-mode))
+;; (setq package-selected-packages '(lsp-mode yasnippet lsp-treemacs helm-lsp
+;;     projectile hydra flycheck company avy which-key helm-xref dap-mode))
 
-(when (cl-find-if-not #'package-installed-p package-selected-packages)
-  (package-refresh-contents)
-  (mapc #'package-install package-selected-packages))
+;; (when (cl-find-if-not #'package-installed-p package-selected-packages)
+;;   (package-refresh-contents)
+;;   (mapc #'package-install package-selected-packages))
+
+
+(use-package lsp-mode)
+(use-package yasnippet)
+(use-package lsp-treemacs)
+(use-package helm-lsp)
+(use-package projectile)
+(use-package hydra)
+(use-package flycheck)
+(use-package company)
+(use-package avy)
+(use-package which-key) (use-package helm-xref)
+(use-package dap-mode)
 
 ;; sample `helm' configuration use https://github.com/emacs-helm/helm/ for details
 (helm-mode)
