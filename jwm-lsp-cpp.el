@@ -38,23 +38,29 @@
 
 (use-package lsp-mode)
 (use-package yasnippet)
-(use-package lsp-treemacs)
-(use-package helm-lsp)
+;; (use-package lsp-treemacs)
+;; (use-package helm-lsp)
 (use-package projectile)
 (use-package hydra)
 (use-package flycheck)
 (use-package company)
 (use-package avy)
-(use-package which-key) (use-package helm-xref)
+(use-package which-key)
+;; (use-package helm-xref)
 (use-package dap-mode)
 
+;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
+(setq lsp-headerline-breadcrumb-enable nil)
+
+;; (setq lsp-headerline-breadcrumb-mode nil)
+
 ;; sample `helm' configuration use https://github.com/emacs-helm/helm/ for details
-(helm-mode)
-(straight-use-package 'helm-xref)
-(require 'helm-xref)
-(define-key global-map [remap find-file] #'helm-find-files)
-(define-key global-map [remap execute-extended-command] #'helm-M-x)
-(define-key global-map [remap switch-to-buffer] #'helm-mini)
+;; (helm-mode)
+;; (straight-use-package 'helm-xref)
+;; (require 'helm-xref)
+;; (define-key global-map [remap find-file] #'helm-find-files)
+;; (define-key global-map [remap execute-extended-command] #'helm-M-x)
+;; (define-key global-map [remap switch-to-buffer] #'helm-mini)
 
 (which-key-mode)
 (add-hook 'c-mode-hook 'lsp)
@@ -69,9 +75,27 @@
 
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-  (require 'dap-cpptools)
+  (require 'dap-cpptools)               ;
   (yas-global-mode))
 
+;; Optional - provides fancier overlays.
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :commands lsp-ui-mode)
+
+;; (require 'rsz-mini)
+;; (resize-minibuffer-mode 1)
+
+(setq resize-mini-windows t)
+
+; Wrap lines in minibuffer mode
+;; (add-hook 'minibuffer-setup-hook
+;;           '(lambda ()
+;;              (setq truncate-lines nil)))
+
+(use-package flycheck
+:ensure t
+:init (global-flycheck-mode))
 
 (provide 'jwm-lsp-cpp)
 
