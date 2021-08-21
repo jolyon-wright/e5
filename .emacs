@@ -41,9 +41,12 @@
 (setq blink-cursor-mode nil)
 
 ; default text size + resizing text
-(set-face-attribute 'default nil :height 140)
+;; (set-face-attribute 'default nil :height 140)
 (global-set-key (kbd "C--") (lambda () (interactive) (text-scale-decrease 1)))
 (global-set-key (kbd "C-+") (lambda () (interactive) (text-scale-increase 1)))
+
+(global-set-key (kbd "M-<up>") (lambda () (interactive) (text-scale-increase 1)))
+(global-set-key (kbd "M-<down>") (lambda () (interactive) (text-scale-decrease 1)))
 
 ; don't ask to kill shells
 (defun set-no-process-query-on-exit ()
@@ -58,23 +61,17 @@
 (defun new-shell ()
   (interactive)
 
-  (let (
-        (currentbuf (get-buffer-window (current-buffer)))
-        (newbuf     (generate-new-buffer-name "*shell*"))
-       )
+  (let ((currentbuf (get-buffer-window (current-buffer)))
+        (newbuf     (generate-new-buffer-name "*shell*")))
 
    (generate-new-buffer newbuf)
    (set-window-dedicated-p currentbuf nil)
    (set-window-buffer currentbuf newbuf)
-   (shell newbuf)
-  )
-)
+   (shell newbuf)))
 
 (defun select-line () (interactive) (progn (move-beginning-of-line nil)
     (set-mark-command nil)
-    (move-end-of-line nil)
-     )
-       )
+    (move-end-of-line nil)))
 
 (global-set-key (kbd "<f9>") 'new-shell)
 (global-set-key (kbd "M-9") 'select-line)
@@ -84,10 +81,10 @@
  (windmove-default-keybindings))
 
 ; resizing windows
-(global-set-key (kbd "M-<right>") 'shrink-window-horizontally)
-(global-set-key (kbd "M-<left>") 'enlarge-window-horizontally)
-(global-set-key (kbd "M-<up>") 'enlarge-window)
-(global-set-key (kbd "M-<down>") 'shrink-window)
+(global-set-key (kbd "M-s-<right>") 'shrink-window-horizontally)
+(global-set-key (kbd "M-s-<left>") 'enlarge-window-horizontally)
+(global-set-key (kbd "M-s-<up>") 'enlarge-window)
+(global-set-key (kbd "M-s-<down>") 'shrink-window)
 
 ; xref jump to definition
 (global-set-key (kbd "M-.") 'xref-find-definitions)
@@ -100,8 +97,28 @@
 ; c-mode (, {, [, ', " auto-completion.
 (add-hook 'c-mode-hook 'electric-pair-local-mode)
 
+(setq-default tab-width 4)
+(set-default 'indent-tabs-mode nil) ;; Indent with spaces not tabs
+
+(global-auto-revert-mode 1) ;; allow auto reload of externally modified file
+
+(defun jw-file-name-copy-path ()
+  "Copy the path the of the of the current buffer"
+  (interactive)
+  (kill-new (message "%s" (buffer-file-name))))
+
+(global-set-key (kbd "C-§")  'jw-file-name-copy-path)
+(global-set-key (kbd "C-`")  'jw-file-name-copy-path)
+
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
+
+(set-face-attribute 'default nil :family "Liberation Mono" :height 145 :weight 'normal)
+
 ;; Local Variables:
 ;; coding: utf-8
 ;; End:
+
+
 
 ;;; minimal_dot_emacs.el ends here.
