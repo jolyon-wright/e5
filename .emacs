@@ -21,7 +21,7 @@
 
 ;;; Commentary:
 
-;;
+;; git clone https://bitbucket.org/jolyon929/e5.git .emacs.d
 
 ;;; Code:
 ; basic usability
