@@ -117,12 +117,12 @@
   ;; minimal set of stuff:-
   (mapc 'jw-get-lisp '("col" ;; color theme
                        ;;"cmn" ;; shells et c
-                       ;; "dev" ;; cmode etc
-                       ;; "org" ;; big !
+                       "dev" ;; cmode etc
+                       "org" ;; big !
                        ;; "scl" ;; common lisp
                        ;; "vtm" ;; needs strangeness
-                       ;; "chi" ;; mandarin
-                       ;; "flf" ;; overflow - big !
+                       "chi" ;; mandarin
+                       "flf" ;; overflow - big !
 		               ;; "rtg" ;; rtags
                        ;; "lsp"
                        "dsk" ;; desktop

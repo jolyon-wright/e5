@@ -584,6 +584,17 @@ A prefix argument ARG reverses this behavior."
     (when (fboundp 'native-compile-async) ;; only in e28 with --native-compile
       (shut-up (native-compile-async dir 'recursively)))))
 
+(use-package ws-butler)
+(ws-butler-global-mode t)
+
+(global-linum-mode 1)
+(setq linum-mode-inhibit-modes-list '(eshell-mode
+                                      shell-mode
+                                      fundamental-mode
+                                      text-mode
+                                      vterm-mode
+                                      doc-view-mode))
+
 (provide 'jw-defaults)
 
 ;; Local Variables:
