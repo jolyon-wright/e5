@@ -31,7 +31,16 @@
 (setq confirm-kill-processes nil)
 (desktop-save-mode 1)
 (setq inhibit-startup-message t)
-(load-theme 'wombat)
+
+;; try to load the jolyon theme
+(if (file-exists-p (expand-file-name "straight/repos/e5/col/jolyon-theme.el" user-emacs-directory))
+    (progn
+      (setq custom-safe-themes t)
+      (add-to-list 'custom-theme-load-path (expand-file-name "straight/repos/e5/col" user-emacs-directory))
+      (load-theme 'jolyon t))
+  ;; if we cant go for wombat
+  (load-theme 'wombat))
+
 (global-linum-mode t)
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
@@ -119,6 +128,7 @@
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
+
 
 ;; Local Variables:
 ;; coding: utf-8
