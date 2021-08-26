@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(require 'jw-fctn)
+;;(require 'jw-fctn)
 
 (autoload 'yas-expand-snippet "yasnippet")
 
@@ -35,7 +35,7 @@
 (use-package autoinsert
   :init
   (setq auto-insert-query nil)
-  (setq auto-insert-directory (make-sub-dir-name "templates"))
+  (setq auto-insert-directory (jw-make-sub-dir-name "templates"))
   (add-hook 'find-file-hook 'auto-insert)
   (auto-insert-mode 1)
   :config
@@ -72,7 +72,7 @@
   (yas-global-mode 1)
   :config
   (use-package yasnippet-snippets)
-  (add-to-list 'yas-snippet-dirs (make-sub-dir-name "snippets"))
+  (add-to-list 'yas-snippet-dirs (jw-make-sub-dir-name "snippets"))
   (yas-reload-all))
 
 (provide 'jwm-auto)
