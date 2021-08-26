@@ -308,17 +308,17 @@ lexically bound variable by the same name, for use with
 (straight-use-package '(revive :type git :host github :repo "vedang/revive-mode"))
 ;; oh the horror of it all
 
-
-(straight-use-package '(revive :type git :host github :repo "vedang/revive-mode")
-                      :init
-                      (progn
-                        (add-to-list 'load-path (straight--repos-dir "revive-mode"))
-                        (require 'revive-mode-config))
-                      :config
-                      (progn
-                        ;; save and restore layout
-                        (add-hook 'kill-emacs-hook 'emacs-save-layout)
-                        (add-hook 'after-init-hook 'emacs-load-layout t)))
+ 
+;; (straight-use-package '(revive :type git :host github :repo "vedang/revive-mode")
+;;                       :init
+;;                       (progn
+;;                         (add-to-list 'load-path (straight--repos-dir "revive-mode"))
+;;                         (require 'revive-mode-config))
+;;                       :config
+;;                       (progn
+;;                         ;; save and restore layout
+;;                         (add-hook 'kill-emacs-hook 'emacs-save-layout)
+;;                         (add-hook 'after-init-hook 'emacs-load-layout t)))
 
 (bind-key "<M-up>"           'text-scale-increase)
 (bind-key "<M-down>"         'text-scale-decrease)
@@ -337,20 +337,6 @@ lexically bound variable by the same name, for use with
 
 (use-package multi-shell)
 (bind-key "<f9>" #'multi-shell-new)
-
-;; (use-package flyspell-correct-helm
-;;   :bind ("C-M-]" . flyspell-correct-wrapper)
-;;     :init
-;;     (setq flyspell-correct-interface #'flyspell-correct-helm))
-;; (use-package predictive)
-
-;; (autoload 'predictive-mode "predictive" "predictive" t)
-;; (set-default 'predictive-auto-add-to-dict t)
-;; (setq predictive-main-dict 'rpg-dictionary
-;;       predictive-auto-learn t
-;;       predictive-add-to-dict-ask nil
-;;       predictive-use-auto-learn-cache nil
-;;       predictive-which-dict t)
 
 (use-package flyspell-popup
   :init (add-hook 'flyspell-mode-hook #'flyspell-popup-auto-correct-mode)
@@ -398,6 +384,205 @@ whole thing."
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
 (setq resize-mini-windows t)
+
+
+(defun jw-get-fullpathdir ()
+  "get the qualified path of this script"
+  (file-name-directory (or load-file-name buffer-file-name)))
+
+(defun jw-make-sub-dir-name(s)
+  "get the qualified subdir of s"
+  (concat (jw-get-fullpathdir) s))
+
+(defun jw-select-line()
+  "select the current line"
+  (interactive)
+  (let (b1)
+    (beginning-of-line)
+    (setq b1 (point))
+    (set-mark b1)
+    (end-of-line)))
+
+;; Parse tree walker
+; by Nikolaj Schumacher, 2008-10-20. Licensed under GPL.
+(defun jw-semnav-up (arg)
+  (interactive "p")
+  (when (nth 3 (syntax-ppss))
+    (if (> arg 0)
+        (progn
+          (skip-syntax-forward "^\"")
+          (goto-char (1+ (point)))
+          (decf arg))
+      (skip-syntax-backward "^\"")
+      (goto-char (1- (point)))
+      (incf arg)))
+  (up-list arg))
+
+;; by Nikolaj Schumacher, 2008-10-20. Released under GPL.
+(defun jw-extend-selection (arg &optional incremental)
+  "Select the current word.
+Subsequent calls expands the selection to larger semantic unit."
+  (interactive (list (prefix-numeric-value current-prefix-arg)
+             (or (and transient-mark-mode mark-active)
+             (eq last-command this-command))))
+  (if incremental
+      (progn
+        (jw-semnav-up (- arg))
+        (forward-sexp)
+        (mark-sexp -1))
+    (if (> arg 1)
+        (jw-extend-selection (1- arg) t)
+      (if (looking-at "\\=\\(\\s_\\|\\sw\\)*\\_>")
+          (goto-char (match-end 0))
+        (unless (memq (char-before) '(?\) ?\"))
+          (forward-sexp)))
+      (mark-sexp -1))))
+
+
+;; josh moller-mara
+(defun jw-file-name-copy-path ()
+  "Copy the path the of the of the current buffer"
+  (interactive)
+  (kill-new (message "%s" (buffer-file-name))))
+
+;; Kill the current buffer immediatly, saving it if needed.
+;; https://stackoverflow.com/questions/6467002/how-to-kill-buffer-in-emacs-without-answering-confirmation
+(defvar jw-kill-save-buffer-delete-windows t
+  "*Delete windows when `kill-save-buffer' is used.
+If this is non-nil, then `kill-save-buffer' will also delete the corresponding
+windows.  This is inverted by `kill-save-buffer' when called with a prefix.")
+
+(defun jw-kill-save-buffer (arg)
+  "Save the current buffer (if needed) and then kill it.
+Also, delete its windows according to `jw-kill-save-buffer-delete-windows'.
+A prefix argument ARG reverses this behavior."
+  (interactive "P")
+  (let ((del jw-kill-save-buffer-delete-windows))
+    (when arg (setq del (not del)))
+    (when (and (buffer-file-name) (not (file-directory-p (buffer-file-name))))
+      (save-buffer))
+    (let ((buf (current-buffer)))
+      (when del (delete-windows-on buf))
+      (kill-buffer buf))))
+
+(defun jw-close-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
+
+(defun jw-switch-to-scratch-buffer ()
+  "Switch to the current session's scratch buffer."
+  (interactive)
+  (switch-to-buffer "*scratch*"))
+
+(defun jw-switch-to-Messages-buffer ()
+  "Switch to the current session's Messages buffer."
+  (interactive)
+  (switch-to-buffer "*Messages*"))
+
+
+(bind-key "<C-tab>"          'other-frame)
+
+(unbind-key "<f3>")
+
+(bind-key "C-§"  #'jw-file-name-copy-path)
+(bind-key "C-`"  #'jw-file-name-copy-path)
+
+; select current word
+(bind-key  "M-8" #'jw-extend-selection)
+
+; select current line
+(bind-key  "M-9" #'jw-select-line)
+
+
+;; Disabled confused commands
+(unbind-key "C-z")                  ; suspend-frame
+(unbind-key "C-x C-z")                  ; suspend-frame
+(unbind-key "C-x m")			; compose-mail
+
+(bind-key "C-s-c" #'copy-to-register)
+(bind-key "C-s-v" #'insert-register)
+(bind-key "<C-f12>" #'jw-kill-save-buffer)
+(bind-key "<kp-left>" #'buf-move-left)
+(bind-key "<kp-right>" #'buf-move-right)
+(bind-key "<kp-up>" #'buf-move-up)
+(bind-key "<kp-down>" #'buf-move-down)
+
+(bind-key "<s-left>" #'buf-move-left)
+(bind-key "<s-right>" #'buf-move-right)
+(bind-key "<s-up>" #'buf-move-up)
+(bind-key "<s-down>" #'buf-move-down)
+
+(bind-key  "<C-s-up>" 'upcase-char)
+(bind-key  "<C-s-down>" 'downcase-char)
+(unbind-key "C-x C-d") ;; list-directory
+(unbind-key "C-z") ;; suspend-frame
+(unbind-key "M-o") ;; facemenu-mode
+(unbind-key "<mouse-2>") ;; pasting with mouse-wheel click
+(unbind-key "<C-wheel-down>") ;; text scale adjust
+
+;; absent # key on the mac
+(global-set-key (kbd "s-3") (lambda () (interactive) (insert "#")))
+
+(unbind-key "s-t")
+(unbind-key "<f4>")
+(bind-key "<f4>" #'jw-switch-to-scratch-buffer)
+(bind-key "<f12>" #'jw-switch-to-Messages-buffer)
+
+;; C-x 4 .         xref-find-definitions-other-window
+
+(bind-key "M-]" 'xref-find-definitions-other-window)
+(bind-keys :map emacs-lisp-mode-map
+           :prefix "<f3>"
+           :prefix-map jw-lisp-prefix-map
+           ("d" . eval-defun)
+           ("b" . eval-buffer)
+           ("e" . eval-last-sexp)
+           )
+
+(defadvice find-file (around find-file-line-number
+                                        (filename &optional wildcards)
+                                        activate)
+  "Turn files like file.cpp:14 into file.cpp and going to the 14-th line."
+  (save-match-data
+    (let* ((matched (string-match "^\\(.*\\):\\([0-9]+\\):?$" filename))
+           (line-number (and matched
+                             (match-string 2 filename)
+                             (string-to-number (match-string 2 filename))))
+           (filename (if matched (match-string 1 filename) filename)))
+      ad-do-it
+      (when line-number
+        ;; goto-line is for interactive use
+        (goto-char (point-min))
+        (forward-line (1- line-number))))))
+
+(bind-key  "<f6>" 'cua-mode)
+(bind-key  "<C-f6>" 'linum-mode)
+
+(defun jw-add-dirs-to-load-path (dir)
+  "add dir and all subdirs to the load path"
+  (add-to-list 'load-path dir)
+  (let ((default-directory dir))
+    (normal-top-level-add-subdirs-to-load-path)))
+
+(defun jw-setup-lisp-remote (dir)
+  (interactive "sWhich branch?")
+  (let ((default-directory dir))
+    (shell-command "git remote add gorigin git@bitbucket.org:jolyon929/e5.git")))
+
+(defun jw-setup-lisp-pull (dir)
+  (interactive "sWhich branch?")
+  (let ((default-directory dir))
+    (shell-command "git pull")))
+
+(defun jw-setup-lisp-dir (dir)
+  "set up a new directory of lispology"
+  (let ((modules (directory-files-recursively dir "jwm.*\\.el$")))
+    (jw-add-dirs-to-load-path dir)
+    (mapc (lambda(m) (load m nil t)) modules)
+    (shut-up (byte-recompile-directory dir 0 nil))
+    (when (fboundp 'native-compile-async) ;; only in e28 with --native-compile
+      (shut-up (native-compile-async dir 'recursively)))))
 
 (provide 'jw-defaults)
 

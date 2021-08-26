@@ -83,32 +83,8 @@
       (mapc 'delete-file (append (directory-files-recursively jw-e5-base ".*\\.elc$" nil)
                                  (directory-files user-emacs-directory t ".*\\.elc$")))))
 
-  (use-package shut-up)
-
-  (defun jw-add-dirs-to-load-path (dir)
-    "add dir and all subdirs to the load path"
-    (add-to-list 'load-path dir)
-    (let ((default-directory dir))
-      (normal-top-level-add-subdirs-to-load-path)))
-
-  (defun jw-setup-lisp-remote (dir)
-    (interactive "sWhich branch?")
-    (let ((default-directory dir))
-      (shell-command "git remote add gorigin git@bitbucket.org:jolyon929/e5.git")))
-
-  (defun jw-setup-lisp-pull (dir)
-    (interactive "sWhich branch?")
-    (let ((default-directory dir))
-      (shell-command "git pull")))
-
-  (defun jw-setup-lisp-dir (dir)
-    "set up a new directory of lispology"
-    (let ((modules (directory-files-recursively dir "jwm.*\\.el$")))
-      (jw-add-dirs-to-load-path dir)
-      (mapc (lambda(m) (load m nil t)) modules)
-      (shut-up (byte-recompile-directory dir 0 nil))
-      (when (fboundp 'native-compile-async) ;; only in e28 with --native-compile
-        (shut-up (native-compile-async dir 'recursively)))))
+  (use-package shut-up)  
+  (load (expand-file-name "jw-defaults.el" user-emacs-directory))
 
   (unless (file-exists-p jw-e5-base)
     (make-directory jw-e5-base))
@@ -138,11 +114,9 @@
                                                  (shell-command-sentinel process signal)))))
             (message "ouch; No process running."))))))
 
-  (load (expand-file-name "jw-defaults.el" user-emacs-directory))
-
   ;; minimal set of stuff:-
   (mapc 'jw-get-lisp '("col" ;; color theme
-                       "cmn" ;; shells et c
+                       ;;"cmn" ;; shells et c
                        ;; "dev" ;; cmode etc
                        ;; "org" ;; big !
                        ;; "scl" ;; common lisp
@@ -150,7 +124,11 @@
                        ;; "chi" ;; mandarin
                        ;; "flf" ;; overflow - big !
 		               ;; "rtg" ;; rtags
-                       ;; "dsk" ;; desktop
+                       ;; "lsp"
+                       "dsk" ;; desktop
+		               ;; "doc"
+		               ;; "eg"
                        ))
 
   (set-face-attribute 'default nil :height 160))
+
