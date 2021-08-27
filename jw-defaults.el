@@ -78,10 +78,13 @@
  custom-safe-themes t
  dired-use-ls-dired nil
  case-fold-search nil
- blink-cursor-mode nil
- tool-bar-mode 0
- menu-bar-mode 0
- scroll-bar-mode 0)
+ blink-cursor-mode nil)
+
+(global-linum-mode t)
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
+
 
 
 (setq-default tab-width 4)
