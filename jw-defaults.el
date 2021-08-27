@@ -77,11 +77,12 @@
  custom-file (make-temp-file "")
  custom-safe-themes t
  dired-use-ls-dired nil
- case-fold-search nil)
+ case-fold-search nil
+ blink-cursor-mode nil
+ tool-bar-mode 0
+ menu-bar-mode 0
+ scroll-bar-mode 0)
 
-(tool-bar-mode 0)
-(menu-bar-mode 0)
-(scroll-bar-mode 0)
 
 (setq-default tab-width 4)
 (set-default 'indent-tabs-mode nil) ;; Indent with spaces not tabs
