@@ -605,6 +605,11 @@ A prefix argument ARG reverses this behavior."
 
 (provide 'jw-defaults)
 
+;; gpg/ git-crypt
+
+;; https://dev.to/heroku/how-to-manage-your-secrets-with-git-crypt-56ih
+;; https://blog.francium.tech/secure-your-credentials-using-git-crypt-1ccbacc483c7
+
 ;; Local Variables:
 ;; coding: utf-8
 ;; End:
