@@ -599,6 +599,10 @@ A prefix argument ARG reverses this behavior."
                                       vterm-mode
                                       doc-view-mode))
 
+
+(add-hook 'text-mode-hook #'visual-line-mode)
+(bind-key "<C-escape>" 'jw-get-lisp)
+
 (provide 'jw-defaults)
 
 ;; Local Variables:
