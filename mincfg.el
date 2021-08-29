@@ -80,12 +80,49 @@
    (set-window-buffer currentbuf newbuf)
    (shell newbuf)))
 
-(defun select-line () (interactive) (progn (move-beginning-of-line nil)
+;; Parse tree walker
+; by Nikolaj Schumacher, 2008-10-20. Licensed under GPL.
+(defun jw-semnav-up (arg)
+  (interactive "p")
+  (when (nth 3 (syntax-ppss))
+    (if (> arg 0)
+        (progn
+          (skip-syntax-forward "^\"")
+          (goto-char (1+ (point)))
+          (decf arg))
+      (skip-syntax-backward "^\"")
+      (goto-char (1- (point)))
+      (incf arg)))
+  (up-list arg))
+
+;; by Nikolaj Schumacher, 2008-10-20. Released under GPL.
+(defun jw-extend-selection (arg &optional incremental)
+  "Select the current word.
+Subsequent calls expands the selection to larger semantic unit."
+  (interactive (list (prefix-numeric-value current-prefix-arg)
+             (or (and transient-mark-mode mark-active)
+             (eq last-command this-command))))
+  (if incremental
+      (progn
+        (jw-semnav-up (- arg))
+        (forward-sexp)
+        (mark-sexp -1))
+    (if (> arg 1)
+        (jw-extend-selection (1- arg) t)
+      (if (looking-at "\\=\\(\\s_\\|\\sw\\)*\\_>")
+          (goto-char (match-end 0))
+        (unless (memq (char-before) '(?\) ?\"))
+          (forward-sexp)))
+      (mark-sexp -1))))
+
+
+(defun jw-select-line () (interactive) (progn (move-beginning-of-line nil)
     (set-mark-command nil)
     (move-end-of-line nil)))
 
 (global-set-key (kbd "<f9>") 'new-shell)
-(global-set-key (kbd "M-9") 'select-line)
+(global-set-key (kbd "M-8") 'jw-extend-selection)
+(global-set-key (kbd "M-9") 'jw-select-line)
 
 ; switching windows
 (when (fboundp 'windmove-default-keybindings)
