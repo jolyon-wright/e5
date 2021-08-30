@@ -23,6 +23,8 @@
 (require 'subr-x)
 (use-package git)
 
+(add-to-list 'auto-mode-alist '("\\.prg\\'" . org-mode))
+
 (defun org-git-version ()
   "The Git version of org-mode.
 Inserted by installing org-mode or when a release is made."
