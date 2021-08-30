@@ -1,1 +1,2 @@
 api.key filter=git-crypt diff=git-crypt
+*.prg filter=git-crypt diff=git-crypt
