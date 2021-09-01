@@ -603,6 +603,8 @@ A prefix argument ARG reverses this behavior."
 (add-hook 'text-mode-hook #'visual-line-mode)
 (bind-key "<C-escape>" 'jw-get-lisp)
 
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
 (provide 'jw-defaults)
 
 ;; gpg/ git-crypt
