@@ -599,6 +599,12 @@ A prefix argument ARG reverses this behavior."
                                       vterm-mode
                                       doc-view-mode))
 
+(defadvice linum-on (around linum-on-inhibit-for-modes)
+  "Stop the load of linum-mode for some major modes."
+  (unless (member major-mode linum-mode-inhibit-modes-list)
+    ad-do-it))
+(ad-activate 'linum-on)
+
 
 (add-hook 'text-mode-hook #'visual-line-mode)
 (bind-key "<C-escape>" 'jw-get-lisp)
