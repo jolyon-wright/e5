@@ -605,6 +605,9 @@ A prefix argument ARG reverses this behavior."
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
+(dolist (hook '(text-mode-hook))
+  (add-hook hook (lambda () (flyspell-mode 1))))
+
 (provide 'jw-defaults)
 
 ;; gpg/ git-crypt
