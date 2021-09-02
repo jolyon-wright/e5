@@ -76,5 +76,9 @@
   (add-to-list 'yas-snippet-dirs (jw-make-sub-dir-name "snippets"))
   (yas-reload-all))
 
+
+(straight-use-package '(bmaland :type git :host github :repo "bmaland/yasnippet-sh-mode"))
+;; https://github.com/bmaland/yasnippet-sh-mode
+
 (provide 'jwm-auto)
 ;;; jwm-auto.el ends here
