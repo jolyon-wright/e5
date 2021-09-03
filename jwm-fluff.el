@@ -273,17 +273,6 @@
   :custom (which-key-idle-delay 1.2))
 
 
-
-;; Emacs instances started outside the terminal do not pick up ssh-agent information unless we use keychain-environment. Note to self: if you keep having to enter your keychain password on macOS, make sure this is in .ssh/config:
-
-;; Host *
-;;   UseKeychain yes
-
-(use-package keychain-environment
-  :config
-  (keychain-refresh-environment))
-
-
 ;; (use-package smex
 ;;   )
 ;; (bind-key "M-x" 'smex)
