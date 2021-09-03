@@ -614,6 +614,17 @@ A prefix argument ARG reverses this behavior."
 (dolist (hook '(text-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
 
+
+;; Emacs instances started outside the terminal do not pick up ssh-agent information unless we use keychain-environment. Note to self: if you keep having to enter your keychain password on macOS, make sure this is in .ssh/config:
+
+;; Host *
+;;   UseKeychain yes
+
+(use-package keychain-environment
+  :config
+  (keychain-refresh-environment))
+
+
 (provide 'jw-defaults)
 
 ;; gpg/ git-crypt
