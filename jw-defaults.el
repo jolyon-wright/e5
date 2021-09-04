@@ -342,9 +342,21 @@ lexically bound variable by the same name, for use with
 (use-package multi-shell)
 (bind-key "<f9>" #'multi-shell-new)
 
-(use-package flyspell-popup
-  :init (add-hook 'flyspell-mode-hook #'flyspell-popup-auto-correct-mode)
-  )
+;; (use-package flyspell-popup
+;;   :init (add-hook 'flyspell-mode-hook #'flyspell-popup-auto-correct-mode)
+;;   )
+
+;; https://github.com/d12frosted/flyspell-correct
+
+(use-package flyspell-correct
+  :after flyspell
+  :bind (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
+
+;;flyspell-correct-auto-mode
+
+(use-package flyspell-correct-ivy
+  :after flyspell-correct)
+
 
 ;;https://spwhitton.name//blog/entry/transient-caps-lock/
 (defun spw/transient-caps-self-insert (&optional n)
