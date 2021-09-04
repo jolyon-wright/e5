@@ -116,19 +116,19 @@
 
   ;; minimal set of stuff:-
   (mapc 'jw-get-lisp '("col" ;; color theme
-                       ;;"cmn" ;; shells et c
-                       "dev" ;; cmode etc
-                       "org" ;; big !
+                       ;; "dev" ;; cmode etc
+                       ;; "org" ;; big !
                        ;; "scl" ;; common lisp
                        ;; "vtm" ;; needs strangeness
-                       "chi" ;; mandarin
-                       "flf" ;; overflow - big !
+                       ;; "chi" ;; mandarin
+                       ;; "flf" ;; overflow - big !
 		               ;; "rtg" ;; rtags
                        ;; "lsp"
-                       "dsk" ;; desktop
-		               ;; "doc"
-		               ;; "eg"
+                       ;; "dsk" ;; desktop
                        ))
+  (let ((lcl (expand-file-name "local.el" user-emacs-directory)))
+    (when (file-exists-p lcl)
+      (shut-up (load lcl))))
 
   (set-face-attribute 'default nil :height 160))
 
