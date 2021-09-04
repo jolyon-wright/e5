@@ -116,6 +116,7 @@
         )
   )
 (bind-key "<C-f3>" #'global-company-mode)
+(setq company-global-modes '(not text-mode org-mode))
 
 (cmake-ide-setup)
 
