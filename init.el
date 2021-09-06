@@ -126,9 +126,9 @@
                        ;; "lsp"
                        ;; "dsk" ;; desktop
                        ))
+
+  (set-face-attribute 'default nil :height 160)
+
   (let ((lcl (expand-file-name "local.el" user-emacs-directory)))
     (when (file-exists-p lcl)
-      (shut-up (load lcl))))
-
-  (set-face-attribute 'default nil :height 160))
-
+      (shut-up (load lcl)))))
