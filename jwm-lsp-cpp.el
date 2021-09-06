@@ -35,6 +35,32 @@
 ;;   (package-refresh-contents)
 ;;   (mapc #'package-install package-selected-packages))
 
+;; mingw64 on windows
+
+;; pacman -S unzip
+;;;; loading cpp file causes lsp error:-
+;; Contacting host: github.com:443
+;; Wrote c:/jolyon/.emacs.d/.cache/lsp/clangd/clangd.zip.zip
+;; LSP :: Finished downloading c:/jolyon/.emacs.d/.cache/lsp/clangd/clangd.zip.zip...
+;; LSP :: Decompressing c:/jolyon/.emacs.d/.cache/lsp/clangd/clangd.zip.zip...
+;; LSP :: Server clangd install process failed with the following error message: (error Unable to find ‘unzip’ or ‘powershell’ on the path, please customize ‘lsp-unzip-script’).
+;; Check `*lsp-install*' and `*lsp-log*' buffer.
+;; cmake-ide [Mon Sep  6 20:53:34 2021]: Finished running CMake
+
+
+;; cd c:/jolyon/.emacs.d/.cache/lsp/clangd
+;; unzip clangd.zip.zip
+
+;; now all fine; reload the CPP file
+;;
+;; pacman -S mingw-w64-x86_64-ninja
+
+;; invoke:
+;; cmake -G Ninja .
+;; ninja
+;;
+;; all is well
+
 
 (use-package lsp-mode)
 (use-package yasnippet)
