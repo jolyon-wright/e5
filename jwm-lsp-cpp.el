@@ -124,11 +124,11 @@
 :init (global-flycheck-mode))
 
 
-(use-package company-shell
-    :defer 3
-    :config
-    (add-to-list 'company-backends 'company-shell)
-    )
+;; (use-package company-shell
+;;     :defer 3
+;;     :config
+;;     (add-to-list 'company-backends 'company-shell)
+;;     )
 
 ;; brew install node
 (add-hook 'sh-mode-hook #'lsp)
