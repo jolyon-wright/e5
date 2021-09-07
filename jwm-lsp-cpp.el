@@ -101,13 +101,35 @@
 
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-  (require 'dap-cpptools)               ;
+  (require 'dap-cpptools)
+  (setq lsp-prefer-flymake nil)
   (yas-global-mode))
 
 ;; Optional - provides fancier overlays.
 ;; (use-package lsp-ui
 ;;   :ensure t
 ;;   :commands lsp-ui-mode)
+
+
+;; worth trying:-
+;; lsp-ui
+;; https://github.com/emacs-lsp/lsp-ui
+(use-package lsp-ui
+  :after lsp
+  :commands lsp-ui-mode
+  :bind
+  (:map lsp-ui-mode-map
+        ([remap save-buffer] . my/lsp-format-and-save)
+        ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+        ([remap xref-find-references] . lsp-ui-peek-find-references))
+  :config
+  (setq lsp-ui-doc-position 'bottom)
+  (defun my/lsp-format-and-save ()
+    (interactive)
+    (lsp-format-buffer)
+    (save-buffer)))
+
+
 
 ;; (require 'rsz-mini)
 ;; (resize-minibuffer-mode 1)
@@ -119,10 +141,38 @@
 ;;           '(lambda ()
 ;;              (setq truncate-lines nil)))
 
+;; (use-package flycheck
+;; :ensure t
+;; :init (global-flycheck-mode))
+;; flycheck
+;; http://www.flycheck.org
+;; Dep flake8, clang, tidy, csslint
 (use-package flycheck
-:ensure t
-:init (global-flycheck-mode))
+  :defer 2
+  :bind
+  (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
+  ("M-g l" . flycheck-list-errors)
+  :config
+  (global-flycheck-mode)
+  (setq-default flycheck-global-modes '(not org-mode))
+  ;; hydra
+  (defhydra hydra-flycheck
+    (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
+          :post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
+          :hint nil)
+    "Errors"
+    ("f"  flycheck-error-list-set-filter  "Filter")
+    ("n"  flycheck-next-error             "Next")
+    ("p"  flycheck-previous-error         "Previous")
+    ("q"  nil                             "Quit")))
 
+
+;; flycheck-inline
+;; https://github.com/flycheck/flycheck-inline
+(use-package flycheck-inline
+  :after flycheck
+  :hook
+  (flycheck-mode . flycheck-inline-mode))
 
 ;; (use-package company-shell
 ;;     :defer 3
