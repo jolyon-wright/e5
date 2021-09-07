@@ -180,7 +180,17 @@
 ;;     (add-to-list 'company-backends 'company-shell)
 ;;     )
 
+
 ;; brew install node
+
+;; ubuntu 2004:-
+
+;; sudo apt install npm
+;; sudo npm cache clean -f
+;; sudo npm install -g n
+;; sudo n stable
+
+
 (add-hook 'sh-mode-hook #'lsp)
 
 
