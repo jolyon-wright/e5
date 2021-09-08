@@ -69,7 +69,9 @@
 (use-package projectile)
 (use-package hydra)
 (use-package flycheck)
-(use-package company)
+                                        ;(use-package company)
+(straight-use-package '(jolyon929 :type git :host bitbucket :repo "jolyon929/company-mode"))
+
 (use-package avy)
 (use-package which-key)
 ;; (use-package helm-xref)
