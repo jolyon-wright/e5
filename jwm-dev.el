@@ -106,11 +106,15 @@
   ;; (return . company-complete-selection)
 
   :init (global-company-mode)
+  :config
+  (setq company-idle-delay .4
+        company-minimum-prefix-length 4)
+
   :bind
   (:map company-active-map
-        ("<return>" . nil)
-        ("<tab>" . nil)
-        ("RET"  . nil)
+        ("<return>" . company-abort)
+        ("<tab>" . company-abort)
+        ("RET"  . company-abort)
         ("<C-return>" . company-complete-selection)
   ;;      ("TAB"  . company-complete-selection)
   ;;      ("<tab>" . company-complete-selection)
