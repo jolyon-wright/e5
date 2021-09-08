@@ -135,24 +135,28 @@
 ;;      keymap)
 ;;   "Keymap that is enabled during an active completion. (enhanced by jolyon).")
 
-(straight-use-package company '(jolyon929 :type git :host bitbucket :repo "jolyon929/company-mode")
-  ;; (return . company-complete-selection)
+;; revisit !
 
-  ;; :init (global-company-mode)
-  ;; :config
-  ;; (setq company-idle-delay .4
-  ;;       company-minimum-prefix-length 4)
+(straight-use-package '(jolyon929 :type git :host bitbucket :repo "jolyon929/company-mode"))
 
-  ;; :bind
-  ;; (:map company-active-map
-  ;;       ("<return>" . company-abort)
-  ;;       ("<tab>" . company-abort)
-  ;;       ("RET"  . company-abort)
-  ;;       ("<C-return>" . company-complete-selection)
-  ;; ;;      ("TAB"  . company-complete-selection)
-  ;; ;;      ("<tab>" . company-complete-selection)
-  ;;       )
-  )
+;; (use-package company
+;;   ;; (return . company-complete-selection)
+
+;;   :init (global-company-mode)
+;;   :config
+;;   (setq company-idle-delay .4
+;;         company-minimum-prefix-length 4)
+
+;;   :bind
+;;   (:map company-active-map
+;;         ("<return>" . company-abort)
+;;         ("<tab>" . company-abort)
+;;         ("RET"  . company-abort)
+;;         ("<C-return>" . company-complete-selection)
+;;   ;;      ("TAB"  . company-complete-selection)
+;;   ;;      ("<tab>" . company-complete-selection)
+;;         )
+;;   )
 (bind-key "<C-f3>" #'global-company-mode)
 (setq company-global-modes '(not text-mode org-mode))
 
