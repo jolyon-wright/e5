@@ -24,7 +24,8 @@
 ;;
 
 ;;; Code:
-(straight-use-package '(lewang :type git :host github :repo "lewang/command-log-mode"))
+;;
+(straight-use-package '(jolyon929 :type git :host bitbucket :repo "jolyon929/company-mode"))
 
 (bind-key "<C-f3>" #'global-company-mode)
 (setq company-global-modes '(not text-mode org-mode))
