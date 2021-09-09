@@ -110,12 +110,12 @@
 ;; https://www.mattduck.com/lsp-python-getting-started.html
 ;; pip3 install python-language-server[all]
 
-;; (use-package lsp-mode
-;;   :hook
-;;   ((python-mode . lsp)))
+(use-package lsp-mode
+  :hook
+  ((python-mode . lsp)))
 
-;; (use-package lsp-ui
-;;   :commands lsp-ui-mode)
+(use-package lsp-ui
+  :commands lsp-ui-mode)
 
 
 
