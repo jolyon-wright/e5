@@ -107,6 +107,32 @@
   (setq lsp-prefer-flymake nil)
   (yas-global-mode))
 
+;; https://www.mattduck.com/lsp-python-getting-started.html
+;; pip3 install python-language-server[all]
+
+;; (use-package lsp-mode
+;;   :hook
+;;   ((python-mode . lsp)))
+
+;; (use-package lsp-ui
+;;   :commands lsp-ui-mode)
+
+
+
+;; Some integrations are not available by default in pyls, but are supported by plugins. You can install these with pip install pyls-black pyls-isort pyls-mypy.
+
+;; To then enable them in lsp-mode, you can use (lsp-register-custom-settings):
+
+;; (use-package lsp-mode
+;;   :config
+;;   (lsp-register-custom-settings
+;;    '(("pyls.plugins.pyls_mypy.enabled" t t)
+;;      ("pyls.plugins.pyls_mypy.live_mode" nil t)
+;;      ("pyls.plugins.pyls_black.enabled" t t)
+;;      ("pyls.plugins.pyls_isort.enabled" t t)))
+;;   :hook
+;;   ((python-mode . lsp)))
+
 ;; Optional - provides fancier overlays.
 ;; (use-package lsp-ui
 ;;   :ensure t
