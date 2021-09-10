@@ -167,6 +167,17 @@ Subsequent calls expands the selection to larger semantic unit."
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
 
 
+(when (equal window-system 'w32)
+  (setq
+   w32-pass-lwindow-to-system nil
+   w32-lwindow-modifier 'super
+   w32-pass-rwindow-to-system nil
+   w32-rwindow-modifier 'super
+   w32-pass-apps-to-system nil
+   w32-apps-modifier 'hyper
+   w32-pass-alt-to-system nil
+   w32-scroll-lock-modifier nil))
+
 ;; Local Variables:
 ;; coding: utf-8
 ;; End:
