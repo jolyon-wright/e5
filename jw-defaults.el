@@ -636,6 +636,18 @@ A prefix argument ARG reverses this behavior."
   :config
   (keychain-refresh-environment))
 
+(when (equal window-system 'w32)
+  (setq
+   w32-pass-lwindow-to-system nil
+   w32-lwindow-modifier 'super
+   w32-pass-rwindow-to-system nil
+   w32-rwindow-modifier 'super
+   w32-pass-apps-to-system nil
+   w32-apps-modifier 'hyper
+   w32-pass-alt-to-system nil
+   w32-scroll-lock-modifier nil))
+
+
 
 (provide 'jw-defaults)
 
