@@ -218,6 +218,14 @@
 ;; sudo npm install -g n
 ;; sudo n stable
 
+;; mingw64:-
+
+;; download nodejs to c:\nodejs
+;; https://nodejs.org/en/download/
+
+;; update .bashrc:-
+;; export PATH=$PATH:/c/nodejs
+
 
 (add-hook 'sh-mode-hook #'lsp)
 
