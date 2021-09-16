@@ -239,3 +239,44 @@
 ;; End:
 
 ;;; jwm-lsp-cpp.el ends here.
+
+
+;; I was also struggling with this recently and I think the main difficulty for me was that there are different debug programs that require different configurations. It took also way longer than it should have to figure out how to tell the debugger which file to debug and how to pass command-line arguments.
+
+;; Here is my setup. First the relevant part from .emacs.d/init.el. Second, the file .emacs.d/default-launch.json. As you can see from the config, I use lldb-vscode, which is installed under /usr/bin/lldb-vscode.
+
+;; (use-package dap-mode
+;;   :defer
+;;   :custom
+;;   (dap-auto-configure-mode t                           "Automatically configure dap.")
+;;   (dap-auto-configure-features
+;;    '(sessions locals breakpoints expressions tooltip)  "Remove the button panel in the top.")
+;;   :config
+;;   ;;; dap for c++
+;;   (require 'dap-lldb)
+
+;;   ;;; set the debugger executable (c++)
+;;   (setq dap-lldb-debug-program '("/usr/bin/lldb-vscode"))
+
+;;   ;;; ask user for executable to debug if not specified explicitly (c++)
+;;   (setq dap-lldb-debugged-program-function (lambda () (read-file-name "Select file to debug.")))
+
+;;   ;;; default debug template for (c++)
+;;   (dap-register-debug-template
+;;    "C++ LLDB dap"
+;;    (list :type "lldb-vscode"
+;;          :cwd nil
+;;          :args nil
+;;          :request "launch"
+;;          :program nil))
+
+;;   (defun dap-debug-create-or-edit-json-template ()
+;;     "Edit the C++ debugging configuration or create + edit if none exists yet."
+;;     (interactive)
+;;     (let ((filename (concat (lsp-workspace-root) "/launch.json"))
+;; 	  (default "~/.emacs.d/default-launch.json"))
+;;       (unless (file-exists-p filename)
+;; 	(copy-file default filename))
+;;       (find-file-existing filename))))
+
+;; https://www.reddit.com/r/emacs/comments/mxiqt6/how_to_setup_and_use_dapmode_for_c/
