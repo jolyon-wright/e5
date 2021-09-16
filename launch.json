@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Emacs",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/simple_boost/src/hello",
+            "args": ["-q"],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}/simple_boost/src/",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        }
+    ]
+}
