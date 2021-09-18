@@ -1,2 +1,2 @@
 api.key filter=git-crypt diff=git-crypt
-sq/ filter=git-crypt diff=git-crypt
+sq/** filter=git-crypt diff=git-crypt
