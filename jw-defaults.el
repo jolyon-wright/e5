@@ -497,7 +497,7 @@ A prefix argument ARG reverses this behavior."
   (switch-to-buffer "*Messages*"))
 
 
-(bind-key "<C-tab>"          'other-frame)
+(bind-key "<C-M-tab>"          'other-frame)
 
 (unbind-key "<f3>")
 
