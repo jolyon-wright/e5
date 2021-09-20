@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bt
+# key: bt
+# --
+
+BOOST_LOG_TRIVIAL(trace) << $0;

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bw
+# key: bw
+# --
+
+BOOST_LOG_TRIVIAL(warning) << $0;

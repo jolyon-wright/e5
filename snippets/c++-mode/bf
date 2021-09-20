@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bf
+# key: bf
+# --
+
+BOOST_LOG_TRIVIAL(fatal) << $0;
