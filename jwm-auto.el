@@ -68,7 +68,8 @@
               ("TAB" . nil)
               ("<tab>" . nil)
               ;; "C-." . 'yas-expand)) ;; conflicts
-              ("<f8>" . 'yas-expand))
+              ;;       ("<f8>" . 'yas-expand))
+              ("<C-tab>" . 'yas-expand))
   :init
   (yas-global-mode 1)
   :config
