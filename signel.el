@@ -1,7 +1,7 @@
 (require 'cl-lib)
 
-(defvar signel-cli-user "+44744xxxxxx")
-(defvar signel-contact-names '(("+447xxxxxxxx" . "john")
+(defvar signel-cli-user "+447507736899")
+(defvar signel-contact-names '(("+7854766547" . "q")
                                ("+346xxxxxxxx" . "anna")))
 
 (defun signel--contact-name (src)

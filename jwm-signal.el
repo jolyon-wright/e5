@@ -21,7 +21,10 @@
 
 ;;; Commentary:
 
-;;
+;; mac:
+;; brew install signal-cli
+
+;; signal-cli -u +447507736899 register
 
 ;;; Code:
 
