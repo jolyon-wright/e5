@@ -26,7 +26,7 @@ We are going to need a variable for our identity (telephone number),
 and a list of contact names (until i discover how to get them directly
 from signal-cli):
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (require 'cl-lib)
 
 (defvar signel-cli-user "+44744xxxxxx")
@@ -37,14 +37,14 @@ from signal-cli):
 and a simple function to get a contact name given its telephone
 number:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defun signel--contact-name (src)
   (or (alist-get src signel-contact-names nil nil #'string-equal) src))
 #+end_src
 
 We are also going to need the path for our signal-cli executable
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defvar signel-cli-exec "signal-cli")
 #+end_src
 
@@ -59,7 +59,7 @@ associating to the process a buffer selected by the function
 ~signel--proc-buffer~ .  While we are at it, we'll write also little
 helpers for users of our API.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defun signel--proc-buffer ()
   (get-buffer-create "*signal-cli*"))
 
@@ -71,7 +71,7 @@ helpers for users of our API.
     (and (process-live-p proc) proc)))
 #+end_src
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defun signel-start ()
   "Start the underlying signal-cli process if needed."
   (interactive)
@@ -171,7 +171,7 @@ It is very easy to parse JSON in emacs and extract signal-cli's
 envelopes (and it's become faster in emacs 27, but the interface is a
 bit different):
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defun signel--parse-json (str)
   (if (> emacs-major-version 26)
       (json-parse-string str
@@ -194,7 +194,7 @@ hence the choice for null and false representations.
 Once the contents of the envelope is extracted, it's trivial (and
 boring) to get into its components:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defun signel--msg-source (msg) (alist-get 'source msg))
 
 (defun signel--msg-data (msg)
@@ -242,7 +242,7 @@ We're almost ready to write our filter.  It will:
 
 Or, in elisp:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defvar signel--line-buffer "")
 
 (defun signel--filter (proc str)
@@ -268,7 +268,7 @@ The function to insert the raw contents in the process buffer is
 surprisingly hard to get right, but the emacs manual spells out a
 reasonable implementation, which i just copied:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defun signel--ordinary-insertion-filter (proc string)
   (when (and proc (buffer-live-p (process-buffer proc)))
     (with-current-buffer (process-buffer proc)
@@ -287,7 +287,7 @@ With that out of the way, we just have to insert our data in an
 appropriate buffer.  We are going to associate a separate buffer to
 each /source/, using for that its name:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defvar-local signel-user nil)
 
 (defun signel--contact-buffer (source)
@@ -307,7 +307,7 @@ major mode for chat buffers, called ~signel-chat-mode~.  For now, let's
 keep it really simple (for the record, this is essentially a copy of
 what ERC does for its erc-mode):
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defvar signel-prompt ": ")
 
 (define-derived-mode signel-chat-mode fundamental-mode "Signal"
@@ -334,7 +334,7 @@ We're going to need a couple of new faces for the different parts of
 inserted messages, so we'll take the chance to be tidy and introduce a
 customization group:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defgroup signel nil "Signel")
 
 (defface signel-contact '((t :weight bold))
@@ -371,7 +371,7 @@ We have now almost all the ingredients to write
 message data into the chat buffer.  Let's define a few little
 functions to format those parts:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defun signel--contact (name)
   (propertize name 'face 'signel-contact))
 
@@ -404,7 +404,7 @@ functions to format those parts:
 With that, we're finally ready to insert messages in our signel chat
 buffers:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defcustom signel-report-deliveries nil
   "Whether to show message delivery notices."
   :group 'signel
@@ -475,7 +475,7 @@ That is, call the method ~sendMessage~ of the corresponding service
 interface with three arguments (the second one empty).  Using emacs'
 dbus libray one can write the above as:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defun signel--send-message (user msg)
   (dbus-call-method :session "org.asamk.Signal" "/org/asamk/Signal"
                     "org.asamk.Signal" "sendMessage"
@@ -495,7 +495,7 @@ We want to read whatever our user writes after the last prompt and
 send it via the little helper above.  Here's our interactive command
 for that:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defun signel-send ()
   "Read text inserted in the current buffer after the last prompt and send it.
 
@@ -519,14 +519,14 @@ when the buffer was created."
 
 and we can bind it to the return key in signal chat buffers:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (define-key signel-chat-mode-map "\C-m" #'signel-send)
 #+end_src
 
 And we are going sometimes to want to talk to contacts that don't have
 yet said anything and have, therefore, no associated chat buffer:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle signel.el
 (defun signel-query (contact)
   "Start a conversation with a signal contact."
   (interactive (list (completing-read "Signal to: "
