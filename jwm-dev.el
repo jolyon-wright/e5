@@ -173,3 +173,6 @@
         (yaml-mode . indent-tools-indentation-of-yaml)
         (jade-mode . indent-tools-indentation-of-jade)
        ))
+
+(use-package cuda-mode)
+(add-to-list 'auto-mode-alist '("\\.cu$" . cuda-mode))
