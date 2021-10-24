@@ -529,8 +529,19 @@ A prefix argument ARG reverses this behavior."
 (bind-key "<s-up>" #'buf-move-up)
 (bind-key "<s-down>" #'buf-move-down)
 
-(bind-key  "<C-s-up>" 'upcase-char)
-(bind-key  "<C-s-down>" 'downcase-char)
+(defun jw-upcase-char (arg)
+  "Uppercasify ARG chars starting from point.  Point moves."
+  (interactive "p")
+  (upcase-region (point) (progn (forward-char arg) (point))))
+
+(defun jw-downcase-char (arg)
+  "Uppercasify ARG chars starting from point.  Point moves."
+  (interactive "p")
+  (downcase-region (point) (progn (forward-char arg) (point))))
+
+
+(bind-key  "<C-s-up>" 'jw-upcase-char)
+(bind-key  "<C-s-down>" 'jw-downcase-char)
 (unbind-key "C-x C-d") ;; list-directory
 (unbind-key "C-z") ;; suspend-frame
 (unbind-key "M-o") ;; facemenu-mode
