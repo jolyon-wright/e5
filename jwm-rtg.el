@@ -2,8 +2,8 @@
 
 ;; on ubuntu 1804:-
 ;;
-;; sudo apt-get install -y libclang-9-dev clang-9 libssl-dev bear cmake zlib1g-dev
-;; sudo ln -s /usr/bin/clang-9 /usr/bin/clang
+;; sudo apt-get install -y libclang-10-dev clang-10 libssl-dev bear cmake zlib1g-dev
+;; sudo ln -s /usr/bin/clang-10 /usr/bin/clang
 ;;
 ;; then:-
 ;;
