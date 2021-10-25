@@ -529,16 +529,20 @@ A prefix argument ARG reverses this behavior."
 (bind-key "<s-up>" #'buf-move-up)
 (bind-key "<s-down>" #'buf-move-down)
 
+(defun jw-func-at-cur-char(f arg)
+  "Call F on the current character and move to the next."
+  (funcall f (point) (progn (forward-char arg) (point))))
+
 (defun jw-upcase-char (arg)
   "Uppercasify ARG chars starting from point.  Point moves."
   (interactive "p")
-  (upcase-region (point) (progn (forward-char arg) (point))))
+  (jw-func-at-cur-char 'upcase-region arg)
+  )
 
 (defun jw-downcase-char (arg)
   "Uppercasify ARG chars starting from point.  Point moves."
   (interactive "p")
-  (downcase-region (point) (progn (forward-char arg) (point))))
-
+  (jw-func-at-cur-char 'downcase-region arg))
 
 (bind-key  "<C-s-up>" 'jw-upcase-char)
 (bind-key  "<C-s-down>" 'jw-downcase-char)
