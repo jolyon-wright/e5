@@ -135,3 +135,16 @@
   (let ((lcl (expand-file-name "local.el" user-emacs-directory)))
     (when (file-exists-p lcl)
       (load lcl))))
+
+
+;; needs to be last:-
+(when (equal window-system 'w32)
+  (setq
+   w32-pass-lwindow-to-system nil
+   w32-lwindow-modifier 'super
+   w32-pass-rwindow-to-system nil
+   w32-rwindow-modifier 'super
+   w32-pass-apps-to-system nil
+   w32-apps-modifier 'hyper
+   w32-pass-alt-to-system nil
+   w32-scroll-lock-modifier nil))
