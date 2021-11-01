@@ -555,6 +555,9 @@ A prefix argument ARG reverses this behavior."
 ;; absent # key on the mac
 (global-set-key (kbd "s-3") (lambda () (interactive) (insert "#")))
 
+(global-set-key (kbd "s-SPC") (lambda () (interactive) (insert ".  ")))
+(global-set-key (kbd "C-,") (lambda () (interactive) (insert ", ")))
+
 (unbind-key "s-t")
 (unbind-key "<f4>")
 (bind-key "<f4>" #'jw-switch-to-scratch-buffer)
