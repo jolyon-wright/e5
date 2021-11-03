@@ -654,6 +654,7 @@ A prefix argument ARG reverses this behavior."
   :config
   (keychain-refresh-environment))
 
+(use-package langtool)
 
 (provide 'jw-defaults)
 
