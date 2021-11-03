@@ -656,6 +656,12 @@ A prefix argument ARG reverses this behavior."
 
 (use-package langtool)
 
+(when (equal window-system 'ns)
+  ;; brew install LanguageTool
+  (message "%s" "confusion")
+(setq langtool-language-tool-jar (expand-file-name "languagetool-commandline.jar" "/usr/local/Cellar/languagetool/5.5/libexec/")
+      langtool-java-classpath nil))
+
 (provide 'jw-defaults)
 
 ;; gpg/ git-crypt
