@@ -656,11 +656,18 @@ A prefix argument ARG reverses this behavior."
 
 (use-package langtool)
 
+;; (setq langtool-mother-tongue "en")
+;; (setq langtool-java-user-arguments '("-Dfile.encoding=UTF-8"))
+;; (setq langtool-default-language "en-US")
+
 (when (equal window-system 'ns)
   ;; brew install LanguageTool
   (message "%s" "confusion")
-(setq langtool-language-tool-jar (expand-file-name "languagetool-commandline.jar" "/usr/local/Cellar/languagetool/5.5/libexec/")
+  (setq langtool-language-tool-jar (expand-file-name "languagetool-commandline.jar" "/usr/local/Cellar/languagetool/5.5/libexec/")
       langtool-java-classpath nil))
+
+;; roam ? https://www.youtube.com/watch?v=YxgA5z2R08I
+;; what are dailies?
 
 (provide 'jw-defaults)
 
