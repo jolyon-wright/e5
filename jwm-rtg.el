@@ -5,6 +5,9 @@
 ;; sudo apt-get install -y libclang-10-dev clang-10 libssl-dev bear zlib1g-dev
 ;; sudo ln -s /usr/bin/clang-10 /usr/bin/clang
 ;; sudo ln -s /usr/bin/clang++-10 /usr/bin/clang++
+
+;; sudo apt install clang-tidy-10 clang-format-10
+
 ;;
 ;; export CXX=clang++
 ;;
