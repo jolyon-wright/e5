@@ -80,7 +80,7 @@
  case-fold-search nil
  blink-cursor-mode nil)
 
-(global-linum-mode t)
+;; (global-linum-mode t)
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
@@ -591,7 +591,8 @@ A prefix argument ARG reverses this behavior."
         (forward-line (1- line-number))))))
 
 (bind-key  "<f6>" 'cua-mode)
-(bind-key  "<C-f6>" 'linum-mode)
+;; (bind-key  "<C-f6>" 'linum-mode)
+(bind-key  "<C-f6>" 'display-line-numbers-mode)
 
 (defun jw-add-dirs-to-load-path (dir)
   "add dir and all subdirs to the load path"
@@ -621,19 +622,25 @@ A prefix argument ARG reverses this behavior."
 (use-package ws-butler)
 (ws-butler-global-mode t)
 
-(global-linum-mode 1)
-(setq linum-mode-inhibit-modes-list '(eshell-mode
-                                      shell-mode
-                                      fundamental-mode
-                                      text-mode
-                                      vterm-mode
-                                      doc-view-mode))
+;; the way of darkness:-
 
-(defadvice linum-on (around linum-on-inhibit-for-modes)
-  "Stop the load of linum-mode for some major modes."
-  (unless (member major-mode linum-mode-inhibit-modes-list)
-    ad-do-it))
-(ad-activate 'linum-on)
+;; (global-linum-mode 1)
+;; (setq linum-mode-inhibit-modes-list '(eshell-mode
+;;                                       shell-mode
+;;                                       fundamental-mode
+;;                                       text-mode
+;;                                       vterm-mode
+;;                                       doc-view-mode))
+
+;; (defadvice linum-on (around linum-on-inhibit-for-modes)
+;;   "Stop the load of linum-mode for some major modes."
+;;   (unless (member major-mode linum-mode-inhibit-modes-list)
+;;     ad-do-it))
+;; (ad-activate 'linum-on)
+
+;; the way of light:-
+
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 
 (add-hook 'text-mode-hook #'visual-line-mode)
@@ -666,10 +673,17 @@ A prefix argument ARG reverses this behavior."
   (setq langtool-language-tool-jar (expand-file-name "languagetool-commandline.jar" "/usr/local/Cellar/languagetool/5.5/libexec/")
       langtool-java-classpath nil))
 
+
+
+;; lsp-clients-clangd-args
+
 ;; roam ? https://www.youtube.com/watch?v=YxgA5z2R08I
 ;; what are dailies?
 
 (provide 'jw-defaults)
+
+;; https://www.techrepublic.com/article/how-to-create-and-export-a-gpg-keypair-on-macos/
+;; https://caolan.uk/articles/encrypted-git-repositories/
 
 ;; gpg/ git-crypt
 ;; https://www.bytedude.com/gpg-in-emacs/
