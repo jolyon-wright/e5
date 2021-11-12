@@ -197,6 +197,8 @@
       helm-recentf-fuzzy-match    t)
 
 (bind-key "M-[" #'helm-M-x)
+(bind-key "s-[" #'helm-occur)
+
 
 (eval-after-load 'helm
     (lambda ()
