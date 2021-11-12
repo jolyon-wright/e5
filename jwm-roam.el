@@ -56,15 +56,16 @@
   ;;  ("c" . org-confluence-export-as-confluence))
 
 
-  :bind (("C-c n f" . org-roam-node-find)
-         ("C-c n g" . org-roam-graph)
-         ("C-c n r" . org-roam-node-random)
-         (:map org-mode-map
-               (("C-c n i" . org-roam-node-insert)
-                ("C-c n o" . org-id-get-create)
-                ("C-c n t" . org-roam-tag-add)
-                ("C-c n a" . org-roam-alias-add)
-                ("C-c n l" . org-roam-buffer-toggle)))))
+  ;; :bind (("C-c n f" . org-roam-node-find)
+  ;;        ("C-c n g" . org-roam-graph)
+  ;;        ("C-c n r" . org-roam-node-random)
+  ;;        (:map org-mode-map
+  ;;              (("C-c n i" . org-roam-node-insert)
+  ;;               ("C-c n o" . org-id-get-create)
+  ;;               ("C-c n t" . org-roam-tag-add)
+  ;;               ("C-c n a" . org-roam-alias-add)
+  ;;               ("C-c n l" . org-roam-buffer-toggle))))
+  )
 
 
 (provide 'jwm-roam)
