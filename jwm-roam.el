@@ -31,11 +31,28 @@
   ;; Org-Roam basic configuration
   ;; (setq org-directory (concat (getenv "HOME") "/Documents/org-roam/"))
 
-(unless (file-exists-p "~/org-roam")
-  ;; todo - use git or something
-  (make-directory "~/org-roam"))
+(let ((expected-dir (concat (file-name-directory buffer-file-name) "data")))
+  (unless (file-exists-p expected-dir)
+    (message "expected %s" expected-dir)
+    (let ((tar-file (concat (file-name-directory buffer-file-name) "data.tar.gz"))
+          (tar-executable (executable-find "tar")))
+      (if (not tar-executable)
+          (message "tar not found")
+        (shell-command (concat tar-executable " xvf " tar-file  " -C " (file-name-directory buffer-file-name))))))
+  (setq org-roam-directory expected-dir))
 
-(setq org-roam-directory (file-truename "~/org-roam"))
+(defun jw-create-rm-tar ()
+  (interactive)
+  (let* ((this-dir (file-name-directory buffer-file-name))
+         (tar-file (concat this-dir "data.tar.gz"))
+         (tar-executable (executable-find "tar"))
+        )
+    (if (not tar-executable)
+        (message "tar not found")
+      ;; tar -czvf data.tar.gz ./data/
+      (shell-command (concat "pushd " this-dir " && "  tar-executable " czvf " tar-file  " ./data")))))
+
+(bind-key "<C-x C-d>" 'jw-create-rm-tar)
 
 (use-package org-roam
   :after org
@@ -43,8 +60,6 @@
   :custom
   (org-roam-directory (file-truename org-directory))
   :config
-  ;; (org-roam-setup)
-
   (org-roam-db-autosync-mode)
 
   ;; todo - use a prefix; eg
