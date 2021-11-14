@@ -28,25 +28,23 @@
 
 ;;; Code:
 
-  ;; Org-Roam basic configuration
-  ;; (setq org-directory (concat (getenv "HOME") "/Documents/org-roam/"))
 
-(let ((expected-dir (concat (file-name-directory buffer-file-name) "data")))
+(let* ((this-dir (jw-get-fullpathdir))
+       (expected-dir (concat this-dir "data")))
   (unless (file-exists-p expected-dir)
     (message "expected %s" expected-dir)
-    (let ((tar-file (concat (file-name-directory buffer-file-name) "data.tar.gz"))
+    (let ((tar-file (concat (jw-get-fullpathdir) "data.tar.gz"))
           (tar-executable (executable-find "tar")))
       (if (not tar-executable)
           (message "tar not found")
-        (shell-command (concat tar-executable " xvf " tar-file  " -C " (file-name-directory buffer-file-name))))))
+        (shell-command (concat tar-executable " xvf " tar-file " -C " this-dir)))))
   (setq org-roam-directory expected-dir))
 
 (defun jw-create-rm-tar ()
   (interactive)
-  (let* ((this-dir (file-name-directory buffer-file-name))
+  (let* ((this-dir (jw-get-fullpathdir))
          (tar-file (concat this-dir "data.tar.gz"))
-         (tar-executable (executable-find "tar"))
-        )
+         (tar-executable (executable-find "tar")))
     (if (not tar-executable)
         (message "tar not found")
       ;; tar -czvf data.tar.gz ./data/
