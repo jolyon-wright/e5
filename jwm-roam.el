@@ -55,11 +55,11 @@
 (use-package org-roam
   :after org
   :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
-  :custom
-  (org-roam-directory (file-truename org-directory))
+  ;; :custom
+  ;; (org-roam-directory (file-truename org-directory))
   :config
   (org-roam-db-autosync-mode)
-
+  ;; (org-roam-setup)
   ;; todo - use a prefix; eg
   ;; :prefix "<f3>"
   ;;  :prefix-map jw-prefix-map
