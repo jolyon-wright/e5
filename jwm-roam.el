@@ -38,7 +38,7 @@
       (if (not tar-executable)
           (message "tar not found")
         (shell-command (concat tar-executable " xvf " tar-file " -C " this-dir)))))
-  (setq org-roam-directory expected-dir))
+  (setq org-roam-directory (concat expected-dir "/orm")))
 
 (defun jw-create-rm-tar ()
   (interactive)
