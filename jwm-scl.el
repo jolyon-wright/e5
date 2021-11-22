@@ -42,7 +42,6 @@
 (add-hook 'sly-mrepl-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'sly-mrepl-mode-hook 'jw-sly-make-rainbow-work)
 
-
 (use-package sly-quicklisp :after sly)
 (use-package sly-asdf :after sly)
 
@@ -58,14 +57,16 @@
           `((sbcl ("/usr/bin/sbcl" "--noinform" "--no-linedit") :coding-system utf-8-unix)))))
 
 
+(straight-use-package 'geiser-guile)
+
 ;;(use-package scheme48)
 ;;(setq scheme-program-name "scheme48")
 ;; slime48 ?
 
-(if (eq system-type 'darwin)
-    ;; brew install mit-scheme
-    (setq scheme-program-name   "/usr/local/bin/mit-scheme")
-  )
+;; (if (eq system-type 'darwin)
+;;     ;; brew install mit-scheme
+;;     (setq scheme-program-name   "/usr/local/bin/mit-scheme")
+;;   )
 ;; https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/
 
 
