@@ -50,14 +50,31 @@
       ;; tar -czvf data.tar.gz ./data/
       (shell-command (concat "pushd " this-dir " && "  tar-executable " czvf " tar-file  " ./data")))))
 
-(bind-key "<C-x C-d>" 'jw-create-rm-tar)
+(bind-key "s-r t" 'jw-create-rm-tar)
+
+;; https://systemcrafters.net/build-a-second-brain-in-emacs/keep-a-journal/
 
 (use-package org-roam
   :after org
   :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
-  ;; :custom
+  :custom
   ;; (org-roam-directory (file-truename org-directory))
+  (org-roam-completion-everywhere t)
+  (org-roam-dailies-capture-templates
+   '(("d" "default" entry "* %<%I:%M %p>: %?"
+      :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+  :bind (("s-r l" . org-roam-buffer-toggle)
+         ("s-r f" . org-roam-node-find)
+         ("s-r i" . org-roam-node-insert)
+         :map org-mode-map
+         ("C-M-i" . completion-at-point)
+         :map org-roam-dailies-map
+         ("Y" . org-roam-dailies-capture-yesterday)
+         ("T" . org-roam-dailies-capture-tomorrow))
+  :bind-keymap
+  ("s-r d" . org-roam-dailies-map)
   :config
+  (require 'org-roam-dailies) ;; Ensure the keymap is available
   (org-roam-db-autosync-mode)
   ;; (org-roam-setup)
   ;; todo - use a prefix; eg
@@ -80,6 +97,14 @@
   ;;               ("C-c n l" . org-roam-buffer-toggle))))
   )
 
+
+(setq org-roam-dailies-directory "daily/")
+
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         "* %?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n"))))
 
 (provide 'jwm-roam)
 
