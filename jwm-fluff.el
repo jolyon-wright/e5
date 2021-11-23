@@ -111,7 +111,6 @@
 (use-package diminish
   :config (diminish 'eldoc-mode))
 
-
 (use-package expand-region
              :bind (("C-c n" . er/expand-region)))
 
@@ -274,37 +273,9 @@
   (which-key-setup-side-window-bottom)
   :custom (which-key-idle-delay 1.2))
 
-
-;; (use-package smex
-;;   )
-;; (bind-key "M-x" 'smex)
-;; (bind-key "M-z" 'smex-major-mode-commands)
-
-
 (use-package amx)
 (bind-key "M-x" 'amx)
 (bind-key "M-z" 'amx-major-mode-commands)
-
-;; (use-package yasnippet
-;;   :config
-;;   (use-package yasnippet-snippets
-;;     )
-;;   (yas-global-mode t)
-;;   (define-key yas-minor-mode-map (kbd "<tab>") nil)
-;;   (define-key yas-minor-mode-map (kbd "C-'") #'yas-expand)
-
-;; ;;  (add-to-list #'yas-snippet-dirs (concat user-emacs-directory "lisp/snippets"))
-
-
-;;   (add-to-list #'yas-snippet-dirs (concat (file-name-directory (or load-file-name buffer-file-name)) "/snippets")  )
-
-;;   (yas-reload-all)
-;;   (setq yas-prompt-functions '(yas-ido-prompt))
-;;   (defun help/yas-after-exit-snippet-hook-fn ()
-;;     (prettify-symbols-mode)
-;;     (prettify-symbols-mode))
-;;   (add-hook 'yas-after-exit-snippet-hook #'help/yas-after-exit-snippet-hook-fn)
-;;   :diminish yas-minor-mode)
 
 
 (use-package package-lint)
@@ -316,16 +287,37 @@
   :bind (("C-c m m" . #'mc/edit-lines )
          ("C-c m d" . #'mc/mark-all-dwim )))
 
-
-(use-package multiple-cursors
-  :bind (("C-c m m" . #'mc/edit-lines )
-         ("C-c m d" . #'mc/mark-all-dwim )))
-
-
 (straight-use-package 'lispy)
-;; ;; (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
-;; (define-key emacs-lisp-mode-map (kbd "C-c C-d") #'eval-defun)
-;; (define-key emacs-lisp-mode-map (kbd "C-c C-b") #'eval-buffer)
-;; (define-key emacs-lisp-mode-map (kbd "C-c C-e") #'eval-last-sexp)
 
 (global-prettify-symbols-mode t)
+
+
+(use-package vertico
+  ;; :ensure t
+  ;; :bind (:map vertico-map
+  ;;        ("C-j" . vertico-next)
+  ;;        ("C-k" . vertico-previous)
+  ;;        ("C-f" . vertico-exit)
+  ;;        :map minibuffer-local-map
+  ;;        ("M-h" . backward-kill-word)
+  ;;        )
+  :custom
+  (vertico-cycle t)
+  :init
+  (vertico-mode))
+
+(use-package savehist
+  :init
+  (savehist-mode))
+
+(use-package marginalia
+  :after vertico
+  ;; :ensure t
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init
+  (marginalia-mode))
+
+;; (use-package orderless
+;;   ;; :ensure t
+;;   :custom (completion-styles '(orderless-regexp)))
