@@ -318,9 +318,9 @@
   :init
   (marginalia-mode))
 
-(use-package orderless
-  ;; :ensure t
-  :custom (completion-styles '(orderless-regexp)))
+;; (use-package orderless
+;;   ;; :ensure t
+;;   :custom (completion-styles '(orderless-regexp)))
 
 
 ;; https://cestlaz.github.io/post/using-emacs-80-vertico/
