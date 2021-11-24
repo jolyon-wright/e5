@@ -327,6 +327,8 @@
 
 ;; Example configuration for Consult
 (use-package consult
+  :after vertico
+
   ;; Replace bindings. Lazily loaded due by `use-package'.
   ;; :bind (;; C-c bindings (mode-specific-map)
   ;;        ("C-c h" . consult-history)
@@ -377,7 +379,7 @@
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI. You may want to also
   ;; enable `consult-preview-at-point-mode` in Embark Collect buffers.
-  :hook (completion-list-mode . consult-preview-at-point-mode)
+ ;;? :hook (completion-list-mode . consult-preview-at-point-mode)
 
   ;; The :init configuration is always executed (Not lazy)
   :init
@@ -444,7 +446,8 @@
 
 
 (use-package embark
-  :ensure t
+;;  :ensure t
+  :after vertico
 
   :bind
   (("C-." . embark-act)         ;; pick some comfortable binding
@@ -466,7 +469,7 @@
 
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
-  :ensure t
+  ;;:ensure t
   :after (embark consult)
   :demand t ; only necessary if you have the hook below
   ;; if you want to have consult previews as you move around an
