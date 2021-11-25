@@ -188,27 +188,43 @@
 (use-package flycheck)
 (add-hook 'sh-mode-hook 'flycheck-mode)
 
+(setq sentence-end-double-space t)
+
 (use-package auto-capitalize
   :demand t
-  :config
-  (progn
-    (setq
-     sentence-end "[.?!][]\"')}]*\\($\\|     \\|  \\)[
-]*" ;; um... use ".  " as sentence end. prevents auto-cap from getting confused
-     ))
-  :bind (:map text-mode-map
-              ("M-." . nil)
-              ("M-." . (lambda() (interactive)(insert ".  ")))
-              ("C-s-<right>" . (lambda()
-                                 (interactive)
-                                 (end-of-line)
-                                 (insert " ")))
-              ;; add a space where I always put one
-              ("," . (lambda() (interactive)(insert ", ")))
-              (";" . (lambda() (interactive)(insert "; ")))
-              ("?" . (lambda() (interactive)(insert "? ")))))
+  ;;:config
+  ;;(progn
+;;    (setq
+;;      sentence-end "[.?!][]\"')}]*\\($\\|     \\|  \\)[
+;; ]*" ;; um... use ".  " as sentence end. prevents auto-cap from getting confused
+;;      ))
+  ;; :bind (:map text-mode-map
+  ;;             ("M-." . nil)
+  ;;             ("M-." . (lambda() (interactive)(insert ".  ")))
+  ;;             ("C-s-<right>" . (lambda()
+  ;;                                (interactive)
+  ;;                                (end-of-line)
+  ;;                                (insert " ")))
+  ;;             ;; add a space where I always put one
+  ;;             ("," . (lambda() (interactive)(insert ", ")))
+  ;;             (";" . (lambda() (interactive)(insert "; ")))
+  ;;             ("?" . (lambda() (interactive)(insert "? "))))
+  )
 
 (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode)
+
+(use-package electric-operator
+  :hook (text-mode . electric-operator-mode)
+  :config (electric-operator-add-rules-for-mode 'text-mode
+                                                (cons "."
+                                                      (if (eq sentence-end-double-space nil)
+                                                          ". "
+                                                        ".  "))
+                                                ;;".  ")
+                                                (cons "," ", ")
+                                                (cons ";" "; ")
+                                                ;; et c!
+                                                ))
 
 (defmacro radian-defadvice (name arglist where place docstring &rest body)
   "Define an advice called NAME and add it to a function.
