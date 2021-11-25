@@ -160,3 +160,10 @@
 (bind-key "<s-f6>" 'jw-set-piyim)
 (bind-key "<s-f10>" 'jw-get-cangjie)
 (bind-key "<C-f10>" 'jw-get-english)
+
+
+
+(use-package youdao-dictionary
+  ;; :ensure t
+  :config
+  (setq url-automatic-caching t))
