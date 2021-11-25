@@ -46,7 +46,9 @@
 (when (fboundp 'set-scroll-bar-mode)
   (set-scroll-bar-mode nil))
 
-(load
- (expand-file-name "init.el" user-emacs-directory) nil 'nomessage 'nosuffix)
+;; doing this here means we are not in graphics mode which is problematic! :-
+
+;; (load
+;;  (expand-file-name "init.el" user-emacs-directory) nil 'nomessage 'nosuffix)
 
 ;;; early-init.el ends here
