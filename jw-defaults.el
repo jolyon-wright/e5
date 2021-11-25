@@ -55,6 +55,7 @@
 ;; Drive out the mouse when it's too near to the cursor.
 (mouse-avoidance-mode 'animate)
 (setq
+ column-number-mode t
  make-backup-files nil
  load-prefer-newer t
  auto-save-default nil
@@ -672,6 +673,15 @@ A prefix argument ARG reverses this behavior."
   (message "%s" "confusion")
   (setq langtool-language-tool-jar (expand-file-name "languagetool-commandline.jar" "/usr/local/Cellar/languagetool/5.5/libexec/")
       langtool-java-classpath nil))
+
+(bind-keys*
+           :prefix "<f8>"
+           :prefix-map jw-global-prefix-map
+           ("l" . display-line-numbers-mode)
+           ("v" . vertico-mode)
+           ("c" . company-mode)
+           ("u" . cua-mode)
+           )
 
 
 
