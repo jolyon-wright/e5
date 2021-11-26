@@ -225,6 +225,13 @@
                                                 (cons ";" "; ")
                                                 ;; et c!
                                                 ))
+(bind-keys*
+ ("C-s-<right>" . (lambda()
+                    (interactive)
+                    (end-of-line)
+                    (insert " ")))
+ ("s-." . (lambda() (interactive)(insert "... ")))
+ )
 
 (defmacro radian-defadvice (name arglist where place docstring &rest body)
   "Define an advice called NAME and add it to a function.
