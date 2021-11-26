@@ -192,12 +192,12 @@
 
 (use-package auto-capitalize
   :demand t
-  ;;:config
-  ;;(progn
-;;    (setq
-;;      sentence-end "[.?!][]\"')}]*\\($\\|     \\|  \\)[
-;; ]*" ;; um... use ".  " as sentence end. prevents auto-cap from getting confused
-;;      ))
+  :config
+  (progn
+   (setq
+     sentence-end "[.?!][]\"')}]*\\($\\|     \\|  \\)[
+]*" ;; um... use ".  " as sentence end. prevents auto-cap from getting confused
+     ))
   ;; :bind (:map text-mode-map
   ;;             ("M-." . nil)
   ;;             ("M-." . (lambda() (interactive)(insert ".  ")))
