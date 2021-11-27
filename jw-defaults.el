@@ -216,28 +216,38 @@
 ;; auto-capitalize-predicate
 
 
-(defun my-set-auto-capitalize ()
+(defun jw-set-auto-capitalize ()
   (interactive)
   (set (make-local-variable 'auto-capitalize-predicate)
        (lambda () (not (org-in-src-block-p)))))
 
-(add-hook 'org-mode-hook 'my-set-auto-capitalize)
+(add-hook 'org-mode-hook 'jw-set-auto-capitalize)
+
+(defun jw-electric-org-p (punc)
+  (if (org-in-src-block-p)
+      punc
+    (concat punc " ")))
 
 (use-package electric-operator
   :hook (text-mode . electric-operator-mode)
   :config (electric-operator-add-rules-for-mode 'text-mode
                                                 (cons "."
-                                                      (if (eq sentence-end-double-space nil)
-                                                          ". "
-                                                        ".  "))
+                                                      (lambda ()
+                                                        (if (org-in-src-block-p)
+                                                            "."
+                                                          (if (eq sentence-end-double-space nil)
+                                                              ". "
+                                                            ".  "))))
                                                 (cons ","
-                                                      ;; (if (org-in-src-block-p)
-                                                      ;;     ","
-                                                      ", ")
-
-                                                (cons ";" "; ")
-                                                (cons "?" "? ")
-                                                (cons "!" "! ")
+                                                      (lambda () (jw-electric-org-p ",")))
+                                                (cons ";"
+                                                      (lambda () (jw-electric-org-p ";")))
+                                                (cons ":"
+                                                      (lambda () (jw-electric-org-p ":")))
+                                                (cons "?"
+                                                      (lambda () (jw-electric-org-p "?")))
+                                                (cons "!"
+                                                      (lambda () (jw-electric-org-p "!")))
                                                 ;; et c!
                                                 ))
 
