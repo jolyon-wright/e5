@@ -213,6 +213,16 @@
 
 (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode)
 
+;; auto-capitalize-predicate
+
+
+(defun my-set-auto-capitalize ()
+  (interactive)
+  (set (make-local-variable 'auto-capitalize-predicate)
+       (lambda () (not (org-in-src-block-p)))))
+
+(add-hook 'org-mode-hook 'my-set-auto-capitalize)
+
 (use-package electric-operator
   :hook (text-mode . electric-operator-mode)
   :config (electric-operator-add-rules-for-mode 'text-mode
@@ -220,13 +230,29 @@
                                                       (if (eq sentence-end-double-space nil)
                                                           ". "
                                                         ".  "))
-                                                ;;".  ")
-                                                (cons "," ", ")
+                                                (cons ","
+                                                      ;; (if (org-in-src-block-p)
+                                                      ;;     ","
+                                                      ", ")
+
                                                 (cons ";" "; ")
                                                 (cons "?" "? ")
                                                 (cons "!" "! ")
                                                 ;; et c!
                                                 ))
+
+
+;;
+;; https://emacs.stackexchange.com/questions/63560/org-mode-disable-abbrev-mode-in-source-blocks
+;;
+;; (setq abbrev-expand-function (lambda ()
+;;                    (unless (org-in-src-block-p)
+;;                  (abbrev--default-expand))))
+
+
+;; also https://www.reddit.com/r/orgmode/comments/n5ivjt/how_to_disable_electricquotemode_in_org_source/
+
+
 (bind-keys*
  ("C-s-<right>" . (lambda()
                     (interactive)
