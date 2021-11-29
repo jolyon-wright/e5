@@ -293,6 +293,27 @@
 
 
 (use-package vertico
+;; <remap> <backward-paragraph>    vertico-previous-group
+;; <remap> <beginning-of-buffer>   vertico-first
+;; <remap> <end-of-buffer>         vertico-last
+;; <remap> <exit-minibuffer>       vertico-exit
+;; <remap> <forward-paragraph>     vertico-next-group
+;; <remap> <kill-ring-save>        vertico-save
+;; <remap> <minibuffer-beginning-of-buffer>
+;;                                 vertico-first
+;; <remap> <next-line>             vertico-next
+;; <remap> <next-line-or-history-element>
+;;                                 vertico-next
+;; <remap> <previous-line>         vertico-previous
+;; <remap> <previous-line-or-history-element>
+;;                                 vertico-previous
+;; <remap> <scroll-down-command>   vertico-scroll-down
+;; <remap> <scroll-up-command>     vertico-scroll-up
+
+
+
+  ;; previous-line-or-history-element
+
   ;; :ensure t
   ;; :bind (:map vertico-map
   ;;        ("C-j" . vertico-next)
@@ -304,7 +325,39 @@
   :custom
   (vertico-cycle t)
   :init
-  (vertico-mode))
+  (vertico-mode)
+  )
+
+(advice-add #'vertico--setup :after
+            (lambda (&rest _)
+              (setq-local completion-auto-help nil
+                          completion-show-inline-help nil)))
+
+;; (define-key vertico-map "?" #'minibuffer-completion-help)
+;; (define-key vertico-map (kbd "M-RET") #'minibuffer-force-complete-and-exit)
+;; (define-key vertico-map (kbd "M-TAB") #'minibuffer-complete)
+
+(require 'recentf)
+
+
+;; enable recent files mode.
+(recentf-mode t)
+
+(bind-key "C-x C-g" 'recentf-open-files)
+
+; 50 files ought to be enough.
+(setq recentf-max-saved-items 50)
+;; https://github.com/abo-abo/swiper/issues/1560
+
+(use-package switch-buffer-functions
+  :defer t
+  :after recentf
+  :preface
+  (defun my-recentf-track-visited-file (_prev _curr)
+    (and buffer-file-name
+         (recentf-add-file buffer-file-name)))
+  :init
+  (add-hook 'switch-buffer-functions #'my-recentf-track-visited-file))
 
 (use-package savehist
   :init
