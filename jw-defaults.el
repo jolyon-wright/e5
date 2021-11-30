@@ -403,7 +403,11 @@ lexically bound variable by the same name, for use with
 
 (use-package multi-shell)
 (bind-key "<f9>" #'multi-shell-new)
+;; (straight-use-package 'bash-completion
 
+;;                       )
+
+;; ( bash-completion-setup)
 ;; (use-package flyspell-popup
 ;;   :init (add-hook 'flyspell-mode-hook #'flyspell-popup-auto-correct-mode)
 ;;   )
@@ -735,14 +739,14 @@ A prefix argument ARG reverses this behavior."
   (setq langtool-language-tool-jar (expand-file-name "languagetool-commandline.jar" "/usr/local/Cellar/languagetool/5.5/libexec/")
       langtool-java-classpath nil))
 
-(bind-keys*
-           :prefix "<f8>"
-           :prefix-map jw-global-prefix-map
-           ("l" . display-line-numbers-mode)
-           ("v" . vertico-mode)
-           ("c" . company-mode)
-           ("u" . cua-mode)
-           )
+;; (bind-keys*
+;;            :prefix "<f8>"
+;;            :prefix-map jw-global-prefix-map
+;;            ("l" . display-line-numbers-mode)
+;;            ;; ("v" . vertico-mode)
+;;            ;; ("c" . company-mode)
+;;            ("u" . cua-mode)
+;;            )
 
 
 
