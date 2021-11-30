@@ -29,8 +29,7 @@
 
 (bind-key "<C-f3>" #'global-company-mode)
 (setq company-global-modes '(not text-mode org-mode))
-
-
+(global-company-mode)
 
 (provide 'jwm-company)
 
