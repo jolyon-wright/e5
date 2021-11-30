@@ -530,3 +530,12 @@
   ;; auto-updating embark collect buffer
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
+
+(bind-keys*
+           :prefix "<f8>"
+           :prefix-map jw-global-prefix-map
+           ("l" . display-line-numbers-mode)
+           ("v" . vertico-mode)
+           ("c" . company-mode)
+           ("u" . cua-mode)
+           )
