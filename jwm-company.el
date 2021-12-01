@@ -25,13 +25,23 @@
 
 ;;; Code:
 ;;
+
+;; use ctrl+enter to select.
 (straight-use-package '(jolyon929 :type git :host bitbucket :repo "jolyon929/company-mode"))
 
 (bind-key "<C-f3>" #'global-company-mode)
 (setq company-global-modes '(not text-mode org-mode))
+(setq company-show-quick-access t)
+
 (global-company-mode)
 
+
+(use-package company-prescient
+  :init (company-prescient-mode 1))
+
+;; https://oremacs.com/2017/12/27/company-numbers/
 (provide 'jwm-company)
+
 
 ;; Local Variables:
 ;; coding: utf-8
