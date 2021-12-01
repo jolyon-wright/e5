@@ -129,7 +129,7 @@
   :bind (("<f10>" . #'vr/replace)
          ("<C-f10>" . #'vr/query-replace)
          ("<s-f10>" . #'vr/isearch-forward)
-         ("<M-s-f10>" . #'vr/isearch-backward)))
+         ("<M-f10>" . #'vr/isearch-backward)))
 
 (use-package hungry-delete)
 (global-hungry-delete-mode)
