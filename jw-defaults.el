@@ -127,7 +127,10 @@
   :ensure pcre2el ; much faster than Python
   :config (setq vr/engine 'pcre2el)
   :bind (("<f10>" . #'vr/replace)
-         ("<C-f10>" . #'vr/query-replace)))
+         ("<C-f10>" . #'vr/query-replace)
+         ("<s-f10>" . #'vr/isearch-forward)
+         ("<s-f10>" . #'vr/isearch-forward)
+         ("<M-s-f10>" . #'vr/isearch-backward)))
 
 (use-package hungry-delete)
 (global-hungry-delete-mode)
