@@ -253,6 +253,7 @@
                                                 ;; et c!
                                                 ))
 
+(add-hook 'python-mode-hook #'electric-operator-mode)
 
 ;;
 ;; https://emacs.stackexchange.com/questions/63560/org-mode-disable-abbrev-mode-in-source-blocks
@@ -623,8 +624,8 @@ A prefix argument ARG reverses this behavior."
 ;; absent # key on the mac
 (global-set-key (kbd "s-3") (lambda () (interactive) (insert "#")))
 
-(global-set-key (kbd "s-SPC") (lambda () (interactive) (insert ".  ")))
-(global-set-key (kbd "C-,") (lambda () (interactive) (insert ", ")))
+;; (global-set-key (kbd "s-SPC") (lambda () (interactive) (insert ".  ")))
+;; (global-set-key (kbd "C-,") (lambda () (interactive) (insert ", ")))
 
 (unbind-key "s-t")
 (unbind-key "<f4>")
