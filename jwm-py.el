@@ -151,12 +151,27 @@
 ;; (dap-auto-configure-mode)
 
 ;; vscode-like keybindingbs
-(global-set-key (kbd "C-d") 'dap-debug)
-(global-set-key (kbd "C-b") 'dap-breakpoint-toggle)
-(global-set-key (kbd "<f5>") 'dap-continue)
-(global-set-key (kbd "<f10>") 'dap-next)
-(global-set-key (kbd "<f11>") 'dap-step-in)
-(global-set-key (kbd "<escape>") 'dap-disconnect)
+;; (global-set-key (kbd "C-d") 'dap-debug)
+;; (global-set-key (kbd "C-b") 'dap-breakpoint-toggle)
+;; (global-set-key (kbd "<f5>") 'dap-continue)
+;; (global-set-key (kbd "<f10>") 'dap-next)
+;; (global-set-key (kbd "<f11>") 'dap-step-in)
+;; (global-set-key (kbd "<escape>") 'dap-disconnect)
+
+
+;; (bind-key "" 'dap-debug)
+
+(bind-keys :map dap-mode-map
+           :prefix "<f3>"
+           :prefix-map jw-dap-mode-prefix-map
+           ;;("d" . dap-debug)
+           ("b" . dap-breakpoint-toggle)
+           ("e" . dap-continue)
+           ("n" . dap-next)
+           ("i" . dap-step-in)
+           ("d" . dap-disconnect))
+
+
 
 ;; dap-disconnect exits the debugging session
 ;; (defun jw-py-debug () (interactive) (dap-debug "JWPython"))
@@ -166,9 +181,7 @@
                                                      :module nil
                                                      :program nil
                                                      :request "launch"
-                                                     :name "JWPython")
-                                               )
-       )
+                                                     :name "JWPython")))
 
 (provide 'jwm-py)
 
