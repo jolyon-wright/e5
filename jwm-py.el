@@ -183,6 +183,17 @@
                                                      :request "launch"
                                                      :name "JWPython")))
 
+;; https://docs.hylang.org/en/stable/
+;; pip3 install --user hy
+;; https://kitchingroup.cheme.cmu.edu/blog/2016/03/31/More-on-Hy-and-why-I-think-it-is-a-big-deal/
+(use-package hy-mode)
+
+;; pip install jedhy
+
+
+
+;; https://kitchingroup.cheme.cmu.edu/blog/2016/04/01/ob-hy-el-or-better-integration-of-hylang-in-org-mode/
+
 (provide 'jwm-py)
 
 ;; Local Variables:
