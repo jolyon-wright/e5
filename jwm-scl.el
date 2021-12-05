@@ -35,6 +35,7 @@
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 ;; (add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'hy-mode-hook 'rainbow-delimiters-mode)
 
 (defun jw-sly-make-rainbow-work()
   (setq font-lock-mode 1))
