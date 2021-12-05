@@ -157,6 +157,16 @@
   ((member "Noto Color Emoji" (font-family-list)) "Noto Color Emoji")
   ((member "Noto Emoji" (font-family-list)) "Noto Emoji")))
 
+;; (set-fontset-font
+;;  t
+;;  #x2026
+;;  (cond
+;;   ((member "Noto Color Emoji" (font-family-list)) "Noto Color Emoji")
+;;   ((member "Noto Emoji" (font-family-list)) "Noto Emoji")))
+
+
+;; 0x2026
+
 (defun display-startup-echo-area-message ()
   "Try to be helpful in the startup!."
   (message "Alt-f4 to quit, f1 for help."))
@@ -232,8 +242,8 @@
                                                       (lambda () (jw-electric-org-p ",")))
                                                 (cons ";"
                                                       (lambda () (jw-electric-org-p ";")))
-                                                (cons ":"
-                                                      (lambda () (jw-electric-org-p ":")))
+                                                ;; (cons ":"
+                                                ;;       (lambda () (jw-electric-org-p ":")))
                                                 (cons "?"
                                                       (lambda () (jw-electric-org-p "?")))
                                                 (cons "!"
@@ -259,8 +269,9 @@
                     (interactive)
                     (end-of-line)
                     (insert " ")))
- ("s-." . (lambda() (interactive)(insert "... ")))
+ ("s-." . (lambda() (interactive)(insert "…")))
  ("s-;" . ":)")
+ ("C-s-u" . insert-char)
  )
 
 (defmacro radian-defadvice (name arglist where place docstring &rest body)
