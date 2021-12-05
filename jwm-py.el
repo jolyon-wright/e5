@@ -199,13 +199,17 @@
 
 ;; https://leanpub.com/hy-lisp-python/read
 ;; https://www.pythonpodcast.com/episode-23-hylang-core-developers/
+
+;; https://leanpub.com/lovinglisp/read
+;; https://github.com/mark-watson/loving-common-lisp.git
+
 ;; example.hy:-
 ;; #!/usr/bin/env hy
 
 ;; (require [hy.contrib.walk [let]])
 
 
-
+;; https://www.fast.ai/
 
 (provide 'jwm-py)
 
