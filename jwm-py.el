@@ -199,6 +199,14 @@
 
 ;; https://leanpub.com/hy-lisp-python/read
 
+;; example.hy:-
+;; #!/usr/bin/env hy
+
+;; (require [hy.contrib.walk [let]])
+
+
+
+
 (provide 'jwm-py)
 
 ;; Local Variables:
