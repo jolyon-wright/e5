@@ -198,7 +198,7 @@
 
 
 ;; https://leanpub.com/hy-lisp-python/read
-
+;; https://www.pythonpodcast.com/episode-23-hylang-core-developers/
 ;; example.hy:-
 ;; #!/usr/bin/env hy
 
