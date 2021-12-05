@@ -269,7 +269,7 @@
                     (interactive)
                     (end-of-line)
                     (insert " ")))
- ("s-." . (lambda() (interactive)(insert "…")))
+ ("s-." . (lambda() (interactive)(insert "… ")))
  ("s-;" . ":)")
  ("C-s-u" . insert-char)
  )
