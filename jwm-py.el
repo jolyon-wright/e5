@@ -203,6 +203,9 @@
 ;; https://leanpub.com/lovinglisp/read
 ;; https://github.com/mark-watson/loving-common-lisp.git
 
+;; hy static analysis
+;; https://github.com/hylang/hydiomatic
+
 ;; example.hy:-
 ;; #!/usr/bin/env hy
 
