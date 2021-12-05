@@ -199,19 +199,7 @@
    (setq
      sentence-end "[.?!][]\"')}]*\\($\\|     \\|  \\)[
 ]*" ;; um... use ".  " as sentence end. prevents auto-cap from getting confused
-     ))
-  ;; :bind (:map text-mode-map
-  ;;             ("M-." . nil)
-  ;;             ("M-." . (lambda() (interactive)(insert ".  ")))
-  ;;             ("C-s-<right>" . (lambda()
-  ;;                                (interactive)
-  ;;                                (end-of-line)
-  ;;                                (insert " ")))
-  ;;             ;; add a space where I always put one
-  ;;             ("," . (lambda() (interactive)(insert ", ")))
-  ;;             (";" . (lambda() (interactive)(insert "; ")))
-  ;;             ("?" . (lambda() (interactive)(insert "? "))))
-  )
+     )))
 
 (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode)
 
@@ -272,6 +260,7 @@
                     (end-of-line)
                     (insert " ")))
  ("s-." . (lambda() (interactive)(insert "... ")))
+ ("s-;" . ":)")
  )
 
 (defmacro radian-defadvice (name arglist where place docstring &rest body)
@@ -741,17 +730,6 @@ A prefix argument ARG reverses this behavior."
   (message "%s" "confusion")
   (setq langtool-language-tool-jar (expand-file-name "languagetool-commandline.jar" "/usr/local/Cellar/languagetool/5.5/libexec/")
       langtool-java-classpath nil))
-
-;; (bind-keys*
-;;            :prefix "<f8>"
-;;            :prefix-map jw-global-prefix-map
-;;            ("l" . display-line-numbers-mode)
-;;            ;; ("v" . vertico-mode)
-;;            ;; ("c" . company-mode)
-;;            ("u" . cua-mode)
-;;            )
-
-
 
 ;; lsp-clients-clangd-args
 
