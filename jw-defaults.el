@@ -711,6 +711,8 @@ A prefix argument ARG reverses this behavior."
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
 
 (add-hook 'text-mode-hook #'visual-line-mode)
 (bind-key "<C-escape>" 'jw-get-lisp)
