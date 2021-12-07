@@ -46,28 +46,39 @@
 (use-package sly-quicklisp :after sly)
 (use-package sly-asdf :after sly)
 
+
 (use-package sly
-  ;; :hook ((sly-mrepl-mode . 'rainbow-delimiters-mode))
-  ;; :hook
-  ;; ((sly-mrepl-mode . (font-lock-mode 1)))
+  :hook ((lisp-mode . prettify-symbols-mode)
+         ;;(lisp-mode . op/disable-tabs)
+         (lisp-mode . sly-symbol-completion-mode))
+  :custom (inferior-lisp-program "sbcl")
+  :bind (:map sly-mode-map
+              ("C-c C-z" . op/sly-mrepl))
   :config
-  (if (eq system-type 'darwin)
+    (if (eq system-type 'darwin)
       (setq sly-lisp-implementations
             `((sbcl ("/usr/local/bin/sbcl" "--noinform" "--no-linedit") :coding-system utf-8-unix)))
     (setq sly-lisp-implementations
-          `((sbcl ("/usr/bin/sbcl" "--noinform" "--no-linedit") :coding-system utf-8-unix)))))
+          `((sbcl ("/usr/bin/sbcl" "--noinform" "--no-linedit") :coding-system utf-8-unix))))
+
+  (defun op/sly-mrepl (arg)
+    "Find or create the first useful REPL for the default connection in a side window."
+    (interactive "P")
+    (save-excursion
+      (sly-mrepl nil))
+    (let ((buf (sly-mrepl--find-create (sly-current-connection))))
+      (if arg
+          (switch-to-buffer buf)
+        (pop-to-buffer buf))))
+
+  (use-package sly-mrepl
+    :straight nil  ;; it's part of sly!
+    :bind (:map sly-mrepl-mode-map
+                ("M-r" . comint-history-isearch-backward))))
 
 
 (straight-use-package 'geiser-guile)
 
-;;(use-package scheme48)
-;;(setq scheme-program-name "scheme48")
-;; slime48 ?
-
-;; (if (eq system-type 'darwin)
-;;     ;; brew install mit-scheme
-;;     (setq scheme-program-name   "/usr/local/bin/mit-scheme")
-;;   )
 ;; https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/
 
 
