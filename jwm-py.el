@@ -192,10 +192,13 @@
 
 ;; pip install jedhy
 
+;; https://github.com/hylang/hy/discussions/2055
+(setq hy-jedhy--enable? nil)
 
 
 ;; https://kitchingroup.cheme.cmu.edu/blog/2016/04/01/ob-hy-el-or-better-integration-of-hylang-in-org-mode/
 
+;; (setq hy-shell--interpreter-args '("--repl-output-fn" "hy.contrib.pprint.pformat"))
 
 ;; https://leanpub.com/hy-lisp-python/read
 ;; https://www.pythonpodcast.com/episode-23-hylang-core-developers/
@@ -213,6 +216,7 @@
 
 
 ;; https://www.fast.ai/
+(add-hook 'inferior-hy-mode-hook 'rainbow-delimiters-mode)
 
 (provide 'jwm-py)
 
