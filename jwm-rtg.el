@@ -62,11 +62,11 @@
 (straight-use-package 'use-package)
 
 ;; gives us completion
-(use-package company
-  :config
-  (global-company-mode)
+;; (use-package company
+;;   :config
+;;   (global-company-mode)
 
-  :diminish company-mode)
+;;   :diminish company-mode)
 
 ;; gives us clang indexing
 (use-package rtags
