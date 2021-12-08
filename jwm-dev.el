@@ -176,3 +176,5 @@
 
 (use-package cuda-mode)
 (add-to-list 'auto-mode-alist '("\\.cu$" . cuda-mode))
+
+(use-package kconfig-mode)
