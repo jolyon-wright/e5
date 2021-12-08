@@ -557,10 +557,11 @@ A prefix arg forces clock in of the default task."
 (eval-after-load 'ox '(require 'ox-koma-letter))
 (eval-after-load 'ox-latex
   '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
-;; (eval-after-load 'ox '(require 'ox-confluence))
-
-  ;;(require 'ox-confluence)
 (eval-after-load 'ox '(require 'ox-confluence))
 
 
-(use-package org-jira)
+;; automatic preview of html from org:-
+
+(straight-use-package '(celadevra :type git :host github :repo "celadevra/org-eww"))
+
+(add-hook 'org-mode-hook 'org-eww-mode)
