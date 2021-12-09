@@ -14,6 +14,10 @@
 ;; }
 ;; #+END_SRC
 
+;; ubuntu - mysterious straight pull error.  this resolves:-
+;;
+;; sudo apt-get install --reinstall ca-certificates
+;; sudo update-ca-certificates
 
 (use-package helm)
 (use-package helm-projectile)
