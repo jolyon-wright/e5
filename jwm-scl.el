@@ -78,6 +78,11 @@
 
 
 (straight-use-package 'geiser-guile)
+(setq browse-url-browser-function 'eww-browse-url)
+
+;; hard code for the mo
+(setq common-lisp-hyperspec-root
+  (concat "file://" (expand-file-name "/Users/jolyon/.emacs.d/straight/repos/e5/scl/HyperSpec/")))
 
 ;; https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/
 
