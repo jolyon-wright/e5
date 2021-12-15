@@ -47,6 +47,16 @@
 (use-package sly-asdf :after sly)
 
 
+(defun op/sly-mrepl (arg)
+  "Find or create the first useful REPL for the default connection in a side window."
+  (interactive "P")
+  (save-excursion
+    (sly-mrepl nil))
+  (let ((buf (sly-mrepl--find-create (sly-current-connection))))
+    (if arg
+        (switch-to-buffer buf)
+      (pop-to-buffer buf))))
+
 (use-package sly
   :hook ((lisp-mode . prettify-symbols-mode)
          ;;(lisp-mode . op/disable-tabs)
@@ -61,15 +71,6 @@
     (setq sly-lisp-implementations
           `((sbcl ("/usr/bin/sbcl" "--noinform" "--no-linedit") :coding-system utf-8-unix))))
 
-  (defun op/sly-mrepl (arg)
-    "Find or create the first useful REPL for the default connection in a side window."
-    (interactive "P")
-    (save-excursion
-      (sly-mrepl nil))
-    (let ((buf (sly-mrepl--find-create (sly-current-connection))))
-      (if arg
-          (switch-to-buffer buf)
-        (pop-to-buffer buf))))
 
   (use-package sly-mrepl
     :straight nil  ;; it's part of sly!
