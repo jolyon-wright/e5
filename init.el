@@ -119,23 +119,43 @@
                        ;; "cmp" ;; company mode
                        ;; "dev" ;; cmode etc
                        ;; "org" ;; big !
+                       ;; "flf" ;; overflow - big !
+		               ;; "dsk" ;; desktop
+                       ;; "rtg" ;; rtags
+                       ;; "lsp"
+                       ;; "py"
+                       ;; "jen"
+                       ;; "mov"
+                       ;; "clj"
                        ;; "scl" ;; common lisp
                        ;; "vtm" ;; needs strangeness
                        ;; "chi" ;; mandarin
-                       ;; "flf" ;; overflow - big !
-		               ;; "lsp"
-                       ;; "dsk" ;; desktop
-                       ;; "jen"
-                       ;; "rtg" ;; rtags
-
                        ))
 
   (set-face-attribute 'default nil :height 160)
 
+  ;; hint for local.el:-
+  ;; (mapc 'jw-get-lisp '(
+  ;;                      "cmp" ;; company mode
+  ;;                      "dev" ;; cmode etc
+  ;;                      ;; "org" ;; big !
+  ;;                      ;; "flf" ;; overflow - big !
+  ;;   	               "dsk" ;; desktop
+  ;;                      ;; "rtg" ;; rtags
+  ;;                      ;; "lsp"
+  ;;                      ;; "py"
+  ;;                      ;; "jen"
+  ;;                      ;; "mov"
+  ;;                      ;; "clj"
+  ;;                      ;; "scl" ;; common lisp
+  ;;                      ;; "vtm" ;; needs strangeness
+  ;;                      ;; "chi" ;; mandarin
+  ;;                      ))
+
+
   (let ((lcl (expand-file-name "local.el" user-emacs-directory)))
     (when (file-exists-p lcl)
       (load lcl))))
-
 
 ;; needs to be last:-
 (when (equal window-system 'w32)
