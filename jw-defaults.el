@@ -741,6 +741,16 @@ A prefix argument ARG reverses this behavior."
   (setq langtool-language-tool-jar (expand-file-name "languagetool-commandline.jar" "/usr/local/Cellar/languagetool/5.5/libexec/")
       langtool-java-classpath nil))
 
+(use-package ts)
+
+(defun jw-get-year-for-incremented-month (month-count)
+  "get the year for an incremented month"
+  (if (< (ts-month (ts-inc 'month month-count (ts-now)))
+         (ts-month (ts-now)))
+      (ts-year(ts-inc 'year 1 (ts-now)))
+    (ts-year (ts-now))))
+
+
 ;; lsp-clients-clangd-args
 
 ;; roam ? https://www.youtube.com/watch?v=YxgA5z2R08I
