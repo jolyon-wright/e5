@@ -1,0 +1,90 @@
+# reminder - org-koma-letter-export-to-pdf
+
+
+* Preamble                                                         :noexport:
+
+#+TITLE:   Jolyon Wright invoice for `(ts-month-name (ts-now))` `(ts-year (ts-now))` (`(substring (buffer-name) 0  (- (length (buffer-name)) 4))`)
+#+DATE: 1st `(ts-month-name (ts-inc 'month 1 (ts-now)))` `(jw-get-year-for-incremented-month 1)`
+#+AUTHOR:
+
+# This file is released by its authors and contributors under the GNU
+# Free Documentation license v1.3 or later, code examples are released
+# under the GNU General Public License v3 or later.
+
+#+SUBJECT:
+#+PLACE:
+
+#+LCO: DINmtext
+# NOTE: Check the KOMA-Script manual to find a LCO that fits the
+#       envelope standards of your country.
+
+# NOTE: Change the order of the backletter, use smart quotes and
+#       include backaddress
+#+OPTIONS: after-closing-order:(my_after_signature ps cc encl)
+#+options: ':t backaddress:t subject:centered
+
+# Remove the first header
+#+LATEX_HEADER: \setkomavar{firsthead}{}
+
+* To-address                                         :to:
+David Vernon
+Ecrebo Ltd
+Soane Point
+6-8 Market Place
+Reading
+Berkshire RG1 2EG
+VAT: 992668850
+
+# NOTE: Explicit newlines are not necessary in TO and FROM
+
+
+* From                                                                 :from:
+Jolyon Wright,Willow Cottage,Holme Road,Kirton Holme,Lincs, PE20 1SY
+
+
+* Dear David,
+
+This is my invoice for last month:-
+
+| Hours | Details                     | Unit Price (\pounds{}) | VAT | Subtotal |
+|     0 | ; possible usb printer BSOD |                  60.00 |   0 |     0.00 |
+|       |                             |                        |     |          |
+
+#+OPTIONS: \n:t
+
+*GBP Total  : \pounds{} 0.00*
+
+#+OPTIONS: \n:t
+#+OPTIONS: \n:t
+_Payment Details_
+#+OPTIONS: \n:t
+
+#+BEGIN_VERSE
+LloydsTSB
+30-63-47
+50904668
+#+END_VERSE
+
+#+OPTIONS: \n:t
+Payment due by 01 `(ts-month-name (ts-inc 'month 2 (ts-now)))` `(jw-get-year-for-incremented-month 2)`
+
+
+* Thanks,                                               :closing:
+Jolyon Wright
+* some arbitrary LaTeX code                              :my_after_signature:
+#+BEGIN_EXPORT latex
+% this special heading was added dynamically.
+#+END_EXPORT
+
+# * PS                                                                     :ps:
+# PS: "PS" is not typeset automatically by KOMA-Script
+
+# @@latex:\noindent@@ PPS: This is a feature!
+# * CC                                                                     :cc:
+# Paris and Lawrence.
+# * ENCL                                                                 :encl:
+# See also The Tragedy of Romeo and Juliet
+* some more arbitrary LaTeX code                               :after_letter:
+#+BEGIN_EXPORT latex
+% here we can place random LaTeX code, e.g. including PDFs via the pdfpages package.
+#+END_EXPORT
