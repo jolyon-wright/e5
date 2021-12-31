@@ -28,6 +28,7 @@
 (use-package git)
 
 (add-to-list 'auto-mode-alist '("\\.prg\\'" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.inv\\'" . org-mode))
 
 (defun org-git-version ()
   "The Git version of org-mode.
