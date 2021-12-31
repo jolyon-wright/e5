@@ -47,7 +47,7 @@ Jolyon Wright,Willow Cottage,Holme Road,Kirton Holme,Lincs, PE20 1SY
 This is my invoice for last month:-
 
 | Hours | Details                     | Unit Price (\pounds{}) | VAT | Subtotal |
-|     0 | ; possible usb printer BSOD |                  60.00 |   0 |     0.00 |
+| $0    | ; possible usb printer BSOD |                  60.00 |   0 |     0.00 |
 |       |                             |                        |     |          |
 
 #+OPTIONS: \n:t
@@ -66,7 +66,7 @@ LloydsTSB
 #+END_VERSE
 
 #+OPTIONS: \n:t
-Payment due by 01 `(ts-month-name (ts-inc 'month 2 (ts-now)))` `(jw-get-year-for-incremented-month 2)`
+Payment due by 01 `(ts-month-name (ts-inc 'month 1 (ts-now)))` `(jw-get-year-for-incremented-month 2)`
 
 
 * Thanks,                                               :closing:
