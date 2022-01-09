@@ -5,11 +5,14 @@
 
 (setq clang-format-style-option "google")
 
-;; (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-;;     (let* ((my-lisp-dir (file-name-directory load-file-name))
-;;            (default-directory my-lisp-dir))
-;;       (setq load-path (cons my-lisp-dir load-path))
-;;       (normal-top-level-add-subdirs-to-load-path)))
+
+;; (use-package clang-format+
+;;   ;; this will look for a file called .clang-format
+;;   ;; and apply those rules whenever the file is saved
+
+;;   ;; I have tried it without cc mode styles and it is fine;
+;;   ;; how those two play together is one for the long winter evenings!
+;;   :hook (c-mode-common . clang-format+-mode))
 
 (require 'jw-google-c-style)
 
@@ -23,7 +26,6 @@
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
-
 
 (add-hook 'c-mode-common-hook 'jw-google-set-c-style)
 (add-hook 'c-mode-common-hook 'jw-google-make-newline-indent)
@@ -102,28 +104,7 @@
 (use-package dts-mode)
 (use-package help-fns+)
 
-;; (straight-use-package '(jolyon929 :type git :host bitbucket :repo "jolyon929/company-mode"))
-
-;; (use-package company
-;;   ;; (return . company-complete-selection)
-
-;;   :init (global-company-mode)
-;;   :config
-;;   (setq company-idle-delay .4
-;;         company-minimum-prefix-length 4)
-
-;;   :bind
-;;   (:map company-active-map
-;;         ("<return>" . company-abort)
-;;         ("<tab>" . company-abort)
-;;         ("RET"  . company-abort)
-;;         ("<C-return>" . company-complete-selection)
-;;   ;;      ("TAB"  . company-complete-selection)
-;;   ;;      ("<tab>" . company-complete-selection)
-;;         )
-;;   )
 (cmake-ide-setup)
-
 
 (bind-key "<f7>" 'compile)
 (bind-key "<C-f8>" 'align)
@@ -142,8 +123,7 @@
   :config
   (set-face-attribute 'highlight-indentation-face nil
             :background "gray27"
-            :foreground "white")
-  )
+            :foreground "white"))
 
 ;; (use-package yaml-mode)
 (use-package indent-tools)
