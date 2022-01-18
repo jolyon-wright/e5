@@ -49,6 +49,55 @@
 
 (bind-key "C-s-`"  #'jw-ins-val)
 
+(setq display-raw-bytes-as-hex t)
+
+
+(defun & (&rest r)
+  (apply #'logand r))
+
+(defun | (&rest r)
+  (apply #'logior r))
+
+
+
+;; Introduction to Emacs Lisp - Learning Emacs Lisp #1
+;; https://www.youtube.com/watch?v=RQK_DaaX34Q&list=PLEoMzSkcN8oPQtn7FQEF3D7sroZbXuPZ7
+(type-of "")
+
+;; Types, Conditionals, and Loops - Learning Emacs Lisp #2
+;; https://www.youtube.com/watch?v=XXpgzyeYh_4&list=PLEoMzSkcN8oPQtn7FQEF3D7sroZbXuPZ7&index=2&t=3s
+
+;; ielm
+
+;; and returns last t value
+;; or  returns first t value
+
+;; pcase?
+
+
+;; while
+;; dotimes
+;; dolist
+
+
+;; Defining Functions and Commands - Learning Emacs Lisp #3
+;; https://www.youtube.com/watch?v=EqgkAUHw0Yc&list=PLEoMzSkcN8oPQtn7FQEF3D7sroZbXuPZ7&index=3
+
+;; Defining Variables and Scopes - Learning Emacs Lisp #4
+;; https://www.youtube.com/watch?v=tq4kTNL1VD8&list=PLEoMzSkcN8oPQtn7FQEF3D7sroZbXuPZ7&index=4
+
+;; (use-package emacs) ;; :custom
+
+
+;; https://www.youtube.com/watch?v=J7d2LmivyyM&list=PLEoMzSkcN8oPQtn7FQEF3D7sroZbXuPZ7&index=5
+
+;; Reading and Writing Buffers in Practice - Learning Emacs Lisp #5
+
+(defun jw-tmp (&rest args)
+  (dolist(itm args)
+    (print itm)))
+
+(jw-tmp '("egg" "chips"))
 
 (provide 'scraps)
 
