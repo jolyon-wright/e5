@@ -58,7 +58,9 @@
 (defun | (&rest r)
   (apply #'logior r))
 
+;; (fset #'logior jw-or )
 
+;; (cl-flet (jw-or #'logior))
 
 ;; Introduction to Emacs Lisp - Learning Emacs Lisp #1
 ;; https://www.youtube.com/watch?v=RQK_DaaX34Q&list=PLEoMzSkcN8oPQtn7FQEF3D7sroZbXuPZ7
@@ -91,13 +93,46 @@
 
 ;; https://www.youtube.com/watch?v=J7d2LmivyyM&list=PLEoMzSkcN8oPQtn7FQEF3D7sroZbXuPZ7&index=5
 
+
+
 ;; Reading and Writing Buffers in Practice - Learning Emacs Lisp #5
+  ;; buffer local variables
 
-(defun jw-tmp (&rest args)
-  (dolist(itm args)
-    (print itm)))
+(defun jw-tmp()
+  (with-current-buffer "*scratch*"
+    (message "cur buf:%s" (current-buffer))
+    )
+  (message "cur buf:%s" (current-buffer))
+  )
 
-(jw-tmp '("egg" "chips"))
+;; find-file-noselect -- open file in invisible buffer
+
+;; or -- used like if else else
+
+;; the point
+
+
+;; ELISP> (buffer-substring 1 21)
+;; #("*** Welcome to IELM " 0 20
+;;   (face font-lock-comment-face fontified t inhibit-line-move-field-capture t field output rear-nonsticky t))
+
+;; ELISP> (buffer-substring-no-properties 1 21)
+;; "*** Welcome to IELM "
+;; ELISP>
+
+;; (search-backward "holy smoke")
+
+;; https://www.youtube.com/watch?v=nq-gqNGmayI&list=PLEoMzSkcN8oPQtn7FQEF3D7sroZbXuPZ7&index=6
+
+;; (defun jw-tmp (&rest args)
+;;   (print "confusion")
+;;   (print args))
+  ;; (apply #'print args))
+  ;; (apply #'print args))
+  ;; (dolist(itm args)
+  ;;   (print itm)))
+
+;; (jw-tmp '("egg" "chips"))
 
 (provide 'scraps)
 
