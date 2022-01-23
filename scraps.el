@@ -106,8 +106,13 @@
 
 
 
+
 ;; Reading and Writing Buffers in Practice - Learning Emacs Lisp #5
   ;; buffer local variables
+
+;; #6 files and directories
+
+
 
 (defun jw-tmp()
   (with-current-buffer "*scratch*"
@@ -152,3 +157,6 @@
 ;; End:
 
 ;;; scraps.el ends here.
+
+
+;; https://osxdaily.com/2017/11/16/access-icloud-drive-command-line-mac/
