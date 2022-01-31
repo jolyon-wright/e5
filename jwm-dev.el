@@ -158,3 +158,12 @@
 (add-to-list 'auto-mode-alist '("\\.cu$" . cuda-mode))
 
 (use-package kconfig-mode)
+
+(defun jw-c-common-hook()
+  ;; if we have rtags use that
+  (unless (featurep #'rtags)
+    (add-hook 'c-mode-common-hook 'lsp)))
+
+
+(add-hook 'c-mode-common-hook 'jw-c-common-hook)
+;; (remove-hook 'c-mode-common-hook 'jw-c-common-hook)
