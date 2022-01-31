@@ -140,6 +140,8 @@
 ;; (define-key global-map [remap switch-to-buffer] #'helm-mini)
 
 (which-key-mode)
+
+
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
 
@@ -159,9 +161,9 @@
 ;; https://www.mattduck.com/lsp-python-getting-started.html
 ;; pip3 install python-language-server[all]
 
-(use-package lsp-mode
-  :hook
-  ((python-mode . lsp)))
+;; (use-package lsp-mode
+;;   :hook
+;;   ((python-mode . lsp)))
 
 (use-package lsp-ui
   :commands lsp-ui-mode)
