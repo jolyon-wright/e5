@@ -30,7 +30,9 @@ sudo n stable
 
 sudo apt install pip3
 pip3 install "ptvsd>=4.2"
-pip3 install pyls
+# pip3 install pyls # no
+pip3 install python-language-server
+
 
 exit 0
 
