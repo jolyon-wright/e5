@@ -28,7 +28,9 @@ sudo npm cache clean -f
 sudo npm install -g n
 sudo n stable
 
+sudo apt install pip3
 pip3 install "ptvsd>=4.2"
+pip3 install pyls
 
 exit 0
 
