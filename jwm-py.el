@@ -161,6 +161,14 @@
 
 ;; (bind-key "" 'dap-debug)
 
+;; (dap-debug)
+;; python-mode-map
+
+(add-hook 'python-mode-hook
+          (lambda ()
+            (define-key python-mode-map (kbd "H-x")
+                        'python-shell-send-region)))
+
 (bind-keys :map dap-mode-map
            :prefix "<f3>"
            :prefix-map jw-dap-mode-prefix-map
