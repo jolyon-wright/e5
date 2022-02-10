@@ -306,3 +306,4 @@
 
 
 ;; https://www.youtube.com/watch?v=tA1clbGDczI
+;; https://www.lvguowei.me/post/sicp-goodness-looping/
