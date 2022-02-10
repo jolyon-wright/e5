@@ -134,6 +134,12 @@
 ;; lsp python mumbo jumbo
 (straight-use-package 'lsp-pyright)
 
+(use-package blacken
+  ;; pip3 install black
+  :delight
+  :hook (python-mode . blacken-mode)
+  :custom (blacken-line-length 79))
+
 ;; hackery to avoid other bugs
 (setq lsp-enable-file-watchers nil)
 ;; (defun jw-py-lsp () (interactive) (require 'lsp-pyright) (lsp))
