@@ -296,3 +296,13 @@
 ;; (local-set-key (kbd "<f1>") 'dap-cont)
 ;; (local-set-key (kbd "<f2>") 'gud-next)
 ;; (local-set-key (kbd "<f3>") 'gud-step)
+
+
+;; scheme:-
+
+
+;; https://www.youtube.com/watch?v=OyfBQmvr2Hc
+;; https://www.lvguowei.me/post/the-most-beautiful-program-ever-written/
+
+
+;; https://www.youtube.com/watch?v=tA1clbGDczI
