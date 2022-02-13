@@ -89,3 +89,23 @@
 
 
 ;; https://github.com/joaotavora/sly/issues/124
+
+;; https://www.racket-mode.com/
+
+(use-package racket-mode
+  :ensure t
+  :commands racket-mode
+  :config
+  (setq racket-smart-open-bracket-enable t))
+
+(add-hook 'racket-mode-hook
+	  (lambda ()
+	    (define-key racket-mode-map (kbd "<f5>") 'racket-run)))
+
+(add-hook 'racket-mode-hook 'rainbow-delimiters-mode)
+
+;; (use-package geiser
+;;   :ensure t
+;;   :defer t
+;;   :config
+;;   (setq geiser-default-implementation '(racket)))
