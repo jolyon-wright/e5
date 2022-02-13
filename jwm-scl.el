@@ -91,10 +91,12 @@
 ;; https://github.com/joaotavora/sly/issues/124
 
 ;; https://www.racket-mode.com/
-
+;; https://www.linw1995.com/en/blog/Write-Racket-With-Emacs/
 (use-package racket-mode
   :ensure t
   :commands racket-mode
+  :hook (racket-mode . racket-xp-mode)
+
   :config
   (setq racket-smart-open-bracket-enable t))
 
@@ -103,6 +105,20 @@
 	    (define-key racket-mode-map (kbd "<f5>") 'racket-run)))
 
 (add-hook 'racket-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'racket-repl-mode 'rainbow-delimiters-mode)
+
+;; (use-package company
+;;   :straight t
+;;   :config
+;;   (setq company-minimum-prefix-length 2)
+;;   (setq company-idle-delay 0.1)
+;;   (setq company-tooltip-align-annotations t)
+;;   :hook
+;;   ((racket-mode . company-mode)
+;;    (racket-repl-mode . company-mode)))
+
+(add-hook 'racket-mode-hook 'company-mode)
+(add-hook 'racket-repl-mode 'company-mode)
 
 ;; (use-package geiser
 ;;   :ensure t
