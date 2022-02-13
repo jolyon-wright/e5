@@ -62,7 +62,8 @@
   (define-auto-insert "\\.cu$" ["default-cpp" autoinsert-yas-expand])
   (define-auto-insert "\\.inv$" ["default-inv" autoinsert-yas-expand])
   (define-auto-insert "\\.cpp$" ["default-cpp" autoinsert-yas-expand]))
-
+  (define-auto-insert "\\.rkt$" ["default-rkt" autoinsert-yas-expand])
+  ;; todo - above;make this better…
 
 (use-package yasnippet
 
