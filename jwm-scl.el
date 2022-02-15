@@ -125,3 +125,6 @@
 ;;   :defer t
 ;;   :config
 ;;   (setq geiser-default-implementation '(racket)))
+
+;; drracket -
+;; raco pkg install drcomplete
