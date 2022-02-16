@@ -46,6 +46,12 @@
                                          dired-directory
                                          (revert-buffer-function " %b"
                                                                  ("%b - Dir:  " default-directory)))))))
+
+;; emacs 28
+
+(setq use-short-answers t)
+;;;;;;;;;;;;
+
 ;; Make all "yes or no" prompts show "y or n" instead
 (fset 'yes-or-no-p 'y-or-n-p)
 (show-paren-mode 1)
