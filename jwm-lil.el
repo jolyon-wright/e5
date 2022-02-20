@@ -35,10 +35,6 @@
         org-babel-lilypond-display-pdf-post-tangle nil)
   :mode ("\\.ly\\'" . LilyPond-mode))
 
-(org-babel-do-load-languages 'org-babel-load-languages
-                             (append org-babel-load-languages
-                                     '(lilypond t)))
-
 (provide 'jwm-lil)
 
 ;; Local Variables:
