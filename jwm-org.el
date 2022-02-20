@@ -19,6 +19,9 @@
 ;; sudo apt-get install --reinstall ca-certificates
 ;; sudo update-ca-certificates
 
+
+;; org example https://github.com/seagle0128/.emacs.d/blob/master/lisp/init-org.el
+
 (use-package helm)
 (use-package helm-projectile)
 (use-package helm-swoop)
