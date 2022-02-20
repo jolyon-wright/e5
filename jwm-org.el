@@ -156,6 +156,7 @@ Inserted by installing org-mode or when a release is made."
      (blockdiag . t)
      (python . t)
      (shell . t)
+     (lilypond . t)
      (dot . t))))
 
 (use-package ob-shell
