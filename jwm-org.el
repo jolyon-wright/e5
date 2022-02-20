@@ -64,8 +64,9 @@ Inserted by installing org-mode or when a release is made."
 
 ;; https://github.com/yyr/org-mode/blob/master/contrib/lisp/ox-koma-letter.el
 
-;;(use-package org
-(use-package org-plus-contrib
+(use-package org
+  :straight org-plus-contrib
+;;(use-package org-plus-contrib
   :after ob-blockdiag
   :bind (:map org-mode-map
               ("<M-up>"   . nil)           ;; do not steal my keys!
@@ -94,6 +95,7 @@ Inserted by installing org-mode or when a release is made."
 ;;  :straight org-plus-contrib
   :mode ("\\.org$" . org-mode)
   :init
+  (message "* jw org init")
   (setq org-replace-disputed-keys t)
   (setq org-drill-add-random-noise-to-intervals-p t)
   (setq org-drill-hint-separator "||")
@@ -147,11 +149,12 @@ Inserted by installing org-mode or when a release is made."
   ;;(require 'ox-confluence)
 
   :hook
-   (org-mode . org-num-mode)
+  (org-mode . org-num-mode)
 
-   :config
-   (use-package ox-koma-letter)
-   (use-package ox-confluence)
+  :config
+  (message "* jw org config")
+  ;;! (use-package ox-koma-letter)
+  ;;! (use-package ox-confluence)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(
@@ -161,6 +164,9 @@ Inserted by installing org-mode or when a release is made."
      (shell . t)
      (lilypond . t)
      (dot . t))))
+
+;; (use-package ox-koma-letter)
+;; (use-package ox-confluence)
 
 (use-package ob-shell
   :straight nil
