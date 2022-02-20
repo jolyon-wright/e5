@@ -28,9 +28,34 @@
 (use-package lilypond-init
   :straight nil
   :load-path "/usr/local/Cellar/lilypond/2.22.1_1/share/emacs/site-lisp/lilypond"
+  :custom
+  (org-babel-lilypond-commands '("lilypond" "open" "open")
+                               "Commands to run lilypond and view or play the results.
+These should be executables that take a filename as an argument.
+On some system it is possible to specify the filename directly
+and the viewer or player will be determined from the file type;
+you can leave the string empty on this case."
+  :group 'org-babel
+  :type '(list
+	  (string :tag "Lilypond   ")
+	  (string :tag "PDF Viewer ")
+	  (string :tag "MIDI Player"))
+  :version "24.4"
+  :package-version '(Org . "8.2.7")
+  :set
+  (lambda (symbol value)
+    (set symbol value)
+    (setq
+     org-babel-lilypond-ly-command   (nth 0 value)
+     org-babel-lilypond-pdf-command  (nth 1 value)
+     org-babel-lilypond-midi-command (nth 2 value))))
+
   :config
-  (setq org-babel-lilypond-arrange-mode t
-        org-babel-lilypond-commands '("lilypond" "timidity" "timidity")
+  ;;:init
+  (message "* jw lilypond-init ; config")
+  (setq ;;org-babel-lilypond-arrange-mode t
+   ;; hardcoded as     '("/Applications/lilypond.app/Contents/Resources/bin/lilypond" "open" "open"))
+  ;;      org-babel-lilypond-commands '("lilypond" "open" "open")
         org-babel-lilypond-gen-pdf nil
         org-babel-lilypond-display-pdf-post-tangle nil)
   :mode ("\\.ly\\'" . LilyPond-mode))
