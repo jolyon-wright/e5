@@ -531,6 +531,36 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
+
+
+
+
+(defun jw-annotate()
+  (interactive)
+  (insert
+   (concat "JCW:"
+           (number-to-string (ts-year (ts-now)))
+           "-"
+           (format "%02d" (ts-month (ts-now)))
+           "-"
+           (format "%02d" (ts-day (ts-now)))
+           " - ")))
+
+(defvar jw-counter 42)
+
+(require 'cl-lib)
+
+(defun  jw-ins-counter ()
+  (interactive)
+  (insert (concat "JCW-" (format "%d" (cl-incf jw-counter)) " ")))
+
+
+(defun jw-get-current-line-number()
+  (interactive)
+  (kill-new  (format "%d" (line-number-at-pos)))
+  )
+
+
 (bind-keys*
            :prefix "<f8>"
            :prefix-map jw-global-prefix-map
@@ -538,4 +568,7 @@
            ("v" . vertico-mode)
            ("c" . company-mode)
            ("u" . cua-mode)
+           ("a" . jw-annotate)
+           ("n" . jw-get-current-line-number)
+           ("i" . jw-ins-counter)
            )
