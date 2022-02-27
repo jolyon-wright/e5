@@ -11,11 +11,11 @@
 
 (setq enable-local-variables :all)
 
-(if (eq system-type 'windows-nt)
-    (progn
-      (message "all-the-icons is broken on windows - revisit")
-      (message "treemacs is broken on windows - revisit"))
-  (progn
+;; (if (eq system-type 'windows-nt)
+;;     (progn
+;;       (message "all-the-icons is broken on windows - revisit")
+;;       (message "treemacs is broken on windows - revisit"))
+;;   (progn
     (use-package all-the-icons)
     (use-package treemacs
       :defer t
@@ -106,7 +106,7 @@
     (use-package treemacs-persp ;;treemacs-perspective if you use perspective.el vs. persp-mode
       :after (treemacs persp-mode) ;;or perspective vs. persp-mode
       :config (treemacs-set-scope-type 'Perspectives))
-    (add-hook 'dired-mode-hook 'treemacs-icons-dired-mode)))
+    (add-hook 'dired-mode-hook 'treemacs-icons-dired-mode);;))
 
 (use-package diminish
   :config (diminish 'eldoc-mode))
