@@ -159,11 +159,14 @@
 
 (use-package kconfig-mode)
 
-(defun jw-c-common-hook()
+;; (defun jw-c-common-hook()
+;;   (message "hook executed")
   ;; if we have rtags use that
-  (unless (featurep #'rtags)
-    (add-hook 'c-mode-common-hook 'lsp)))
+(unless (featurep #'rtags)
+  (message "lsp hook added")
+     (lambda ()
+       (add-hook 'c-mode-common-hook 'lsp)));;)
 
 
-(add-hook 'c-mode-common-hook 'jw-c-common-hook)
+;; (add-hook 'c-mode-common-hook 'jw-c-common-hook)
 ;; (remove-hook 'c-mode-common-hook 'jw-c-common-hook)
