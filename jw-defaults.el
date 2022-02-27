@@ -21,7 +21,10 @@
 
 ;;; Commentary:
 
-;;
+;; reminder .gitconfig for openssh on windows
+;; [core]
+;;	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
+
 
 ;;; Code:
 (require 'cl-lib)
