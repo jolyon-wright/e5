@@ -571,4 +571,5 @@
            ("a" . jw-annotate)
            ("n" . jw-get-current-line-number)
            ("i" . jw-ins-counter)
+           ("r" . recentf-open-files)
            )
