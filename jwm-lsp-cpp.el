@@ -64,13 +64,16 @@
 
 (use-package lsp-mode)
 (use-package yasnippet)
-;; (use-package lsp-treemacs)
+(use-package lsp-treemacs)
 ;; (use-package helm-lsp)
 (use-package projectile)
 (use-package hydra)
 (use-package flycheck)
                                         ;(use-package company)
 ;; (straight-use-package '(jolyon929 :type git :host bitbucket :repo "jolyon929/company-mode"))
+
+
+(setq lsp-treemacs-sync-mode 1)
 
 (use-package avy)
 (use-package which-key)
