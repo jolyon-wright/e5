@@ -27,7 +27,8 @@
 
 (use-package lilypond-init
   :straight nil
-  :load-path "/usr/local/Cellar/lilypond/2.22.1_1/share/emacs/site-lisp/lilypond"
+  ;; :load-path "/usr/local/Cellar/lilypond/2.22.1_1/share/emacs/site-lisp/lilypond"
+  :load-path "/usr/local/share/emacs/site-lisp/lilypond"
   :custom
   (org-babel-lilypond-commands '("lilypond" "open" "open")
                                "Commands to run lilypond and view or play the results.
