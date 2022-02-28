@@ -41,10 +41,9 @@
 
 (use-package lilypond-init
   :straight nil
-  ;; :load-path "/usr/local/Cellar/lilypond/2.22.1_1/share/emacs/site-lisp/lilypond"
   :load-path "/usr/local/share/emacs/site-lisp/lilypond"
   :custom
-  (org-babel-lilypond-commands '("lilypond" "open" "open")
+  (org-babel-lilypond-commands '("lilypond" "timidity" "timidity")
                                "Commands to run lilypond and view or play the results.
 These should be executables that take a filename as an argument.
 On some system it is possible to specify the filename directly
@@ -67,10 +66,7 @@ you can leave the string empty on this case."
 
   :config
   ;;:init
-  (message "* jw lilypond-init ; config")
   (setq org-babel-lilypond-arrange-mode t
-   ;; hardcoded as     '("/Applications/lilypond.app/Contents/Resources/bin/lilypond" "open" "open"))
-  ;;      org-babel-lilypond-commands '("lilypond" "open" "open")
         org-babel-lilypond-gen-pdf nil
         org-babel-lilypond-display-pdf-post-tangle nil)
   :mode ("\\.ly\\'" . LilyPond-mode))
