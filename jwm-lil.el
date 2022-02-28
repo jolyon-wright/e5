@@ -21,7 +21,21 @@
 
 ;;; Commentary:
 
-;;
+;; example org:-
+
+;; #+begin_src lilypond :file eg.png
+;; \version "2.22.1"
+
+;; \header { }
+
+;; \score {
+;;   {a b c}
+;;   \layout { }
+;;   \midi { }
+;; }
+;; #+end_src
+
+
 
 ;;; Code:
 
@@ -54,12 +68,20 @@ you can leave the string empty on this case."
   :config
   ;;:init
   (message "* jw lilypond-init ; config")
-  (setq ;;org-babel-lilypond-arrange-mode t
+  (setq org-babel-lilypond-arrange-mode t
    ;; hardcoded as     '("/Applications/lilypond.app/Contents/Resources/bin/lilypond" "open" "open"))
   ;;      org-babel-lilypond-commands '("lilypond" "open" "open")
         org-babel-lilypond-gen-pdf nil
         org-babel-lilypond-display-pdf-post-tangle nil)
   :mode ("\\.ly\\'" . LilyPond-mode))
+
+
+
+ ;; https://github.com/brailcom/singing-computer
+
+;; brew install speech-tools
+;; (straight-use-package '(brailcom :type git :host github :repo "brailcom/singing-computer"))
+
 
 (provide 'jwm-lil)
 
