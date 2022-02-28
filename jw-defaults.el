@@ -21,7 +21,7 @@
 
 ;;; Commentary:
 
-;; reminder .gitconfig for openssh on windows
+;; reminder .gitconfig for openssh on windows (https://richardballard.co.uk/ssh-keys-on-windows-10/)
 ;; [core]
 ;;	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
 
