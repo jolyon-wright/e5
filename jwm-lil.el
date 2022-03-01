@@ -21,6 +21,9 @@
 
 ;;; Commentary:
 
+
+;; osc midi : http://blog.josephwilk.net/art/emacs-as-a-musical-instrument.html
+
 ;; example org:-
 
 ;; #+begin_src lilypond :file eg.png
