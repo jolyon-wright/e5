@@ -120,6 +120,7 @@
 (add-hook 'racket-mode-hook 'company-mode)
 (add-hook 'racket-repl-mode 'company-mode)
 
+(use-package scribble-mode)
 ;; (use-package geiser
 ;;   :ensure t
 ;;   :defer t
