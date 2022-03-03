@@ -129,3 +129,40 @@
 
 ;; drracket -
 ;; raco pkg install drcomplete
+
+
+;; raco pkg install rtmidi
+
+
+;; jolyon@jolyon-XPS-13-9370:~/.emacs.d/straight/repos/e5/scl$ racket
+;; Welcome to Racket v8.4 [cs].
+;; >     (collection-path "rtmidi")
+;; #<path:/home/jolyon/.local/share/racket/8.4/pkgs/rtmidi/rtmidi>
+;; > (quit)
+;; ; quit: undefined;
+;; ;  cannot reference an identifier before its definition
+;; ;   in module: top-level
+;; ; [,bt for context]
+;; >   C-c C-c; user break [,bt for context]
+;; > (exit)
+;; jolyon@jolyon-XPS-13-9370:~/.emacs.d/straight/repos/e5/scl$ cd /home/jolyon/.local/share/racket/8.4/pkgs/rtmidi/rtmidi
+;; jolyon@jolyon-XPS-13-9370:~/.local/share/racket/8.4/pkgs/rtmidi/rtmidi$
+
+;; wget http://www.music.mcgill.ca/~gary/rtmidi/release/rtmidi-2.1.0.tar.gz
+;; --2022-03-03 13:13:12--  http://www.music.mcgill.ca/~gary/rtmidi/release/rtmidi-2.1.0.tar.gz
+;; Resolving www.music.mcgill.ca (www.music.mcgill.ca)... 132.206.143.14
+;; Connecting to www.music.mcgill.ca (www.music.mcgill.ca)|132.206.143.14|:80... connected.
+;; HTTP request sent, awaiting response... 200 OK
+;; Length: 242064 (236K) [application/x-gzip]
+;; Saving to: ‘rtmidi-2.1.0.tar.gz’
+
+;; rtmidi-2.1.0.tar.gz                  100%[=====================================================================>] 236.39K   393KB/s    in 0.6s
+
+;; 2022-03-03 13:13:14 (393 KB/s) - ‘rtmidi-2.1.0.tar.gz’ saved [242064/242064]
+
+;; sudo apt install libasound2-dev
+;; tar xvf ./rtmidi-2.1.0.tar.gz
+;; make linux
+
+
+;; raco pkg install rs
