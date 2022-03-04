@@ -26,6 +26,17 @@
 ;;	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
 
 
+;; windows configuration - ie to run from dos command prompt
+
+;; add to path :- D:\msys64\mingw64\bin
+;; set HOME=D:\msys64\home\11547
+
+;; for ming64 hunspell
+;; set DICTIONARY=en_US
+;; DICPATH=D:\msys64\mingw64\share\hunspell
+
+
+
 ;;; Code:
 (require 'cl-lib)
 (require 'map)
