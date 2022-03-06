@@ -485,7 +485,8 @@ whole thing."
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
-(setq resize-mini-windows t)
+;; good for unicode but not much else!
+;; (setq resize-mini-windows t)
 
 
 (defun jw-get-fullpathdir ()
