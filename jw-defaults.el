@@ -489,6 +489,17 @@ whole thing."
 ;; (setq resize-mini-windows t)
 
 
+(defmacro jw-safe-wrap (fn &rest clean-up)
+  `(unwind-protect
+       (let (retval)
+         (condition-case ex
+             (setq retval (progn ,fn))
+           ('error
+            (message (format "benign:Caught exception: [%s]" ex))
+            (setq retval (cons 'exception (list ex)))))
+         retval)
+     ,@clean-up))
+
 (defun jw-get-fullpathdir ()
   "get the qualified path of this script"
   (file-name-directory (or load-file-name buffer-file-name)))
