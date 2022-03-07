@@ -166,3 +166,32 @@
 
 
 ;; raco pkg install rs
+
+
+
+;; https://github.com/mcdejonge/rs
+
+;; utils:-
+;; raco pkg install rs-l
+
+
+;; examples:-
+;; https://github.com/mcdejonge/rs-demos
+
+;; build rtmidi
+
+;; ./configure --build=aarch64-unknown-linux-gnu
+;; sudo apt install librtmidi-dev
+
+
+;; /home/jolyon/.racket/6.11/pkgs/rtmidi/rtmidi
+
+;; g++ -I /usr/include/rtmidi main.cpp /usr/lib/aarch64-linux-gnu/librtmidi.so
+
+;; amidi -l
+;; Dir Device    Name
+;; IO  hw:3,0,0  TD-3 MIDI 1
+;; jolyon@xav:~/.emacs.d/straight/repos/e5/scl$
+
+
+;; For anyone else trying, I followed these instructions to rebuild the kernel, with the ALSA sequencer module enabled:
