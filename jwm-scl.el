@@ -195,3 +195,14 @@
 
 
 ;; For anyone else trying, I followed these instructions to rebuild the kernel, with the ALSA sequencer module enabled:
+
+
+;; sudo apt install qjackctl
+
+
+;; /home/jolyon/src/knl/kernel/kernel-4.9/sound/core/seq/Kconfig
+
+;; added to defconfig
+
+;; CONFIG_SND_RAWMIDI_SEQ=y
+;; CONFIG_SND_SEQUENCER=y
