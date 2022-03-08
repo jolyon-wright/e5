@@ -28,7 +28,7 @@
 
 ;; windows configuration - ie to run from dos command prompt
 
-;; add to path :- D:\msys64\mingw64\bin
+;; add to path :- D:\msys64\mingw64\bin;C:\msys64\usr\bin
 ;; set HOME=D:\msys64\home\11547
 
 ;; for ming64 hunspell
