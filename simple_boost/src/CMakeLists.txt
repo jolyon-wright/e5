@@ -21,11 +21,11 @@
 # EOF
 
 
-cmake_minimum_required(VERSION 3.14.1)
+cmake_minimum_required(VERSION 3.22.2)
 project(hello)
 include(ucm.cmake)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -44,7 +44,7 @@ ELSEIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
   set(FS_LIB stdc++fs)
 endif()
 
-find_package(Boost 1.73 COMPONENTS
+find_package(Boost 1.78 COMPONENTS
   program_options
   filesystem
   log
@@ -66,3 +66,18 @@ target_link_libraries(${PROJECT_NAME}
   Boost::locale
   Boost::nowide
   )
+
+install(TARGETS ${PROJECT_NAME})
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  SET(CPACK_GENERATOR "DragNDrop")
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+  set(CPACK_GENERATOR "DEB")
+  set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Jolyon")
+endif()
+
+set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+
+include(CPack)

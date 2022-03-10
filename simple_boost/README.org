@@ -1,0 +1,52 @@
+#+TITLE:README
+#+AUTHOR:
+#+EMAIL:jolyon@DESKTOP-BE6F7KR
+# #+OPTIONS: toc:nil
+# #+OPTIONS: num:nil
+#+OPTIONS: author:nil date:nil
+#+OPTIONS: ^:nil
+
+#+OPTIONS: toc:20
+#+OPTIONS: author:nil date:nil
+# #+HTML_HEAD_EXTRA: <style>*{font-family: Liberation Mono; !important}</style>
+
+#+HTML_HEAD: <style>pre.src {background-color: #303030; color: #e5e5e5;}</style>
+#+HTML_HEAD: <style>p.verse {background-color: #D1EEEE;}</style>
+
+#+LATEX: \setlength\parindent{0pt}
+#+LATEX: \parskip=12pt % adds vertical space between paragraphs
+#+LATEX_HEADER: \usepackage[inline]{enumitem}
+#+LATEX_HEADER: \usepackage{extsizes}
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \setlist[itemize]{noitemsep}
+#+LATEX_HEADER: \setlist[enumerate]{noitemsep}
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage{graphicx,wrapfig,lipsum}
+#+LATEX_HEADER: \documentclass[a4paper,8pt]{article}
+
+# #+ATTR_HTML: :border 2 :rules all :frame border
+
+* Prerequisites
+** Common
+- cmake version 3.22.2
+- boost version 1.78.0
+  - static libraries (./b2 address-model=64 link=static runtime-link=static threading=multi)
+** Windows
+- nsis
+- visual studio 2019 or ewdk
+** Macos
+- xcode
+
+** Linux
+
+* Environment
+
+
+* Building
+** Win10
+- enter the VS developer console
+-...
+
+* Test Results
+
+* Loose ends
