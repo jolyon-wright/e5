@@ -55,10 +55,7 @@ find_package(Boost 1.73 COMPONENTS
 
 add_definitions(-DBOOST_ALL_NO_LIB)
 
-
 file(GLOB helloworld_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
-
-# add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
 
 add_executable(${PROJECT_NAME} ${helloworld_SRC})
 
@@ -68,5 +65,4 @@ target_link_libraries(${PROJECT_NAME}
   Boost::log
   Boost::locale
   Boost::nowide
-  # ${FS_LIB}
   )
