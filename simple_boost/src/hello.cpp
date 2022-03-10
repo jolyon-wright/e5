@@ -13,30 +13,6 @@ using namespace std;
 namespace       logging = boost::log;
 namespace       po      = boost::program_options;
 
-// https://medium.com/pranayaggarwal25/custom-deleters-with-shared-ptr-and-unique-ptr-524bb7bd7262
-void
-do_something_smart_with_custom_deletion();
-
-
-template< typename T >
-struct jolyon_deleter
-{
-  void operator()(T const * p)
-  { 
-      delete[] p;
-  }
-};
-void
-do_something_smart_with_custom_deletion()
-{
-    BOOST_LOG_TRIVIAL(debug) << __FILE__ << "(" << __LINE__ << ") : now I can do any funky additional stuff here";
-
-    std::shared_ptr<int> sp(new int[10], jolyon_deleter<int>());
-
-    // ~sp() called here as we go out of scope... 
-}
-
-
 int
 main(int    argc,
      char** argv
@@ -52,9 +28,8 @@ main(int    argc,
     vector<string>          show_vct;
     vector<string>          check_vct;
 
-    do_something_smart_with_custom_deletion();
 
-    try_process_creation();
+    // try_process_creation();
 
 
     // BOOST_LOG_TRIVIAL(trace) << "A trace severity message";
