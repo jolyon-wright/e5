@@ -22,7 +22,9 @@
 
 
 cmake_minimum_required(VERSION 3.22.2)
-project(hello)
+#project(hello)
+set(BINARY ${CMAKE_PROJECT_NAME})
+
 
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_STATIC_RUNTIME ON)
@@ -48,16 +50,26 @@ add_definitions(-DBOOST_ALL_NO_LIB)
 
 file(GLOB helloworld_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
 
-add_executable(${PROJECT_NAME} ${helloworld_SRC})
+# add_executable(${PROJECT_NAME} ${helloworld_SRC})
+add_executable(${BINARY}_run  ${helloworld_SRC})
+add_library(${BINARY}_lib STATIC hello.cpp)
 
-target_link_libraries(${PROJECT_NAME}
+# target_link_libraries(${PROJECT_NAME}
+target_link_libraries(${BINARY}_run
+  Boost::program_options
+  Boost::filesystem
+  Boost::log
+  Boost::nowide
+  )
+target_link_libraries(${BINARY}_lib
   Boost::program_options
   Boost::filesystem
   Boost::log
   Boost::nowide
   )
 
-install(TARGETS ${PROJECT_NAME})
+# install(TARGETS ${PROJECT_NAME})
+install(TARGETS ${BINARY}_run)
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   SET(CPACK_GENERATOR "DragNDrop")

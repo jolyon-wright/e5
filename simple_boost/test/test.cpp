@@ -1,11 +1,13 @@
 #include <iostream>
 #include <gtest/gtest.h>
+#include "hello.h"
+
 
 using namespace std;
 
-TEST(exaMPLE, simple_test)
+TEST(example, simple_test)
 {
-    ASSERT_TRUE(false);
+  ASSERT_EQ(function_that_returns_42(), 42);
 }
 
 
