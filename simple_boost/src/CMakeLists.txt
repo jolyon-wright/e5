@@ -48,7 +48,6 @@ find_package(Boost 1.78 COMPONENTS
   program_options
   filesystem
   log
-  locale
   REQUIRED
   nowide
   )
@@ -63,7 +62,6 @@ target_link_libraries(${PROJECT_NAME}
   Boost::program_options
   Boost::filesystem
   Boost::log
-  Boost::locale
   Boost::nowide
   )
 

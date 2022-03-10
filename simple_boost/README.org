@@ -30,7 +30,10 @@
 ** Common
 - cmake version 3.22.2
 - boost version 1.78.0
-  - static libraries (./b2 address-model=64 link=static runtime-link=static threading=multi)
+  - static libraries:-
+    #+begin_src bash
+      ./b2 address-model=64 link=static runtime-link=static threading=multi
+    #+end_src
 ** Windows
 - nsis
 - visual studio 2019 or ewdk
