@@ -52,9 +52,19 @@ file(GLOB helloworld_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
 add_executable(${PROJECT_NAME} ${helloworld_SRC})
 
 # and only the testable source into the library
+# include_directories(${BOOST_INCLUDE_DIRS})
 add_library(${PROJECT_NAME}_Lib STATIC methods.cpp)
 
+
 target_link_libraries(${PROJECT_NAME}
+  Boost::program_options
+  Boost::filesystem
+  Boost::log
+  Boost::nowide
+  )
+
+# ensure the static library also has access to boost
+target_link_libraries(${PROJECT_NAME}_Lib
   Boost::program_options
   Boost::filesystem
   Boost::log

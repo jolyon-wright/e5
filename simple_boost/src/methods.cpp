@@ -15,6 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+#include <boost/algorithm/string.hpp>
+using namespace std;
+using namespace boost;
+
 #include "methods.h"
 
 int
