@@ -6,7 +6,7 @@ using namespace std;
 
 TEST(exaMPLE, simple_test)
 {
-  //  ASSERT_EQ(return_42, 42);
+    ASSERT_EQ(return_42(), 42);
 }
 
 

@@ -22,8 +22,13 @@ FetchContent_MakeAvailable(googletest)
 
 # Now simply link against gtest or gtest_main as needed. Eg
 # add_executable(example example.cpp)
+
+
+
+#include_directories(${source_dir}/src)
+
 add_executable (Test test.cpp)
-target_link_libraries(Test gtest_main)
+target_link_libraries(Test gtest_main hello_Lib)
 
 ######################################
 # Configure the test to use GoogleTest
@@ -31,9 +36,7 @@ target_link_libraries(Test gtest_main)
 # If used often, could be made a macro.
 
 # add_dependencies(registerer_test gtest)
-include_directories(${source_dir}/include)
-
-
+#include_directories(${source_dir}/include)
 
 
 

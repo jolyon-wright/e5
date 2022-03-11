@@ -17,7 +17,10 @@ ucm_set_runtime(STATIC)
 
 include_directories(src)
 
-add_subdirectory (src) 
-add_subdirectory (test)
-enable_testing ()
+enable_testing()
+
+add_subdirectory(src)
+# add_subdirectory(lib)
+add_subdirectory(test)
+
 add_test (NAME MyTest COMMAND Test)

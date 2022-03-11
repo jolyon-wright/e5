@@ -48,7 +48,11 @@ add_definitions(-DBOOST_ALL_NO_LIB)
 
 file(GLOB helloworld_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
 
+# pull all the source into the executable
 add_executable(${PROJECT_NAME} ${helloworld_SRC})
+
+# and only the testable source into the library
+add_library(${PROJECT_NAME}_Lib STATIC methods.cpp)
 
 target_link_libraries(${PROJECT_NAME}
   Boost::program_options
