@@ -15,6 +15,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 ucm_set_runtime(STATIC)
 
+include_directories(src)
+
 add_subdirectory (src) 
 add_subdirectory (test)
 enable_testing ()

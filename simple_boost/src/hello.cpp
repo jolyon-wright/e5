@@ -7,6 +7,7 @@
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
 #include "stuff.h"
+#include "methods.h"
 
 using namespace boost;
 using namespace std;
@@ -28,6 +29,7 @@ main(int    argc,
     vector<string>          show_vct;
     vector<string>          check_vct;
 
+    return_42();
 
     // try_process_creation();
 

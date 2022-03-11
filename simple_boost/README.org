@@ -33,6 +33,9 @@
   - static libraries:-
     #+begin_src bash
       ./b2 address-model=64 link=static runtime-link=static threading=multi
+
+      #?:-
+      ./b2 address-model=64 link=static runtime-link=static threading=multi -std=c++17
     #+end_src
 ** Windows
 - nsis
@@ -53,3 +56,13 @@
 * Test Results
 
 * Loose ends
+- why does boost give me weird warnings?
+
+* Field Notes
+
+** C++ project setup with CMake & unit tests (google test)
+
+https://raymii.org/s/tutorials/Cpp_project_setup_with_cmake_and_unit_tests.html
+
+- Creates a static library
+- Interesting common stuff in root
