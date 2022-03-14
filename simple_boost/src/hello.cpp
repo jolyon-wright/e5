@@ -6,6 +6,7 @@
 #include <boost/log/core.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
+#include <gsl/gsl>
 #include "stuff.h"
 #include "methods.h"
 
@@ -13,6 +14,13 @@ using namespace boost;
 using namespace std;
 namespace       logging = boost::log;
 namespace       po      = boost::program_options;
+
+// https://github.com/microsoft/GSL
+
+void something(gsl::not_null<const char*> av)
+{
+  printf("%.2X", *av);
+}
 
 int
 main(int    argc,
@@ -28,6 +36,8 @@ main(int    argc,
     int                     logLevel;
     vector<string>          show_vct;
     vector<string>          check_vct;
+
+    something("hi");
 
     return_42();
 

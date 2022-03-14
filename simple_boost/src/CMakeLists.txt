@@ -24,6 +24,14 @@
 cmake_minimum_required(VERSION 3.22.2)
 project(hello)
 
+if (MSVC)
+  # warning level 4 and all warnings as errors
+  add_compile_options(/W4 /WX)
+else()
+  # lots of warnings and all warnings as errors
+  add_compile_options(-Wall -Wextra -pedantic -Werror)
+endif()
+
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_STATIC_RUNTIME ON)
 
@@ -46,6 +54,21 @@ find_package(Boost 1.78 COMPONENTS
 
 add_definitions(-DBOOST_ALL_NO_LIB)
 
+
+##
+
+include(FetchContent)
+#
+# In this example we are picking a specific tag.
+# You can also pick a specific commit, if you need to.
+FetchContent_Declare(GSL
+    GIT_REPOSITORY "https://github.com/microsoft/GSL"
+    GIT_TAG "v3.1.0"
+)
+
+FetchContent_MakeAvailable(GSL)
+#
+
 file(GLOB helloworld_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
 
 # pull all the source into the executable
@@ -61,6 +84,7 @@ target_link_libraries(${PROJECT_NAME}
   Boost::filesystem
   Boost::log
   Boost::nowide
+   GSL
   )
 
 # ensure the static library also has access to boost
@@ -69,6 +93,7 @@ target_link_libraries(${PROJECT_NAME}_Lib
   Boost::filesystem
   Boost::log
   Boost::nowide
+  GSL
   )
 
 install(TARGETS ${PROJECT_NAME})
