@@ -8,6 +8,12 @@
 
 cmake_minimum_required (VERSION 3.13)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # set(CMAKE_TOOLCHAIN_FILE "c:/Users/jolyon/src/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE PATH "toolchain file")
 set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE PATH "toolchain file")
 project ("CMakeProject1")
