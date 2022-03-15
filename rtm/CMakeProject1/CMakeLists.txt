@@ -1,6 +1,11 @@
 ﻿# CMakeList.txt : Top-level CMake project file, do global configuration
 # and include sub-projects here.
 #
+
+# git clone https://github.com/Microsoft/vcpkg.git
+# ./vcpkg/bootstrap-vcpkg.sh
+# export VCPKG_ROOT=${PWD}/vcpkg
+
 cmake_minimum_required (VERSION 3.13)
 
 # set(CMAKE_TOOLCHAIN_FILE "c:/Users/jolyon/src/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE PATH "toolchain file")
