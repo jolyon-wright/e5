@@ -23,6 +23,20 @@ find_package(RtMidi CONFIG REQUIRED)
 add_subdirectory ("CMakeProject1")
 target_link_libraries(CMakeProject1 PRIVATE RtMidi::rtmidi)
 
+
+#
+# message(STATUS "the value of RtMidi_DIR is" "${RtMidi_DIR}")
+
+get_filename_component(RtMidi_INCLUDE "${RtMidi_DIR}/../../include" ABSOLUTE)
+target_include_directories(CMakeProject1 PRIVATE ${RtMidi_INCLUDE})
+
+#
+# get_cmake_property(_variableNames VARIABLES)
+# list (SORT _variableNames)
+# foreach (_variableName ${_variableNames})
+#     message(STATUS "${_variableName}=${${_variableName}}")
+#   endforeach()
+
 # https://vcpkg.readthedocs.io/en/latest/examples/installing-and-using-packages/
 
 # vcpkg integrate install

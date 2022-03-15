@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <map>
 #include "CMakeProject1.h"
-#include "c:\Users\jolyon\source\repos\CMakeProject1\out\build\x64-debug\vcpkg_installed\x64-windows\include\RtMidi.h"
+#include "RtMidi.h"
 
 using namespace std;
 
