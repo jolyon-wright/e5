@@ -1,0 +1,7 @@
+{
+  "name": "nightmare",
+  "version-string": "ver1",
+  "dependencies": [
+    "rtmidi"
+  ]
+}
