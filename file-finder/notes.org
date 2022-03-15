@@ -1,0 +1,44 @@
+#+TITLE:notes
+#+AUTHOR:Jolyon Wright
+#+EMAIL:jolyon@Jolyons-MacBook-Pro.local
+# #+OPTIONS: toc:nil
+# #+OPTIONS: num:nil
+#+OPTIONS: author:nil date:nil
+#+OPTIONS: ^:nil
+
+#+OPTIONS: toc:20
+#+OPTIONS: author:nil date:nil
+# #+HTML_HEAD_EXTRA: <style>*{font-family: Liberation Mono; !important}</style>
+
+#+HTML_HEAD: <style>pre.src {background-color: #303030; color: #e5e5e5;}</style>
+#+HTML_HEAD: <style>p.verse {background-color: #D1EEEE;}</style>
+
+#+LATEX: \setlength\parindent{0pt}
+#+LATEX: \parskip=12pt % adds vertical space between paragraphs
+#+LATEX_HEADER: \usepackage[inline]{enumitem}
+#+LATEX_HEADER: \usepackage{extsizes}
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \setlist[itemize]{noitemsep}
+#+LATEX_HEADER: \setlist[enumerate]{noitemsep}
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage{graphicx,wrapfig,lipsum}
+#+LATEX_HEADER: \documentclass[a4paper,8pt]{article}
+
+# #+ATTR_HTML: :border 2 :rules all :frame border
+
+* Initial Thoughts
+- Target OS is not specified so I will aspire to be cross-platform with cmake.
+- "Paths are encoded in your OS’s native string representation." Ah… interesting… I am developing on three OSes… doing this targeting Windows would mean using 16 bit chars and make life interesting on other platforms… defer this for the moment and use utf-8; it's not the main point of the exercise…
+
+"We encourage you to make simplifying assumptions rather than attempting to handle
+every edge case." let us say this is an edge case.
+
+- The exercise requires directory recursion; this is supported by C++17 so I will use that.
+- Unit tests are not required but thoughts on this are.
+
+* TODO
+- Logging would be nice.
+- Return from main is currently 0 for success or -1.  A meaningful retval would be good!
+* Thoughts on Unit Testing
+
+CMake and CTest have good support for integrating googletest.
