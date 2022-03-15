@@ -15,14 +15,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include <iostream>
 #include <filesystem>
+#include <thread>
 #include <vector>
 #include <string>
 
 using namespace std;
 
 typedef std::vector<string> string_vct;
+
+void thread_function();
+
 
 int
 scan_for_files(const char*       StartDir,
@@ -78,5 +83,23 @@ scan_for_files(const char*       StartDir,
     cout << v << endl;
   }
 
+  // do the search on the main thread
+
+
+
+  std::thread threadObj(thread_function);
+  threadObj.join();
+
+  puts("im back");
+
+
   return ret_val;
+}
+
+
+void thread_function()
+{
+    for(int i = 0; i < 10000; i++);
+
+    std::cout<<"thread function Executing"<<std::endl;
 }

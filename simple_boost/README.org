@@ -32,6 +32,10 @@
 - boost version 1.78.0
   - static libraries:-
     #+begin_src bash
+      # from vs env
+      ./bootstrap
+      # from msys64
+      # common
       ./b2 address-model=64 link=static runtime-link=static threading=multi
     #+end_src
 ** Windows

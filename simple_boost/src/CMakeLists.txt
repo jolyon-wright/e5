@@ -24,13 +24,15 @@
 cmake_minimum_required(VERSION 3.22.2)
 #project(hello)
 set(BINARY ${CMAKE_PROJECT_NAME})
-
+include(../ucm.cmake)
 
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_STATIC_RUNTIME ON)
 
 set(Boost_DEBUG ON)
 set(CMAKE_BUILD_TYPE Debug)
+
+ucm_set_runtime(STATIC)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")

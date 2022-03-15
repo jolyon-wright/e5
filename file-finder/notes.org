@@ -27,6 +27,7 @@
 # #+ATTR_HTML: :border 2 :rules all :frame border
 
 * Initial Thoughts
+- contact; harshad.bhujbal@crowdstrike.com
 - Target OS is not specified so I will aspire to be cross-platform with cmake.
 - "Paths are encoded in your OS’s native string representation." Ah… interesting… I am developing on three OSes… doing this targeting Windows would mean using 16 bit chars and make life interesting on other platforms… defer this for the moment and use utf-8; it's not the main point of the exercise…
 
@@ -35,10 +36,67 @@ every edge case." let us say this is an edge case.
 
 - The exercise requires directory recursion; this is supported by C++17 so I will use that.
 - Unit tests are not required but thoughts on this are.
+- The requirement specifically wants threads...  tasks are not guaranteed to be executed on different threads so stick to explicit threads...
+- Time is a problem...  sadly much corner cutting will be required :(
+
 
 * TODO
 - Logging would be nice.
 - Return from main is currently 0 for success or -1.  A meaningful retval would be good!
+- Testing would be easier if things were decoupled a bit, so
+  - Create a header
+  - Pull out main
+  - Pull functionality into a different file
+
 * Thoughts on Unit Testing
 
 CMake and CTest have good support for integrating googletest.
+
+
+* omg
+
+
+Hey Jolyon,
+
+
+
+Thanks so much for your speedy reply! Im really pleased to hear it went well with Manoj from your side too. Of course! Thats no problem at all and I really appreciate your efforts despite your son returning from university and turning your home into a laundrette  it is truly appreciated. I hope youre not dog sitting for your friend still too! Busy household for you otherwise!
+
+
+
+As per your request, attached you will find instructions for the coding project; this is a file searching problem. Your task is to design and implement a C/C++ solution for it. Please see the attached document for the full authoritative instructions but to give you some further details as per the document:
+
+
+
+    Your application must be written in either C or C++.
+    Each substring will be serviced by a dedicated thread.
+    The periodic dumper will be a dedicated thread.
+    A single container will be shared by all threads.
+    You must ensure that your application releases all resources you allocated before you terminate - i. e. dont rely on program termination to clean things up.
+    You may use no libraries other than what is provided by the OS and your toolchains CRT & STL.
+
+
+
+Just to state the obvious, this needs to be your own work. Also, please treat this material as confidential.
+
+
+
+Please have this completed by Friday 18th March. Once your solution is complete, please archive it and send it in reply to this email (please do NOT include your build artifacts as scanners will frequently bounce them).
+
+
+
+We team you up with a buddy; Harshad, and he is here to help you with any questions you might have about the task itself, design or any other concerns. Please reach out to him via his email address (harshad.bhujbal@crowdstrike.com) with any questions that you might have. Please be mindful that Harshad is based in India so there may be a slight delay in his response due to the time difference but feel free to email whenever you need to as he will pick this up as soon as he can.
+
+
+
+There is also a holiday in India on Friday so if you could try and get all of your questions into Harshad tomorrow that would be amazing so he has enough time to answer them for you.
+
+
+
+Thank you so much Jolyon and good luck!
+
+
+
+Kind Regards,
+
+Sarah
