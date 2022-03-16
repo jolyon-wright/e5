@@ -126,14 +126,19 @@ This has the benefit that the reader can easily skip from reading the user mode 
 
 * "Miscellaneous Notes" Response
 ** How To Test
+
+Beyond basic tests, like valgrind on Linux and prefast on Windows, this has not been well tested.  It really needs some unit tests… ideally written before the code…
+
 CMake and CTest work nicely with googletest and this could "easily" be integrated.
 
 ** Given more time...
 
 This is very much a first pass; please be gentle!
+
+Specifically, it would be good to adopt an approach where the flow of execution was clearer.  Unfortunately time constraints have meant that I have not had a chance to get beyond producing something that works; and I may be wrong about this.  I would welcome the chance to be proved wrong…
+
 I am particularly interested in understanding:-
   - if there are flaws in my understanding of these APIs
-  - how this can be made more comprehensible
   - approaches to making the logic more encapsulated
   - if a higher level approach would be more appropriate
 
