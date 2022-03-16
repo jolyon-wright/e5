@@ -163,8 +163,8 @@ main(int    argc,
 }
 
 void
-substring_container::finder_proc(const char*        StartDir, // the starting directory
-                                 const char*        Pattern // the substring pattern to find
+substring_container::finder_proc(const char* StartDir, // the starting directory
+                                 const char* Pattern   // the substring pattern to find
                                  )
 {
     assert(StartDir);
