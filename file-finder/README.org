@@ -139,6 +139,7 @@ This is very much a first pass; please be gentle!
 - The code is not well documented.  I figured it was more worthwhile putting together these notes, rather than detailing every parameter.
 - Diagrams in these notes would make things clearer; a picture is worth a thousand words… but unfortunately getting org babel mode to play nicely with dot renditions would take a thousand hours.
 - It would be nice to add logging, possibly boost.log.  During development I have used cout, which is not ideal.
+- it would be nice to add [[https://github.com/microsoft/GSL][gsl]] support.  This can be easily set up in cmake using [[https://vcpkg.io/en/index.html][vcpkg]] and gives some help in implementing correct "Modern C++".
 
 ***  Allocation of Available Time
 In terms of time allocation, this has been divided about equally between:-
