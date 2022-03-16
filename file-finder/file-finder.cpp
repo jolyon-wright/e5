@@ -60,7 +60,7 @@ struct substring_container
     // this is the threadproc
     void
     finder_proc(const char* StartDir, // the starting directory
-                const char* Pattern // the substring pattern to find
+                const char* Pattern   // the substring pattern to find
                 );
 };
 
@@ -210,12 +210,11 @@ periodic_dumper_consumer()
 {
     bool is_time_to_terminate{false};
 
-    // do a timed wait for the termination request
-    
     do {
         {
             unique_lock<mutex> lk(g_terminate.mutex_);
 
+            // do a timed wait for the termination request
             if (g_terminate.cond_.wait_for(lk, 10s, [] {return g_terminate.is_ready_;})) {
                 // we have the condition variable
                 is_time_to_terminate = true;
