@@ -100,7 +100,9 @@ We encourage you to make simplifying assumptions rather than attempting to handl
 every edge case. If you do so, please document them so we can see your reasoning
 #+end_quote
 
-This code is nominally cross platform so we should respect the OS string representation of the target platform.  This is problematic on Windows because, unlike Linux and MacOs, Windows native string is 16 bit unicode.
+This code is nominally cross platform so we should respect the OS string representation of the target platform.  This is problematic on Windows because, unlike Linux and MacOs, Windows native strings are 16 bit unicode.
+
+In practice this will mean that paths that use non western characters will not work correctly.  This is more than an edge case; it's a big problem.
 
 Because this is not the main point of the exercise I have not attempted to resolve this.  However [[https://www.boost.org/doc/libs/develop/libs/nowide/doc/html/index.html][boost.nowide]] would address this by allowing us to use utf8 on Windows.
 
