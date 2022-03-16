@@ -109,3 +109,5 @@ I am particularly interested in understanding:-
   - how this can be made more comprehensible
   - approaches to making the logic more encapsulated
   - if a higher level approach would be more appropriate
+
+It would be nice to add logging, possibly boost.log.  During development I have used couts, which is not ideal.
