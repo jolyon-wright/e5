@@ -24,11 +24,12 @@
 #+LATEX_HEADER: \usepackage{graphicx,wrapfig,lipsum}
 #+LATEX_HEADER: \documentclass[a4paper,8pt]{article}
 
-# #+ATTR_HTML: :border 2 :rules all :frame border
+
 
 
 * Synopsis
 
+#+ATTR_HTML: :border 2 :rules all :frame border
 | File            | Description                     |
 |-----------------+---------------------------------|
 | file-finder.cpp | The source                      |
@@ -37,12 +38,12 @@
 
 * How To Build
 ** Prerequisites
-- cmake version 3.22.2 or above.
+- cmake version 3.21.2 or above.
 - a C++17 compiler
 - platforms checked:-
   - Windows10 with Visual Studio 2022
   - MacOs     with clang 13
-  - Ubuntu 2004
+  - Ubuntu 2004 g++ 9.4.0
 
 * Overview
 ** Requirements Conformance
