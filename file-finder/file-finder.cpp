@@ -128,9 +128,7 @@ main(int    argc,
           }
       }
       // now signal termination
-      g_terminate.cond_.notify_all();
-
-      { // just to scope the lock
+      {
           lock_guard<mutex> lk(g_terminate.mutex_); // block
           g_terminate.is_ready_ = true;
       }
@@ -142,7 +140,7 @@ main(int    argc,
               thd.join();
           }
       }
-      ret_val = 0;
+      ret_val = 0; // the only time we return success
   }
   catch(const bad_alloc&) {
       cerr << "FATAL: Memory Allocation Failure" << endl;
