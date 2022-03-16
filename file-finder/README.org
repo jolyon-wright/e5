@@ -137,6 +137,7 @@ This is very much a first pass; please be gentle!
 - It would be good to adopt an approach where the flow of execution was clearer.  Unfortunately time constraints have meant that I have not had a chance to get beyond producing something that works; and I may be wrong about this.  I would welcome the chance to be proved wrong and learn the error of my ways.
 - Scant regard has been paid to most of C++'s core concepts, like encapsulation and so forth; I'm afraid the primary objective has been "finish by Friday and don't forget about the day job!".
 - The code is not well documented.  I figured it was more worthwhile putting together these notes, rather than detailing every parameter.
+- Diagrams in these notes would make things clearer; a picture is worth a thousand words… but unfortunately getting org babel mode to play nicely with dot renditions would take a thousand hours.
 - It would be nice to add logging, possibly boost.log.  During development I have used cout, which is not ideal.
 
 ***  Allocation of Available Time
@@ -147,7 +148,7 @@ In terms of time allocation, this has been divided about equally between:-
 
 Hopefully this balance gives you something that is comprehensible, working and… fun! I would value thoughts on the most effective use of time to achieve this.
 
-My thinking here is that, given no tests, the likelihood of producing something that works reliably is minimal so let's try and focus on producing a package that makes it easy-ish to understand why things don't work.
+My thinking here is that, given no tests, the likelihood of producing something that works reliably is minimal so let's try and focus on producing a package that makes it easy-ish to get working on any platform and then understand why things don't work.
 
 *** TO_UNDERSTANDs
 I am particularly interested in understanding:-
