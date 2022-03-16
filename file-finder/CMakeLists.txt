@@ -21,7 +21,7 @@
 #
 #
 
-cmake_minimum_required (VERSION 3.22.2)
+cmake_minimum_required (VERSION 3.21.2)
 project(file-finder)
 
 if (MSVC)
@@ -38,4 +38,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 file(GLOB SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
 
+
+find_package (Threads)
 add_executable(file-finder ${SRC})
+target_link_libraries (file-finder Threads::Threads)
