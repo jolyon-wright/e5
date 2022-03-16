@@ -1,15 +1,11 @@
 #+TITLE:README
 #+AUTHOR:Jolyon Wright
 #+EMAIL:jolyon.wright@gmail.com
-# #+OPTIONS: toc:nil
-# #+OPTIONS: num:nil
 #+OPTIONS: author:nil date:nil
 #+OPTIONS: ^:nil
 
 #+OPTIONS: toc:20
 #+OPTIONS: author:nil date:nil
-# #+HTML_HEAD_EXTRA: <style>*{font-family: Liberation Mono; !important}</style>
-
 #+HTML_HEAD: <style>pre.src {background-color: #303030; color: #e5e5e5;}</style>
 #+HTML_HEAD: <style>p.verse {background-color: #D1EEEE;}</style>
 
