@@ -83,7 +83,7 @@ main(int    argc,
      char** argv
      )
 {
-    int ret_val{-1}; // default to error
+  int ret_val{-1}; // default to error
 
   if (argc == 1) {
     cerr << "file-finder <dir> <substring1>[<substring2> [<substring3>]...]" << endl;
