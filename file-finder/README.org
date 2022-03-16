@@ -37,12 +37,59 @@
 
 * How To Build
 ** Prerequisites
+- cmake version 3.22.2 or above.
+- a C++17 compiler
+- platforms checked:-
+  - Windows10 with Visual Studio 2022
+  - MacOs     with clang 13
+  - Ubuntu 2004
+
 * Overview
+** Requirements Conformance
+- Your application must be written in either C or C++.
+  - It was tempting to write this in C, on the basis that I am more familiar with the API, however using C++17 is much more interesting!
+- Each substring will be serviced by a dedicated thread.
+  - for each substring a substring_container::finder_proc thread is created.
+    Each instance:-
+    - recursively searches for each substring
+    - adds it to the collection
+    - checks if termination is requested
+- The periodic dumper will be a dedicated thread.
+  - the periodic_dumper_consumer thread is created, this:-
+    - Waits for termination request for 10 seconds
+    - if termination is not requested dump_and_clear_records() is invoked
+    - if termination is requested the thread will terminate
+- A single container will be shared by all threads.
+  - substring_container holds a single queue which is simultaneously accessed by all the threads
+- You must ensure that your application releases all resources you allocated before you terminate - i.e. don't rely on program termination to clean things up.
+  - All resource allocation is managed using RAII so no explicit cleanup is required, beyond the need to join() the threads.
+** Main
+The application's main thread:-
+- creates the worker threads
+- receives, validates and processes user input
+- on input Dump
+  - invokes the helper method dump_and_clear_records()
+  - waits for input
+- on input Exit
+  - signals for termination
+  - ceases waiting for input
+- on invalid input
+  - prints a helpful message
+  - waits for input
+- signals the termination request
+- waits for thread termination
+
+
 * Caveats
 - Character encoding
 
 #+begin_quote
 Paths are encoded in your OS's native string representation.
+#+end_quote
+
+#+begin_quote
+We encourage you to make simplifying assumptions rather than attempting to handle
+every edge case. If you do so, please document them so we can see your reasoning
 #+end_quote
 
 This code is nominally cross platform so we should respect the OS string representation of the target platform.  This is problematic on Windows because, unlike Linux and Macos, this expects 16 bit unicode strings.
@@ -52,4 +99,13 @@ Because this is not the main point of the exercise I have not attempted to resol
 
 * Miscellaneous Notes Response
 ** How To Test
+CMake and CTest work nicely with googletest and this could "easily" (ho ho) be integrated.
+
 ** Given more time...
+
+This is very much a first pass; please be gentle!
+I am particularly interested in understanding:-
+  - if there are flaws in my understanding of these APIs
+  - how this can be made more comprehensible
+  - approaches to making the logic more encapsulated
+  - if a higher level approach would be more appropriate
