@@ -115,18 +115,19 @@ main(int    argc,
           string user_input;
 
           cin >> user_input;
-          // cout << "user says:" << user_input << endl;
 
-          if (user_input == "dump") {
+          // the requirement states that our verbs should start with a capital
+          // however show some mercy on the user by accepting lower case too
+          if (user_input == "Dump" || user_input == "dump") {
               dump_and_clear_records();
           }
-          else if (user_input == "exit") {
+          else if (user_input == "Exit" || user_input == "exit") {
               // we could signal termination here, but I think
               // being sequential is clearer...
               time_to_go = true;
           }
           else {
-              cout << "please enter dump or exit" << endl;
+              cout << "please enter Dump or Exit" << endl;
           }
       }
       // now signal termination
