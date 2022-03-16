@@ -50,7 +50,7 @@ Here are the files in the archive:-
 ** x64 Platforms checked for build and basic execution
   - Windows 10 with Visual Studio 2022
   - MacOs 12.2.1 with AppleClang 13.1.6.13160021
-  - Ubuntu 2004 g++ 9.4.0
+  - Ubuntu 2004 with g++ 9.4.0
 
 * Overview
 ** Requirements Conformance
