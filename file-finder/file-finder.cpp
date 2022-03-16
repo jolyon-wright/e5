@@ -73,7 +73,8 @@ void
 periodic_dumper_consumer();
 
 // a helper function called from multiple threads
-void dump_and_clear_records();
+void
+dump_and_clear_records();
 
 
 // globals (sorry):-
@@ -227,7 +228,8 @@ periodic_dumper_consumer()
     } while (!is_time_to_terminate);
 }
 
-void dump_and_clear_records()
+void
+dump_and_clear_records()
 {
     cout << "dump_and_clear_records (called on thread " <<
             this_thread::get_id() << ")" <<
