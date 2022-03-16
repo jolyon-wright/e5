@@ -52,7 +52,6 @@ struct termination_event
     {}
 };
 
-
 struct substring_container
 {
     // this simple structure is an attempt to encapsulate container access
@@ -66,7 +65,6 @@ struct substring_container
                 const char* Pattern   // the substring pattern to find
                 );
 };
-
 
 // methods:-
 
