@@ -131,7 +131,16 @@ main(int    argc,
           cin >> user_input;
           cout << "user says:" << user_input << endl;
 
-          time_to_go = true; // for the moment
+          if (user_input == "dump") {
+              dump_and_clear_records();
+          }
+          else if (user_input == "exit") {
+              time_to_go = true;
+          }
+          else {
+              cout << "please enter dump or exit" << endl;
+          }
+          //time_to_go = true; // for the moment
       }
 
       // now signal termination
@@ -226,7 +235,7 @@ periodic_dumper_consumer()
             // https://en.cppreference.com/w/cpp/thread/condition_variable/wait_for
             unique_lock<mutex> lk(g_terminate.mutex_);
 
-            if (g_terminate.cond_.wait_for(lk, 50ms, [] {return g_terminate.is_ready_;})) {
+            if (g_terminate.cond_.wait_for(lk, 10s, [] {return g_terminate.is_ready_;})) {
                 // we have the condition variable
                 is_time_to_terminate = g_terminate.do_termination_;
             }
@@ -239,7 +248,6 @@ periodic_dumper_consumer()
             dump_and_clear_records();
         }
 
-
         // then
 
         // std::shared_lock<std::shared_mutex> lk(g_container.swmr_mutex_);
@@ -251,9 +259,11 @@ periodic_dumper_consumer()
 
 void dump_and_clear_records()
 {
+    puts("dump_and_clear_records");
+
     std::unique_lock<std::shared_mutex> lk(g_container.swmr_mutex_); // hold for write
     while (!g_container.container_.empty()) {
-        cout << "item:" << g_container.container_.front() << endl;
+        cout << "dump_and_clear_records item:" << g_container.container_.front() << endl;
         g_container.container_.pop();
     }
 }
