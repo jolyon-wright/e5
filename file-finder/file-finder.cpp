@@ -41,11 +41,11 @@ struct termination_event
     // functionality.
 
     bool               is_ready_;
-    mutex              mutex_;          // a read/write lock
+    mutex              mutex_;
     condition_variable cond_;
 
     termination_event()
-            : is_ready_(false)//, do_termination_(false)
+            : is_ready_(false)
     {}
 };
 
@@ -176,13 +176,13 @@ substring_adder_provider_thread(const char* StartDir,
             // we only care about files
             if (filesystem::is_regular_file(entry)) {
                 // cout << "dir:" << entry << " (need to find " << Pattern << ")" << std::endl;
+
+                //  we only want the filename (which is a path *not* a string!)
                 const string& filename{entry.path().filename().string()};
 
                 // do we care about this one?
                 if (filename.find(Pattern) != string::npos) {
-                    //std::unique_lock<std::shared_mutex> lk(g_container.swmr_mutex_); // hold for write
                     std::lock_guard<std::shared_mutex> lk(g_container.swmr_mutex_); // hold for write
-                    //  we only want the filename (which is a path *not* a string!)
                     g_container.container_.push(filename);
                 }
             }
@@ -192,6 +192,7 @@ substring_adder_provider_thread(const char* StartDir,
                 unique_lock<mutex> lk(g_terminate.mutex_);
 
                 if (g_terminate.cond_.wait_for(lk, 20ms, [] {return g_terminate.is_ready_;})) {
+                    // yes!
                     break;
                 }
             }
