@@ -54,9 +54,8 @@ struct substring_container
 {
     // this simple structure is an attempt to encapsulate container access
 
-    string_queue container_;  // this will contain all the matches
-    //shared_mutex swmr_mutex_; // a read/write lock
-    mutex swmr_mutex_; // a read/write lock
+    string_queue container_;            // this will contain all the matches
+    mutex        mutex_;                // a read/write lock
 };
 
 
@@ -183,7 +182,7 @@ substring_adder_provider_thread(const char* StartDir,
 
                 // do we care about this one?
                 if (filename.find(Pattern) != string::npos) {
-                    lock_guard<mutex> lk(g_container.swmr_mutex_); // hold for write
+                    lock_guard<mutex> lk(g_container.mutex_); // hold for write
                     g_container.container_.push(filename);
                 }
             }
@@ -236,7 +235,7 @@ void dump_and_clear_records()
             this_thread::get_id() << ")" <<
             endl;
     {
-        lock_guard<mutex> lk(g_container.swmr_mutex_); // hold for write
+        lock_guard<mutex> lk(g_container.mutex_); // hold for write
         while (!g_container.container_.empty()) {
             cout << __FUNCTION__ << ":" << g_container.container_.front() << endl;
             g_container.container_.pop();
