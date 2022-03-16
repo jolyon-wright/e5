@@ -142,6 +142,7 @@ main(int    argc,
 
           {
               unique_lock<mutex> lk(g_terminate.mutex_); // block
+              g_terminate.is_ready_       = true;
               g_terminate.do_termination_ = true;
           }
           g_terminate.cond_.notify_all();
