@@ -125,7 +125,7 @@ This has the benefit that the reader can easily skip from reading the user mode 
 * "Miscellaneous Notes" Response
 ** How To Test
 
-Beyond basic tests, like valgrind on Linux and prefast on Windows, this has not been well tested.  It really needs some unit tests… ideally written before the code…
+Beyond basic tests, like valgrind on Linux and prefast and AppVerifier on Windows, this has not been well tested.  It really needs some unit tests… ideally written before the code…
 
 CMake and CTest work nicely with googletest and this could "easily" be integrated.
 
