@@ -42,13 +42,19 @@ struct substring_container
 {
     bool         is_ready_;
     string_queue container_;
-    shared_mutex container_mutex; // a read/write lock
+    shared_mutex swmr_mutex_; // a read/write lock
     // condition ?
 
     substring_container()
             : is_ready_(false)
     {}
 };
+
+void
+substring_adder_provider_thread(const char* StartDir,
+                                const char* Pattern
+                                );
+
 
 // globals (sorry)
 
@@ -57,42 +63,6 @@ substring_container g_container;
 
 
 // methods
-void
-substring_adder_provider_thread(const char* StartDir,
-                                const char* Pattern
-                                )
-{
-    assert(StartDir);
-    assert(Pattern);
-
-    // cout << "startdir:" << string(StartDir) << " pattern:" << string(Pattern) << endl;
-
-    // find all matches for this pattern and put them in the container
-    // but (!!!) be prepared to abort if the termination event is set!
-
-    try {
-        for (const auto& entry : filesystem::recursive_directory_iterator(StartDir)) {
-            // we only care about files
-            if (filesystem::is_regular_file(entry)) {
-                std::cout << "dir:" << entry << " (need to find " << Pattern << ")" << std::endl;
-                // we only want the filename (which is a path *not* a string!)
-                g_container.container_.push(entry.path().filename().string());
-            }
-
-            // time to terminate ?
-        }
-    }
-    catch (const filesystem::filesystem_error& exception) {
-        cerr << "ERROR : filesystem exception thrown:" << exception.what() << endl;
-    }
-}
-
-
-// int
-// scan_for_files(const char*       StartDir,
-//                const string_vct& MatchVct
-//                );
-
 
 // implementation
 int
@@ -109,9 +79,8 @@ main(int    argc,
   try {
       active_thread_vct active_thread;
 
-      //string_vct match_vct;
-
       while (--argc > 1) {
+          // start a thread for each pattern and add it to the thread vector
           active_thread.push_back(thread(substring_adder_provider_thread,
                                          argv[1],   // this is the start directory
                                          argv[argc] // this is the pattern
@@ -147,36 +116,44 @@ main(int    argc,
   return ret_val;
 }
 
-int
-scan_for_files(const char*       StartDir,
-               const string_vct& MatchVct
-               )
+void
+substring_adder_provider_thread(const char* StartDir,
+                                const char* Pattern
+                                )
 {
-  int ret_val{0};
+    assert(StartDir);
+    assert(Pattern);
 
-  cout << "scan " << StartDir << endl;
+    // cout << "startdir:" << string(StartDir) << " pattern:" << string(Pattern) << endl;
 
-  for (auto v : MatchVct) {
-    cout << v << endl;
-  }
+    // find all matches for this pattern and put them in the container
+    // but (!!!) be prepared to abort if the termination event is set!
 
-  // do the search on the main thread
+    try {
+        for (const auto& entry : filesystem::recursive_directory_iterator(StartDir)) {
+            // we only care about files
+            if (filesystem::is_regular_file(entry)) {
+                cout << "dir:" << entry << " (need to find " << Pattern << ")" << std::endl;
 
+                const string& filename{entry.path().filename().string()};
 
+                // do we care about this one?
+                if (filename.find(Pattern) != string::npos) {
+                    cout << "*** this matches" << endl;
 
-  // std::thread threadObj(thread_function);
-  // threadObj.join();
+                    std::unique_lock<std::shared_mutex> lk(g_container.swmr_mutex_); // hold for write
+                    //  we only want the filename (which is a path *not* a string!)
+                    g_container.container_.push();
+                }
 
-  // puts("im back");
+            }
 
-
-  return ret_val;
+            // time to terminate ?
+        }
+    }
+    catch (const filesystem::filesystem_error& exception) {
+        cerr << "ERROR : filesystem exception thrown:" << exception.what() << endl;
+    } catch (...) {
+        cerr << "ERROR : unexpected exception thrown." << endl;
+    }
 }
-
-
-// void thread_function()
-// {
-//     for(int i = 0; i < 10000; i++);
-
-//     std::cout<<"thread function Executing"<<std::endl;
-// }
