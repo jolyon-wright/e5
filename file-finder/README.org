@@ -1,0 +1,55 @@
+#+TITLE:README
+#+AUTHOR:Jolyon Wright
+#+EMAIL:jolyon.wright@gmail.com
+# #+OPTIONS: toc:nil
+# #+OPTIONS: num:nil
+#+OPTIONS: author:nil date:nil
+#+OPTIONS: ^:nil
+
+#+OPTIONS: toc:20
+#+OPTIONS: author:nil date:nil
+# #+HTML_HEAD_EXTRA: <style>*{font-family: Liberation Mono; !important}</style>
+
+#+HTML_HEAD: <style>pre.src {background-color: #303030; color: #e5e5e5;}</style>
+#+HTML_HEAD: <style>p.verse {background-color: #D1EEEE;}</style>
+
+#+LATEX: \setlength\parindent{0pt}
+#+LATEX: \parskip=12pt % adds vertical space between paragraphs
+#+LATEX_HEADER: \usepackage[inline]{enumitem}
+#+LATEX_HEADER: \usepackage{extsizes}
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \setlist[itemize]{noitemsep}
+#+LATEX_HEADER: \setlist[enumerate]{noitemsep}
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage{graphicx,wrapfig,lipsum}
+#+LATEX_HEADER: \documentclass[a4paper,8pt]{article}
+
+# #+ATTR_HTML: :border 2 :rules all :frame border
+
+
+* Synopsis
+
+| File            | Description                     |
+|-----------------+---------------------------------|
+| file-finder.cpp | The source                      |
+| CMakeLists.txt  | Cross Platform build generation |
+| README.org      | notes                           |
+
+* How To Build
+** Prerequisites
+* Overview
+* Caveats
+- Character encoding
+
+#+begin_quote
+Paths are encoded in your OS's native string representation.
+#+end_quote
+
+This code is nominally cross platform so we should respect the OS string representation of the target platform.  This is problematic on Windows because, unlike Linux and Macos, this expects 16 bit unicode strings.
+
+Because this is not the main point of the exercise I have not attempted to resolve this.  However https://www.boost.org/doc/libs/develop/libs/nowide/doc/html/index.html would address this by allowing us to use utf8 on Windows.
+
+
+* Miscellaneous Notes Response
+** How To Test
+** Given more time...
