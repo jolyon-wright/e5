@@ -30,7 +30,7 @@
 using namespace std::chrono_literals;
 using namespace std;
 
-// types
+// types:-
 typedef queue<string>  string_queue;
 typedef vector<thread> active_thread_vct;
 typedef vector<string> string_vct;
@@ -56,15 +56,16 @@ struct substring_container
 
     string_queue container_;            // this will contain all the matches
     mutex        mutex_;                // a read/write lock
+
+    // this is the threadproc
+    void
+    finder_proc(const char* StartDir, // the starting directory
+                const char* Pattern // the substring pattern to find
+                );
 };
 
 
-// methods
-
-void
-substring_adder_provider_thread(const char* StartDir, // the starting directory
-                                const char* Pattern   // the substring pattern to find
-                                );
+// methods:-
 
 // dumper thread proc
 void
@@ -74,13 +75,13 @@ periodic_dumper_consumer();
 void dump_and_clear_records();
 
 
-// globals (sorry)
+// globals (sorry):-
 
 substring_container g_container;
 termination_event   g_terminate;
 
 
-// implementation
+// implementation:-
 int
 main(int    argc,
      char** argv
@@ -98,7 +99,8 @@ main(int    argc,
       // start the provider threads
       while (--argc > 1) {
           // start a thread for each pattern and add it to the thread vector
-          active_thread.push_back(thread(substring_adder_provider_thread,
+          active_thread.push_back(thread(&substring_container::finder_proc, 
+                                         &g_container,
                                          argv[1],   // this is the start directory
                                          argv[argc] // this is the pattern
                                          )
@@ -113,10 +115,9 @@ main(int    argc,
       bool time_to_go{false};
       while (!time_to_go) {
           string user_input;
-
           cin >> user_input;
 
-          // the requirement states that our verbs should start with a capital
+          // the requirement states that our verbs should start with a capital,
           // however show some mercy on the user by accepting lower case too
           if (user_input == "Dump" || user_input == "dump") {
               dump_and_clear_records();
@@ -148,22 +149,22 @@ main(int    argc,
       ret_val = 0;
   }
   catch(const bad_alloc&) {
-    cerr << "FATAL: Memory Allocation Failure" << endl;
+      cerr << "FATAL: Memory Allocation Failure" << endl;
   }
   catch(const exception& exception) {
-    cerr << "FATAL: exception thrown:" <<
-      exception.what() << endl;
+      cerr << "FATAL: exception thrown:" <<
+              exception.what() << endl;
   }
   catch(...) {
-    cerr << "FATAL: unknown exception thrown:" << endl;
+      cerr << "FATAL: unknown exception thrown:" << endl;
   }
   return ret_val;
 }
 
 void
-substring_adder_provider_thread(const char* StartDir,
-                                const char* Pattern
-                                )
+substring_container::finder_proc(const char*        StartDir, // the starting directory
+                                 const char*        Pattern // the substring pattern to find
+                                 )
 {
     assert(StartDir);
     assert(Pattern);
@@ -182,16 +183,15 @@ substring_adder_provider_thread(const char* StartDir,
 
                 // do we care about this one?
                 if (filename.find(Pattern) != string::npos) {
-                    lock_guard<mutex> lk(g_container.mutex_); // hold for write
-                    g_container.container_.push(filename);
+                    lock_guard<mutex> lk(mutex_); // hold for write
+                    container_.push(filename);
                 }
             }
 
             // time to terminate ?
             {
                 unique_lock<mutex> lk(g_terminate.mutex_);
-
-                if (g_terminate.cond_.wait_for(lk, 20ms, [] {return g_terminate.is_ready_;})) {
+                if (g_terminate.cond_.wait_for(lk, 20ms, [] {return g_terminate.is_ready_; })) {
                     // yes!
                     break;
                 }
@@ -203,8 +203,6 @@ substring_adder_provider_thread(const char* StartDir,
     } catch (...) {
         cerr << "ERROR : unexpected exception thrown." << endl;
     }
-
-    // cout << "substring_adder_provider_thread terminating" << endl;
 }
 
 void
