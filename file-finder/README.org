@@ -42,8 +42,8 @@
 - a C++17 compiler
 - platforms checked:-
   - Windows10 with Visual Studio 2022
-  - MacOs     with clang 13
-  - Ubuntu 2004 g++ 9.4.0
+  - MacOs 12.2.1 with AppleClang 13.1.6.13160021
+  - x64 Ubuntu 2004 g++ 9.4.0
 
 * Overview
 ** Requirements Conformance
