@@ -31,9 +31,9 @@ using namespace std::chrono_literals;
 using namespace std;
 
 // types
-typedef std::queue<string>  string_queue;
-typedef std::vector<thread> active_thread_vct;
-typedef std::vector<string> string_vct;
+typedef queue<string>  string_queue;
+typedef vector<thread> active_thread_vct;
+typedef vector<string> string_vct;
 
 struct termination_event
 {
@@ -55,7 +55,8 @@ struct substring_container
     // this simple structure is an attempt to encapsulate container access
 
     string_queue container_;  // this will contain all the matches
-    shared_mutex swmr_mutex_; // a read/write lock
+    //shared_mutex swmr_mutex_; // a read/write lock
+    mutex swmr_mutex_; // a read/write lock
 };
 
 
@@ -140,17 +141,17 @@ main(int    argc,
       g_terminate.cond_.notify_all();
 
       // wait for all threads to terminate
-      for (std::thread& thd : active_thread) {
+      for (thread& thd : active_thread) {
           if (thd.joinable()) {
               thd.join();
           }
       }
       ret_val = 0;
   }
-  catch(const std::bad_alloc&) {
+  catch(const bad_alloc&) {
     cerr << "FATAL: Memory Allocation Failure" << endl;
   }
-  catch(const std::exception& exception) {
+  catch(const exception& exception) {
     cerr << "FATAL: exception thrown:" <<
       exception.what() << endl;
   }
@@ -175,14 +176,14 @@ substring_adder_provider_thread(const char* StartDir,
         for (const auto& entry : filesystem::recursive_directory_iterator(StartDir)) {
             // we only care about files
             if (filesystem::is_regular_file(entry)) {
-                // cout << "dir:" << entry << " (need to find " << Pattern << ")" << std::endl;
+                // cout << "dir:" << entry << " (need to find " << Pattern << ")" << endl;
 
                 //  we only want the filename (which is a path *not* a string!)
                 const string& filename{entry.path().filename().string()};
 
                 // do we care about this one?
                 if (filename.find(Pattern) != string::npos) {
-                    std::lock_guard<std::shared_mutex> lk(g_container.swmr_mutex_); // hold for write
+                    lock_guard<mutex> lk(g_container.swmr_mutex_); // hold for write
                     g_container.container_.push(filename);
                 }
             }
@@ -234,10 +235,11 @@ void dump_and_clear_records()
     cout << "dump_and_clear_records (called on thread " <<
             this_thread::get_id() << ")" <<
             endl;
-
-    std::lock_guard<std::shared_mutex> lk(g_container.swmr_mutex_); // hold for write
-    while (!g_container.container_.empty()) {
-        cout << __FUNCTION__ << ":" << g_container.container_.front() << endl;
-        g_container.container_.pop();
+    {
+        lock_guard<mutex> lk(g_container.swmr_mutex_); // hold for write
+        while (!g_container.container_.empty()) {
+            cout << __FUNCTION__ << ":" << g_container.container_.front() << endl;
+            g_container.container_.pop();
+        }
     }
 }
