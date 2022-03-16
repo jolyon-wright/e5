@@ -1,7 +1,7 @@
 /*
  * file-finder.cpp
  *
- * Copyright (c) 2022 Jolyon Wright.
+ * Copyright (c) 2022 Jolyon Wright. (jolyon.wright@gmail.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Please see README.org for commentary.
+ *
  */
 
 #include <iostream>
