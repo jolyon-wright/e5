@@ -26,8 +26,8 @@
 #include <string>
 #include <cassert>
 #include <shared_mutex>
-using namespace std::chrono_literals;
 
+using namespace std::chrono_literals;
 using namespace std;
 
 // types
@@ -41,7 +41,7 @@ struct termination_event
     bool               is_ready_;
     mutex              mutex_;          // a read/write lock
     condition_variable cond_;
-    bool               do_termination_;
+    bool               do_termination_; // is this needed - we are only ready on termination?
 
     termination_event()
             : is_ready_(false), do_termination_(false)
