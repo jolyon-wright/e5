@@ -41,7 +41,7 @@ struct termination_event
     mutex              mutex_;
     condition_variable cond_;
 
-    termination_event()
+    termination_event() noexcept
             : is_ready_(false)
     {}
 };
@@ -76,8 +76,9 @@ dump_and_clear_records();
 substring_container g_container;
 termination_event   g_terminate;
 
-
 // implementation:-
+[[gsl::suppress(f.23)]]  // gsl analysis suggests using gsl::not_null<> however we are constrained to runtime only
+                         // so cannot use gsl
 int
 main(int    argc,
      char** argv
