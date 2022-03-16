@@ -32,11 +32,6 @@
 using namespace std::chrono_literals;
 using namespace std;
 
-// types:-
-typedef queue<string>  string_queue;
-typedef vector<thread> active_thread_vct;
-typedef vector<string> string_vct;
-
 struct termination_event
 {
     // this simple structure is an attempt to encapsulate termination
@@ -55,8 +50,8 @@ struct substring_container
 {
     // this simple structure is an attempt to encapsulate container access
 
-    string_queue container_;            // this will contain all the matches
-    mutex        mutex_;                // a read/write lock
+    queue<string> container_;   // this will contain all the matches
+    mutex         mutex_;       // a read/write lock
 
     // this is the threadproc
     void
@@ -95,7 +90,7 @@ main(int    argc,
     return ret_val;
   }
   try {
-      active_thread_vct active_thread;
+      vector<thread>  active_thread;
 
       // start the provider threads
       while (--argc > 1) {
