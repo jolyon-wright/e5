@@ -90,7 +90,7 @@ main(int    argc,
     return ret_val;
   }
   try {
-      vector<thread>  active_thread;
+      vector<thread> active_thread;
 
       // start the provider threads
       while (--argc > 1) {
