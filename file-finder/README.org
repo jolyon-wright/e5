@@ -141,5 +141,6 @@ I am particularly interested in understanding:-
   - if there are flaws in my understanding of these APIs
   - approaches to making the logic more encapsulated
   - if a higher level approach would be more appropriate
+  - basically how we can leverage C++ to model the problem more closely…
 
 It would be nice to add logging, possibly boost.log.  During development I have used cout, which is not ideal.
