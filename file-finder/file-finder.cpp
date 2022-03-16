@@ -86,12 +86,12 @@ main(int    argc,
      char** argv
      )
 {
+    int ret_val{-1}; // default to error
+
   if (argc == 1) {
     cerr << "file-finder <dir> <substring1>[<substring2> [<substring3>]...]" << endl;
-    return -1;
+    return ret_val;
   }
-  int ret_val{-1}; // default to error
-
   try {
       active_thread_vct active_thread;
 
@@ -135,7 +135,7 @@ main(int    argc,
 
       { // just to scope the lock
           lock_guard<mutex> lk(g_terminate.mutex_); // block
-          g_terminate.is_ready_       = true;
+          g_terminate.is_ready_ = true;
       }
       g_terminate.cond_.notify_all();
 
@@ -145,6 +145,7 @@ main(int    argc,
               thd.join();
           }
       }
+      ret_val = 0;
   }
   catch(const std::bad_alloc&) {
     cerr << "FATAL: Memory Allocation Failure" << endl;
