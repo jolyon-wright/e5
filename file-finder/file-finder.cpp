@@ -35,52 +35,42 @@ typedef std::queue<string>  string_queue;
 typedef std::vector<thread> active_thread_vct;
 typedef std::vector<string> string_vct;
 
-
 struct termination_event
 {
+    // this simple structure is an attempt to encapsulate termination
+    // functionality.
+
     bool               is_ready_;
     mutex              mutex_;          // a read/write lock
     condition_variable cond_;
-    bool               do_termination_; // is this needed - we are only ready on termination?
 
     termination_event()
-            : is_ready_(false), do_termination_(false)
+            : is_ready_(false)//, do_termination_(false)
     {}
 };
 
 
 struct substring_container
 {
-    bool         is_ready_;
-    string_queue container_;
-    shared_mutex swmr_mutex_; // a read/write lock
-    // condition ?
+    // this simple structure is an attempt to encapsulate container access
 
-    substring_container()
-            : is_ready_(false)
-    {}
+    string_queue container_;  // this will contain all the matches
+    shared_mutex swmr_mutex_; // a read/write lock
 };
+
+
+// methods
 
 void
-substring_adder_provider_thread(const char* StartDir,
-                                const char* Pattern
+substring_adder_provider_thread(const char* StartDir, // the starting directory
+                                const char* Pattern   // the substring pattern to find
                                 );
 
-
-
-struct periodic_dumper_consumer
-{
-    bool         is_ready_;
-
-    periodic_dumper_consumer()
-            : is_ready_(false)
-    {}
-};
-
+// dumper thread proc
 void
 periodic_dumper_consumer();
 
-
+// a helper function called from multiple threads
 void dump_and_clear_records();
 
 
@@ -89,8 +79,6 @@ void dump_and_clear_records();
 substring_container g_container;
 termination_event   g_terminate;
 
-
-// methods
 
 // implementation
 int
@@ -115,13 +103,11 @@ main(int    argc,
                                          argv[argc] // this is the pattern
                                          )
                                   );
-
-          cout << "startdir:" << string(argv[1]) << " pattern:" << string(argv[argc]) << endl;
+          // cout << "startdir:" << string(argv[1]) << " pattern:" << string(argv[argc]) << endl;
       }
 
       // start the periodic dumper thread
       active_thread.push_back(thread(periodic_dumper_consumer));
-
 
       // now we will block, waiting for user input
       bool time_to_go{false};
@@ -129,35 +115,28 @@ main(int    argc,
           string user_input;
 
           cin >> user_input;
-          cout << "user says:" << user_input << endl;
+          // cout << "user says:" << user_input << endl;
 
           if (user_input == "dump") {
               dump_and_clear_records();
           }
           else if (user_input == "exit") {
+              // we could signal termination here, but I think
+              // being sequential is clearer...
               time_to_go = true;
           }
           else {
               cout << "please enter dump or exit" << endl;
           }
-          //time_to_go = true; // for the moment
       }
-
       // now signal termination
-      {
-          g_terminate.cond_.notify_all();
+      g_terminate.cond_.notify_all();
 
-          puts("notified; waiting for wake up");
-
-          {
-              unique_lock<mutex> lk(g_terminate.mutex_); // block
-              g_terminate.is_ready_       = true;
-              g_terminate.do_termination_ = true;
-          }
-          g_terminate.cond_.notify_all();
+      { // just to scope the lock
+          lock_guard<mutex> lk(g_terminate.mutex_); // block
+          g_terminate.is_ready_       = true;
       }
-
-      cout << "waiting for all threads to terminate" << endl;
+      g_terminate.cond_.notify_all();
 
       // wait for all threads to terminate
       for (std::thread& thd : active_thread) {
@@ -187,8 +166,6 @@ substring_adder_provider_thread(const char* StartDir,
     assert(StartDir);
     assert(Pattern);
 
-    // cout << "startdir:" << string(StartDir) << " pattern:" << string(Pattern) << endl;
-
     // find all matches for this pattern and put them in the container
     // but (!!!) be prepared to abort if the termination event is set!
 
@@ -197,20 +174,25 @@ substring_adder_provider_thread(const char* StartDir,
             // we only care about files
             if (filesystem::is_regular_file(entry)) {
                 // cout << "dir:" << entry << " (need to find " << Pattern << ")" << std::endl;
-
                 const string& filename{entry.path().filename().string()};
 
                 // do we care about this one?
                 if (filename.find(Pattern) != string::npos) {
-                    // cout << "*** this matches" << endl;
-
-                    std::unique_lock<std::shared_mutex> lk(g_container.swmr_mutex_); // hold for write
+                    //std::unique_lock<std::shared_mutex> lk(g_container.swmr_mutex_); // hold for write
+                    std::lock_guard<std::shared_mutex> lk(g_container.swmr_mutex_); // hold for write
                     //  we only want the filename (which is a path *not* a string!)
                     g_container.container_.push(filename);
                 }
             }
 
             // time to terminate ?
+            {
+                unique_lock<mutex> lk(g_terminate.mutex_);
+
+                if (g_terminate.cond_.wait_for(lk, 20ms, [] {return g_terminate.is_ready_;})) {
+                    break;
+                }
+            }
         }
     }
     catch (const filesystem::filesystem_error& exception) {
@@ -219,51 +201,40 @@ substring_adder_provider_thread(const char* StartDir,
         cerr << "ERROR : unexpected exception thrown." << endl;
     }
 
-    puts("substring_adder_provider_thread termianting");
-
+    // cout << "substring_adder_provider_thread terminating" << endl;
 }
 
 void
 periodic_dumper_consumer()
 {
-    bool is_time_to_terminate{ false };
+    bool is_time_to_terminate{false};
 
     // do a timed wait for the termination request
     
     do {
         {
-            // https://en.cppreference.com/w/cpp/thread/condition_variable/wait_for
             unique_lock<mutex> lk(g_terminate.mutex_);
 
             if (g_terminate.cond_.wait_for(lk, 10s, [] {return g_terminate.is_ready_;})) {
                 // we have the condition variable
-                is_time_to_terminate = g_terminate.do_termination_;
-            }
-            else {
-                // timeout just carry on
-                //dump_and_clear_records();
+                is_time_to_terminate = true;
             }
         }
         if (!is_time_to_terminate) {
             dump_and_clear_records();
         }
-
-        // then
-
-        // std::shared_lock<std::shared_mutex> lk(g_container.swmr_mutex_);
     } while (!is_time_to_terminate);
-
-    puts("periodic_dumper_consumer termianting");
 }
-
 
 void dump_and_clear_records()
 {
-    puts("dump_and_clear_records");
+    cout << "dump_and_clear_records (called on thread " <<
+            this_thread::get_id() << ")" <<
+            endl;
 
-    std::unique_lock<std::shared_mutex> lk(g_container.swmr_mutex_); // hold for write
+    std::lock_guard<std::shared_mutex> lk(g_container.swmr_mutex_); // hold for write
     while (!g_container.container_.empty()) {
-        cout << "dump_and_clear_records item:" << g_container.container_.front() << endl;
+        cout << __FUNCTION__ << ":" << g_container.container_.front() << endl;
         g_container.container_.pop();
     }
 }
