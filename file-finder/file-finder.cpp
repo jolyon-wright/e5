@@ -101,7 +101,6 @@ main(int    argc,
                                          argv[argc] // this is the pattern
                                          )
                                   );
-          // cout << "startdir:" << string(argv[1]) << " pattern:" << string(argv[argc]) << endl;
       }
 
       // start the periodic dumper thread
@@ -129,7 +128,7 @@ main(int    argc,
       }
       // now signal termination
       {
-          lock_guard<mutex> lk(g_terminate.mutex_); // block
+          lock_guard<mutex> lk(g_terminate.mutex_);
           g_terminate.is_ready_ = true;
       }
       g_terminate.cond_.notify_all();
