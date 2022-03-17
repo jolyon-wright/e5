@@ -131,6 +131,8 @@ Beyond basic tests, like valgrind on Linux and prefast and AppVerifier on Window
 
 CMake and CTest work nicely with googletest and this could "easily" be integrated.
 
+Given that we can assume that the file system is static, a starting point might be to make a note of the matching files, using a simple single threaded search and then verify that file-finder results match this collection with no omissions or duplicates…
+
 ** Given more time...
 *** TODOs
 This is very much a first pass; please be gentle!
