@@ -19,6 +19,9 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;; todo - what is this -- ? https://gitlab.com/buildfunthings/emacs-config
+;;
+
 (defvar jw-radian--init-file-loaded-p nil) ;; this is a sort of header guard
 (unless jw-radian--init-file-loaded-p      ;; because we *may* be pulled in
                                            ;; by early init
@@ -83,7 +86,10 @@
       (mapc 'delete-file (append (directory-files-recursively jw-e5-base ".*\\.elc$" nil)
                                  (directory-files user-emacs-directory t ".*\\.elc$")))))
 
-  (use-package shut-up)  
+  ;; (use-package shut-up)
+
+  (defun shut-up (arg))
+  
   (load (expand-file-name "jw-defaults.el" user-emacs-directory))
 
   (unless (file-exists-p jw-e5-base)
