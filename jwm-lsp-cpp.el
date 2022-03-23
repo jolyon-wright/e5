@@ -284,7 +284,7 @@
 (add-hook 'sh-mode-hook #'lsp)
 
 
-
+(setq lsp-semantic-tokens-enable t)
 
 (provide 'jwm-lsp-cpp)
 
