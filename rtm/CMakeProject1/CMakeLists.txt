@@ -50,3 +50,8 @@ target_include_directories(CMakeProject1 PRIVATE ${RtMidi_INCLUDE})
 # CMake projects should use: "-DCMAKE_TOOLCHAIN_FILE=C:/Users/jolyon/src/vcpkg/scripts/buildsystems/vcpkg.cmake"
 
 # VCPKG_ROOT ??
+
+# origin	https://github.com/juce-framework/JUCE.git (fetch)
+
+# JUCE 6.1.6 /Users/jolyon/src/JUCE
+# huge tutorial here: https://www.youtube.com/watch?v=i_Iq4_Kd7Rc
