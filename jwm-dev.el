@@ -4,6 +4,10 @@
 (use-package dtrt-indent :defer)
 (use-package modern-cpp-font-lock)
 
+;; todo:-
+;; https://github.com/ericniebler/range-v3
+;; vcpkg
+
 ;; (require 'clang-format)
 ;; (setq clang-format-style-option "google")
 
