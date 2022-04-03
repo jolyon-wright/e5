@@ -2,9 +2,12 @@
 
 (use-package cmake-mode :defer)
 (use-package dtrt-indent :defer)
+(use-package modern-cpp-font-lock)
 
-(setq clang-format-style-option "google")
+;; (require 'clang-format)
+;; (setq clang-format-style-option "google")
 
+;; https://nilsdeppe.com/posts/emacs-c++-ide2
 
 ;; (use-package clang-format+
 ;;   ;; this will look for a file called .clang-format
@@ -14,14 +17,23 @@
 ;;   ;; how those two play together is one for the long winter evenings!
 ;;   :hook (c-mode-common . clang-format+-mode))
 
+;; (global-set-key (kbd "C-c C-f") 'clang-format-region)
+
 (require 'jw-google-c-style)
 
-;; (sp-local-pair 'c-mode "{" nil :post-handlers '(:add ("||\n[i]" "RET")))
+;; (sp-local-pair 'c-mode "{" nil :post-handlers '(:add ("||\n[i]" "RTE")))
 
 ;;(require 'cmake-mode)
 (use-package cmake-mode
   :defer)
 
+(straight-use-package 'flymake-google-cpplint)
+(flymake-google-cpplint-load)
+(add-hook 'c++-mode-hook 'flymake-google-cpplint-load)
+(custom-set-variables
+'(flymake-google-cpplint-verbose "3")
+'(flymake-google-cpplint-linelength "120")
+)
 (setq auto-mode-alist
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
@@ -37,6 +49,7 @@
           (lambda ()
             (flyspell-prog-mode)
             ))
+;; (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
 
 ; these tweaks shouldnt cause any conflicts with the google mode
 (add-hook 'c-mode-common-hook
