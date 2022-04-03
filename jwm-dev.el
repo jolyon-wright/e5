@@ -66,6 +66,11 @@
     (require 'dtrt-indent)
     (dtrt-indent-mode t)))
 
+(electric-operator-add-rules-for-mode 'c-mode
+                                      (cons "*" nil))
+
+(add-hook 'c-mode-common-hook #'electric-operator-mode)
+
 ;; https://www.doof.me.uk/2019/06/09/making-emacs-gud-usable/
 (setq gdb-many-windows t
       gdb-use-separate-io-buffer t)
