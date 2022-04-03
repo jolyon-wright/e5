@@ -7,6 +7,7 @@
 ;; todo:-
 ;; https://github.com/ericniebler/range-v3
 ;; vcpkg
+;; https://github.com/fmtlib/fmt
 
 ;; (require 'clang-format)
 ;; (setq clang-format-style-option "google")
