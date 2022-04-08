@@ -25,15 +25,17 @@
 ;; [core]
 ;;	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
 
+;; ssh -T git@bitbucket.org
+;; prompts for key then all is well... under dos but not msys :(
 
 ;; windows configuration - ie to run from dos command prompt
 
-;; add to path :- D:\msys64\mingw64\bin;C:\msys64\usr\bin
+;; add to path :- C:\msys64\mingw64\bin;C:\msys64\usr\bin
 ;; set HOME=D:\msys64\home\11547
 
 ;; for ming64 hunspell
 ;; set DICTIONARY=en_US
-;; DICPATH=D:\msys64\mingw64\share\hunspell
+;; DICPATH=C:\msys64\mingw64\share\hunspell
 
 
 
