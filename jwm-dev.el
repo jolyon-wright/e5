@@ -32,13 +32,16 @@
 (use-package cmake-mode
   :defer)
 
-(straight-use-package 'flymake-google-cpplint)
-(flymake-google-cpplint-load)
-(add-hook 'c++-mode-hook 'flymake-google-cpplint-load)
-(custom-set-variables
-'(flymake-google-cpplint-verbose "3")
-'(flymake-google-cpplint-linelength "120")
-)
+;; (jw-safe-wrap
+;;  (straight-use-package 'flymake-google-cpplint)
+;;  (flymake-google-cpplint-load)
+;;  (add-hook 'c++-mode-hook 'flymake-google-cpplint-load)
+;;  (custom-set-variables
+;;   '(flymake-google-cpplint-verbose "3")
+;;   '(flymake-google-cpplint-linelength "120")
+;;   )
+;;  )
+
 (setq auto-mode-alist
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
@@ -71,10 +74,11 @@
     (require 'dtrt-indent)
     (dtrt-indent-mode t)))
 
-(electric-operator-add-rules-for-mode 'c-mode
-                                      (cons "*" nil))
+(jw-safe-wrap
+ (electric-operator-add-rules-for-mode 'c-mode
+                                       (cons "*" nil))
 
-(add-hook 'c-mode-common-hook #'electric-operator-mode)
+ (add-hook 'c-mode-common-hook #'electric-operator-mode))
 
 ;; https://www.doof.me.uk/2019/06/09/making-emacs-gud-usable/
 (setq gdb-many-windows t

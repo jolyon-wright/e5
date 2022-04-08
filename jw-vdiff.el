@@ -153,7 +153,7 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
                                    (when smerge-mode
                                      (unpackaged/smerge-hydra/body)))))
 
-Display the buffer state in the fringe.
+;; Display the buffer state in the fringe.
 (use-package git-gutter
   :config
   (global-git-gutter-mode +1)
