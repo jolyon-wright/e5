@@ -135,8 +135,8 @@
 
 (bind-key "<f7>" 'compile)
 (bind-key "<C-f8>" 'align)
-(bind-key "<f5>" 'gdb)
-(bind-key "<C-f5>" 'jw-gdb-other-frame)
+;; (bind-key "<f5>" 'gdb)
+;; (bind-key "<C-f5>" 'jw-gdb-other-frame)
 
 ;; (use-package groovy-emacs-mode)
 
