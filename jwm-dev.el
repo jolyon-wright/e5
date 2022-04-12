@@ -14,13 +14,13 @@
 
 ;; https://nilsdeppe.com/posts/emacs-c++-ide2
 
-;; (use-package clang-format+
-;;   ;; this will look for a file called .clang-format
-;;   ;; and apply those rules whenever the file is saved
+(use-package clang-format+
+  ;; this will look for a file called .clang-format
+  ;; and apply those rules whenever the file is saved
 
-;;   ;; I have tried it without cc mode styles and it is fine;
-;;   ;; how those two play together is one for the long winter evenings!
-;;   :hook (c-mode-common . clang-format+-mode))
+  ;; I have tried it without cc mode styles and it is fine;
+  ;; how those two play together is one for the long winter evenings!
+  :hook (c-mode-common . clang-format+-mode))
 
 ;; (global-set-key (kbd "C-c C-f") 'clang-format-region)
 
@@ -29,8 +29,8 @@
 ;; (sp-local-pair 'c-mode "{" nil :post-handlers '(:add ("||\n[i]" "RTE")))
 
 ;;(require 'cmake-mode)
-(use-package cmake-mode
-  :defer)
+;; (use-package cmake-mode
+;;   :defer)
 
 ;; (jw-safe-wrap
 ;;  (straight-use-package 'flymake-google-cpplint)
@@ -74,11 +74,11 @@
     (require 'dtrt-indent)
     (dtrt-indent-mode t)))
 
-(jw-safe-wrap
- (electric-operator-add-rules-for-mode 'c-mode
-                                       (cons "*" nil))
+;; (jw-safe-wrap
+;;  (electric-operator-add-rules-for-mode 'c-mode
+;;                                        (cons "*" nil))
 
- (add-hook 'c-mode-common-hook #'electric-operator-mode))
+;; (add-hook 'c-mode-common-hook #'electric-operator-mode))
 
 ;; https://www.doof.me.uk/2019/06/09/making-emacs-gud-usable/
 (setq gdb-many-windows t
@@ -189,10 +189,10 @@
 ;; (defun jw-c-common-hook()
 ;;   (message "hook executed")
   ;; if we have rtags use that
-(unless (featurep #'rtags)
-  (message "lsp hook added")
-     (lambda ()
-       (add-hook 'c-mode-common-hook 'lsp)));;)
+;; (unless (featurep #'rtags)
+;;   (message "lsp hook added")
+;;      (lambda ()
+;;        (add-hook 'c-mode-common-hook 'lsp)));;)
 
 
 ;; (add-hook 'c-mode-common-hook 'jw-c-common-hook)
