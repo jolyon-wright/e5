@@ -68,7 +68,7 @@
 ;; (use-package helm-lsp)
 (use-package projectile)
 (use-package hydra)
-(use-package flycheck)
+;; (use-package flycheck)
                                         ;(use-package company)
 ;; (straight-use-package '(jolyon929 :type git :host bitbucket :repo "jolyon929/company-mode"))
 
@@ -267,6 +267,15 @@
 ;;   (flycheck-mode . flycheck-clang-tidy-setup)
 ;;   )
 
+;; problematic!
+
+;; (use-package flycheck-clang-tidy
+;;   :after flycheck
+;;   :commands c++-mode
+;;   :config
+;;   (flycheck-clang-tidy-setup)
+;;   (flycheck-add-next-checker 'lsp-ui 'c/c++-clang-tidy)
+;;   )
 
 ;; (use-package company-shell
 ;;     :defer 3
@@ -295,6 +304,10 @@
 
 (add-hook 'sh-mode-hook #'lsp)
 
+;; pip install cmake-language-server
+(use-package cmake-mode
+  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'")
+  :hook (cmake-mode . lsp-deferred))
 
 (setq lsp-semantic-tokens-enable t)
 
