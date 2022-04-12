@@ -125,13 +125,13 @@
 ;; (projectile-mode +1)
 
 (use-package flycheck)
-(use-package cmake-ide)
+;; (use-package cmake-ide)
 (use-package dash)
-(use-package helm)
+;; (use-package helm)
 (use-package dts-mode)
 (use-package help-fns+)
 
-(cmake-ide-setup)
+;; (cmake-ide-setup)
 
 (bind-key "<f7>" 'compile)
 (bind-key "<C-f8>" 'align)
