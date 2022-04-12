@@ -144,9 +144,13 @@
 
 (which-key-mode)
 
+;; lsp-format-buffer
+;; clang-format  --dump-config -style google
 
-;; (add-hook 'c-mode-hook 'lsp)
-;; (add-hook 'c++-mode-hook 'lsp)
+;; (setq lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd")
+
+(add-hook 'c-mode-hook 'lsp)
+(add-hook 'c++-mode-hook 'lsp)
 
 (setq gc-cons-threshold (* 100 1024 1024)
       read-process-output-max (* 1024 1024)
@@ -255,6 +259,14 @@
   :after flycheck
   :hook
   (flycheck-mode . flycheck-inline-mode))
+
+;; problematic!
+;; (use-package flycheck-clang-tidy
+;;   :after flycheck
+;;   :hook
+;;   (flycheck-mode . flycheck-clang-tidy-setup)
+;;   )
+
 
 ;; (use-package company-shell
 ;;     :defer 3
