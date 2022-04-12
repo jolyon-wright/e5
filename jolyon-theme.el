@@ -12,6 +12,8 @@
 ;; The colors in this theme come from the Jolyon palette, which is in
 ;; the public domain:
 
+;; reminder - m-x list-colors-display
+
 ;;; Code:
 
 (deftheme jolyon
@@ -121,7 +123,9 @@ Semantic, and Ansi-Color faces are included.")
    `(rtags-skippedline ((,class (:foreground, "gray54"))) )
    `(rtags-errline ((,class (:weight bold :foreground, "red"))) )
    `(rtags-warnline ((,class (:weight bold :foreground, "orange"))) )
-   `(font-lock-comment-face ((t (:foreground, "DeepSkyBlue1" :slant normal))))
+   ;; `(font-lock-comment-face ((t (:foreground, "DeepSkyBlue1" :slant normal)))
+   `(font-lock-comment-face ((t (:foreground, "grey50" :slant normal)))
+                            )
   ;;;;
    )
 
