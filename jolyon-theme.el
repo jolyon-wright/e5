@@ -124,7 +124,7 @@ Semantic, and Ansi-Color faces are included.")
    `(rtags-errline ((,class (:weight bold :foreground, "red"))) )
    `(rtags-warnline ((,class (:weight bold :foreground, "orange"))) )
    ;; `(font-lock-comment-face ((t (:foreground, "DeepSkyBlue1" :slant normal)))
-   `(font-lock-comment-face ((t (:foreground, "grey50" :slant normal)))
+   `(font-lock-comment-face ((t (:foreground, "grey76" :slant normal)))
                             )
   ;;;;
    )
