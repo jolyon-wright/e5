@@ -1,0 +1,9 @@
+Git clone https://github.com/Caphyon/clang-power-tools.git
+
+set path=%path%;c:\Users\jolyon\src\clang-power-tools\ClangPowerTools\ClangPowerToolsShared\Tooling\v1
+
+
+Cd \Users\jolyon\src\Windows-driver-samples\general\toaster\toastDrv\kmdf\func\featured
+
+
+powershell "clang-build.ps1 -proj wdffeatured.vcxproj -export-jsondb"
