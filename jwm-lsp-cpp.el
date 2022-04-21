@@ -62,7 +62,23 @@
 ;; all is well
 
 
-(use-package lsp-mode)
+;; this is great but it doesnt work:-
+;; ((nil . ((eval .
+;;                (setq lsp-clients-clangd-args
+;;                      (concat "--compile-commands-dir=" (concat
+;;                                                         (locate-dominating-file
+;;                                                          default-directory
+;;                                                          dir-locals-file)
+;;                                                         "build_ninja/")))))))
+
+
+
+(use-package lsp-mode
+  ;; https://git.0xee.eu/0xee/emacs-config/src/commit/52435766f7bd599b02eaf5730386ea50152dc6d6/lsp.el?lang=zh-HK
+  :custom (lsp-clients-clangd-args '("--compile-commands-dir=build_ninja"
+                                     "--clang-tidy" "--log=verbose"))
+  )
+
 (use-package yasnippet)
 (use-package lsp-treemacs)
 ;; (use-package helm-lsp)
