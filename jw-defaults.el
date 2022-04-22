@@ -25,15 +25,17 @@
 ;; [core]
 ;;	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
 
+;; ssh -T git@bitbucket.org
+;; prompts for key then all is well... under dos but not msys :(
 
 ;; windows configuration - ie to run from dos command prompt
 
-;; add to path :- D:\msys64\mingw64\bin;C:\msys64\usr\bin
+;; add to path :- C:\msys64\mingw64\bin;C:\msys64\usr\bin
 ;; set HOME=D:\msys64\home\11547
 
 ;; for ming64 hunspell
 ;; set DICTIONARY=en_US
-;; DICPATH=D:\msys64\mingw64\share\hunspell
+;; DICPATH=C:\msys64\mingw64\share\hunspell
 
 
 
@@ -594,7 +596,6 @@ A prefix argument ARG reverses this behavior."
   (interactive)
   (switch-to-buffer "*Messages*"))
 
-
 (bind-key "<C-M-tab>"          'other-frame)
 
 (unbind-key "<f3>")
@@ -614,8 +615,8 @@ A prefix argument ARG reverses this behavior."
 (unbind-key "C-x C-z")                  ; suspend-frame
 (unbind-key "C-x m")			; compose-mail
 
-(bind-key "C-s-c" #'copy-to-register)
-(bind-key "C-s-v" #'insert-register)
+;; (bind-key "C-s-c" #'copy-to-register)
+;; (bind-key "C-s-v" #'insert-register)
 (bind-key "<C-f12>" #'jw-kill-save-buffer)
 (bind-key "<kp-left>" #'buf-move-left)
 (bind-key "<kp-right>" #'buf-move-right)
@@ -659,6 +660,7 @@ A prefix argument ARG reverses this behavior."
 (unbind-key "s-t")
 (unbind-key "<f4>")
 (bind-key "<f4>" #'jw-switch-to-scratch-buffer)
+(bind-key "<f5>" #'consult-buffer)
 (bind-key "<f12>" #'jw-switch-to-Messages-buffer)
 
 ;; C-x 4 .         xref-find-definitions-other-window
