@@ -71,12 +71,19 @@
 ;;                                                          dir-locals-file)
 ;;                                                         "build_ninja/")))))))
 
+(setq lsp-clangd-version "14.0.0")
 
 
 (use-package lsp-mode
   ;; https://git.0xee.eu/0xee/emacs-config/src/commit/52435766f7bd599b02eaf5730386ea50152dc6d6/lsp.el?lang=zh-HK
-  :custom (lsp-clients-clangd-args '("--compile-commands-dir=build_ninja"
-                                     "--clang-tidy" "--log=verbose"))
+  ;; :custom (lsp-clients-clangd-args '("--compile-commands-dir=build_ninja"
+  ;;                                    "--clang-tidy" "--log=verbose"))
+
+     :custom (lsp-clients-clangd-args '(
+                                        "--clang-tidy" "--log=verbose")
+                                       )
+
+
   )
 
 (use-package yasnippet)
