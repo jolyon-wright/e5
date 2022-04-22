@@ -596,7 +596,6 @@ A prefix argument ARG reverses this behavior."
   (interactive)
   (switch-to-buffer "*Messages*"))
 
-
 (bind-key "<C-M-tab>"          'other-frame)
 
 (unbind-key "<f3>")
@@ -661,6 +660,7 @@ A prefix argument ARG reverses this behavior."
 (unbind-key "s-t")
 (unbind-key "<f4>")
 (bind-key "<f4>" #'jw-switch-to-scratch-buffer)
+(bind-key "<f5>" #'consult-buffer)
 (bind-key "<f12>" #'jw-switch-to-Messages-buffer)
 
 ;; C-x 4 .         xref-find-definitions-other-window
