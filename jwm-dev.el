@@ -154,7 +154,7 @@
 
 ;; (use-package yaml-mode)
 (use-package indent-tools)
-(global-set-key (kbd "C-c >") 'indent-tools-hydra/body)
+;; (global-set-key (kbd "C-c >") 'indent-tools-hydra/body)
 (use-package highlight-symbol)
 
 (use-package yaml-mode
