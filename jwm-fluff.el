@@ -121,14 +121,14 @@
 
 (shut-up (use-package iedit))
 
-(use-package duplicate-thing
-  :init
-  (defun my-duplicate-thing ()
-    "Duplicate thing at point without changing the mark."
-    (interactive)
-    (save-mark-and-excursion (duplicate-thing 1)))
-  :bind (("C-c u" . my-duplicate-thing)
-         ("C-c C-u" . my-duplicate-thing)))
+;; (use-package duplicate-thing
+;;   :init
+;;   (defun my-duplicate-thing ()
+;;     "Duplicate thing at point without changing the mark."
+;;     (interactive)
+;;     (save-mark-and-excursion (duplicate-thing 1)))
+;;   :bind (("C-c u" . my-duplicate-thing)
+;;          ("C-c C-u" . my-duplicate-thing)))
 
 
 (use-package which-key
