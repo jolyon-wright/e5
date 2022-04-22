@@ -615,8 +615,8 @@ A prefix argument ARG reverses this behavior."
 (unbind-key "C-x C-z")                  ; suspend-frame
 (unbind-key "C-x m")			; compose-mail
 
-(bind-key "C-s-c" #'copy-to-register)
-(bind-key "C-s-v" #'insert-register)
+;; (bind-key "C-s-c" #'copy-to-register)
+;; (bind-key "C-s-v" #'insert-register)
 (bind-key "<C-f12>" #'jw-kill-save-buffer)
 (bind-key "<kp-left>" #'buf-move-left)
 (bind-key "<kp-right>" #'buf-move-right)
