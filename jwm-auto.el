@@ -84,5 +84,8 @@
 (straight-use-package '(bmaland :type git :host github :repo "bmaland/yasnippet-sh-mode"))
 ;; https://github.com/bmaland/yasnippet-sh-mode
 
+
+(straight-use-package '(brianqq :type git :host github :repo "brianqq/inferior-cling"))
+
 (provide 'jwm-auto)
 ;;; jwm-auto.el ends here

@@ -205,34 +205,34 @@
                           :background "black"
                           :foreground "gray54")))
 
-(use-package hydra
-    :config
-    :init
-      (defhydra hydra-multiple-cursors (:color blue :hint nil)
-  "
- Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
-------------------------------------------------------------------
- [_p_]   Next     [_n_]   Next     [_l_] Edit lines  [_0_] Insert numbers
- [_P_]   Skip     [_N_]   Skip     [_a_] Mark all    [_A_] Insert letters
- [_M-p_] Unmark   [_M-n_] Unmark   [_s_] Search
- [Click] Cursor at point       [_q_] Quit"
-  ("l" mc/edit-lines :exit t)
-  ("a" mc/mark-all-like-this :exit t)
-  ("n" mc/mark-next-like-this :exit nil)
-  ("N" mc/skip-to-next-like-this :exit nil)
-  ("M-n" mc/unmark-next-like-this :exit nil)
-  ("p" mc/mark-previous-like-this :exit nil)
-  ("P" mc/skip-to-previous-like-this :exit nil)
-  ("M-p" mc/unmark-previous-like-this :exit nil)
-  ("s" mc/mark-all-in-region-regexp :exit t)
-  ("0" mc/insert-numbers :exit t)
-  ("A" mc/insert-letters :exit t)
-  ("<mouse-1>" mc/add-cursor-on-click :exit nil)
-  ;; Help with click recognition in this hydra
-  ("<down-mouse-1>" ignore)
-  ("<drag-mouse-1>" ignore)
-  ("q" nil))
-      (global-set-key (kbd "C-c r") 'hydra-multiple-cursors/body))
+;; (use-package hydra
+;;     :config
+;;     :init
+;;       (defhydra hydra-multiple-cursors (:color blue :hint nil)
+;;   "
+;;  Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
+;; ------------------------------------------------------------------
+;;  [_p_]   Next     [_n_]   Next     [_l_] Edit lines  [_0_] Insert numbers
+;;  [_P_]   Skip     [_N_]   Skip     [_a_] Mark all    [_A_] Insert letters
+;;  [_M-p_] Unmark   [_M-n_] Unmark   [_s_] Search
+;;  [Click] Cursor at point       [_q_] Quit"
+;;   ("l" mc/edit-lines :exit t)
+;;   ("a" mc/mark-all-like-this :exit t)
+;;   ("n" mc/mark-next-like-this :exit nil)
+;;   ("N" mc/skip-to-next-like-this :exit nil)
+;;   ("M-n" mc/unmark-next-like-this :exit nil)
+;;   ("p" mc/mark-previous-like-this :exit nil)
+;;   ("P" mc/skip-to-previous-like-this :exit nil)
+;;   ("M-p" mc/unmark-previous-like-this :exit nil)
+;;   ("s" mc/mark-all-in-region-regexp :exit t)
+;;   ("0" mc/insert-numbers :exit t)
+;;   ("A" mc/insert-letters :exit t)
+;;   ("<mouse-1>" mc/add-cursor-on-click :exit nil)
+;;   ;; Help with click recognition in this hydra
+;;   ("<down-mouse-1>" ignore)
+;;   ("<drag-mouse-1>" ignore)
+;;   ("q" nil))
+;;       (global-set-key (kbd "C-c r") 'hydra-multiple-cursors/body))
 
 ; reminder - list-faces-display
 
@@ -394,10 +394,10 @@
          ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
          ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
          ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
-         ;; Custom M-# bindings for fast register access
-         ("C-s-v" . consult-register-load)
-         ("C-s-c" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
-         ("C-M-#" . consult-register)
+         ;; Custom M-' bindings for fast register access
+         ("M-s-0" . consult-register-load)
+         ("M-s-9" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+         ("M-s-'" . consult-register)
          ;; Other custom bindings
          ("M-y" . consult-yank-pop)                ;; orig. yank-pop
          ("<help> a" . consult-apropos)            ;; orig. apropos-command
