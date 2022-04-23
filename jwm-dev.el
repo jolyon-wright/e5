@@ -186,6 +186,7 @@
 
 (use-package kconfig-mode)
 
+(require 'jw-vdiff)
 ;; (defun jw-c-common-hook()
 ;;   (message "hook executed")
   ;; if we have rtags use that
