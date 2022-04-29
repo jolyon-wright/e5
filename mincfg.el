@@ -30,7 +30,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)  ; Ask for y/n instead of yes/no
 (setq confirm-kill-processes nil)
 (desktop-save-mode 1)
-(setq inhibit-startup-message t)
+(setq inhibit-startup-message t
+       ring-bell-function 'ignore
+      )
 
 ;; try to load the jolyon theme
 (if (file-exists-p (expand-file-name "straight/repos/e5/col/jolyon-theme.el" user-emacs-directory))
@@ -120,9 +122,21 @@ Subsequent calls expands the selection to larger semantic unit."
     (set-mark-command nil)
     (move-end-of-line nil)))
 
+(defun jw-switch-to-scratch-buffer ()
+  "Switch to the current session's scratch buffer."
+  (interactive)
+  (switch-to-buffer "*scratch*"))
+
+(defun jw-switch-to-Messages-buffer ()
+  "Switch to the current session's Messages buffer."
+  (interactive)
+  (switch-to-buffer "*Messages*"))
+
 (global-set-key (kbd "<f9>") 'new-shell)
 (global-set-key (kbd "M-8") 'jw-extend-selection)
 (global-set-key (kbd "M-9") 'jw-select-line)
+(global-set-key (kbd "<f4>") 'jw-switch-to-scratch-buffer)
+(global-set-key (kbd "<f12>") 'jw-switch-to-Messages-buffer)
 
 ; switching windows
 (when (fboundp 'windmove-default-keybindings)
