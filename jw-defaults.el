@@ -110,7 +110,7 @@
 
 
 
-(setq-default tab-width 4)
+(setq-default tab-width 3)
 (set-default 'indent-tabs-mode nil) ;; Indent with spaces not tabs
 
 ;; Set up WindMove to be able to move between windows with shift-arrow
