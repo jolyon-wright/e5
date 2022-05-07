@@ -831,4 +831,19 @@ A prefix argument ARG reverses this behavior."
 ;; coding: utf-8
 ;; End:
 
+(defun jw-compare-monospace-font-families ()
+  "Display a list of all monospace font faces. Tested on GNU/Linux."
+  (interactive)
+  (pop-to-buffer "*Monospace Fonts*")
+  (erase-buffer)
+  (dolist (font-name (seq-filter (lambda (font)
+                                   (when-let ((info (font-info font)))
+                                     (string-match-p "spacing=100" (aref info 1))))
+                                 (font-family-list)))
+    (insert
+     (propertize
+      (concat "1 l; 0 O o [ < = > ] The quick brown fox… " font-name ")\n")
+      'font-lock-face `((:family
+                         ,(format "%s" (font-get (font-spec :name font-name) :family))))))))
+
 ;;; jw-defaults.el ends here.
