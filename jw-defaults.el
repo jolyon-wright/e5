@@ -662,6 +662,7 @@ A prefix argument ARG reverses this behavior."
 (bind-key "<f4>" #'jw-switch-to-scratch-buffer)
 (bind-key "<f5>" #'consult-buffer)
 (bind-key "<f12>" #'jw-switch-to-Messages-buffer)
+(unbind-key "<f2>")
 
 ;; C-x 4 .         xref-find-definitions-other-window
 
