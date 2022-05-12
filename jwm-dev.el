@@ -138,6 +138,8 @@
 ;; (bind-key "<f5>" 'gdb)
 ;; (bind-key "<C-f5>" 'jw-gdb-other-frame)
 
+(straight-use-package 'ninja-mode)
+
 ;; (use-package groovy-emacs-mode)
 
 (straight-use-package '(lewang :type git :host github :repo "lewang/command-log-mode"))
