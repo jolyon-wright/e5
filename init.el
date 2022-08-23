@@ -72,8 +72,8 @@
 
   ;; https://github.com/raxod502/radian/blob/develop/emacs/radian.el
 
-  (straight-register-package 'org)
-  (straight-register-package 'org-plus-contrib)
+  ;; (straight-register-package 'org)
+  (straight-register-package 'org-contrib)
 
   ;; omg ends
 
