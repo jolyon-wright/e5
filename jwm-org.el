@@ -64,9 +64,8 @@ Inserted by installing org-mode or when a release is made."
 
 ;; https://github.com/yyr/org-mode/blob/master/contrib/lisp/ox-koma-letter.el
 
-(use-package org
-  :straight org-plus-contrib
-;;(use-package org-plus-contrib
+(use-package org-contrib
+ ;; :straight org-plus-contrib
   :after ob-blockdiag
   :bind (:map org-mode-map
               ("<M-up>"   . nil)           ;; do not steal my keys!
@@ -146,7 +145,7 @@ Inserted by installing org-mode or when a release is made."
                           '(("^ *\\([+]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "◦"))))))
 
-  ;;(require 'ox-confluence)
+  (require 'ox-confluence)
 
   :hook
   (org-mode . org-num-mode)
@@ -569,10 +568,10 @@ A prefix arg forces clock in of the default task."
 (add-hook 'org-shiftright-final-hook 'windmove-right)
 
 ;; see https://orgmode.org/worg/exporters/koma-letter-export.html#org1fb055f
-(eval-after-load 'ox '(require 'ox-koma-letter))
-(eval-after-load 'ox-latex
-  '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
-(eval-after-load 'ox '(require 'ox-confluence))
+;; (eval-after-load 'ox '(require 'ox-koma-letter))
+;; (eval-after-load 'ox-latex
+;;   '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
+;; (eval-after-load 'ox '(require 'ox-confluence))
 
 
 ;; automatic preview of html from org:-
