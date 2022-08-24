@@ -104,7 +104,7 @@
           (progn
             (jw-setup-lisp-dir branch-dir)
             (jw-setup-lisp-pull branch-dir))
-        (let* ((git-repo " https://bitbucket.org/jolyon929/e5.git ")
+        (let* ((git-repo " https://github.com/jolyon-wright/e5.git ")
                (git-command (concat "git clone --single-branch -b " branch git-repo branch))
                (output-buffer (generate-new-buffer (format "*clone %s*" branch)))
                (proc (progn
